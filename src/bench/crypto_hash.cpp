@@ -13,7 +13,7 @@
 #include <crypto/sha512.h>
 #include <crypto/siphash.h>
 #include <hash.h>
-#include <hash_x11.h>
+#include <hash_phr.h>
 #include <random.h>
 #include <tinyformat.h>
 #include <uint256.h>
