@@ -116,4 +116,4 @@ src/wallet/platformkeys.*
 src/wallet/platformtypes.h
 src/wallet/test/backup_tests.cpp
 src/wallet/test/platformkeys_tests.cpp
-src/hash_x11.h
+src/hash_phr.h
