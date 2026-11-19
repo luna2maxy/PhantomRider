@@ -29,7 +29,7 @@ import unittest
 from test_framework.crypto.siphash import siphash256
 from test_framework.util import assert_equal
 
-import dash_hash # type: ignore[import]
+from test_framework.phr_hash import phr_hash
 
 MAX_LOCATOR_SZ = 101
 MAX_BASE_BLOCK_HASHES = 4096
@@ -97,7 +97,7 @@ def hash256(s):
     return sha256(sha256(s))
 
 def dashhash(s):
-    return dash_hash.getPoWHash(s)
+    return phr_hash(s)
 
 def ser_compact_size(l):
     r = b""

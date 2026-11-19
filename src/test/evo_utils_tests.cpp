@@ -39,15 +39,17 @@ void Test(NodeContext& node)
     BOOST_CHECK_EQUAL(node.chainman->IsQuorumTypeEnabled(consensus_params.llmqTypeChainLocks, tip,
                                                          /*optDIP0024IsActive=*/true, /*optHaveDIP0024Quorums=*/true),
                       true);
+    // The fresh PHR chain activates DIP0020 and the Platform LLMQ from height 1 on
+    // mainnet as well as regtest, so this is no longer test-chain only.
     BOOST_CHECK_EQUAL(node.chainman->IsQuorumTypeEnabled(consensus_params.llmqTypePlatform, tip,
                                                          /*optDIP0024IsActive=*/false, /*optHaveDIP0024Quorums=*/false),
-                      Params().IsTestChain());
+                      true);
     BOOST_CHECK_EQUAL(node.chainman->IsQuorumTypeEnabled(consensus_params.llmqTypePlatform, tip,
                                                          /*optDIP0024IsActive=*/true, /*optHaveDIP0024Quorums=*/false),
-                      Params().IsTestChain());
+                      true);
     BOOST_CHECK_EQUAL(node.chainman->IsQuorumTypeEnabled(consensus_params.llmqTypePlatform, tip,
                                                          /*optDIP0024IsActive=*/true, /*optHaveDIP0024Quorums=*/true),
-                      Params().IsTestChain());
+                      true);
     BOOST_CHECK_EQUAL(node.chainman->IsQuorumTypeEnabled(consensus_params.llmqTypeMnhf, tip,
                                                          /*optDIP0024IsActive=*/false, /*optHaveDIP0024Quorums=*/false),
                       true);

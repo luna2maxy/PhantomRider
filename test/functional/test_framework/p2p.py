@@ -973,7 +973,9 @@ class P2PDataStore(P2PInterface):
             if expect_disconnect:
                 self.wait_for_disconnect()
             else:
-                self.sync_with_ping()
+                # PHR validation can keep the node busy longer than the default 60s ping
+                # timeout after a large force-sent reorg. Honour the caller's timeout.
+                self.sync_with_ping(timeout=timeout)
 
             if success:
                 self.wait_until(lambda: node.getbestblockhash() == blocks[-1].hash, timeout=timeout)

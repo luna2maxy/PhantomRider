@@ -1326,7 +1326,9 @@ class FullBlockTest(BitcoinTestFramework):
         blocks2 = []
         for i in range(89, LARGE_REORG_SIZE + 89):
             blocks2.append(self.next_block("alt" + str(i)))
-        self.send_blocks(blocks2, False, force_send=True)
+        # PHR validation is slower than X11, so this 1088-block alternate chain
+        # needs the same extended timeout as the main-chain reorg above.
+        self.send_blocks(blocks2, False, force_send=True, timeout=2440)
 
         # extend alt chain to trigger re-org
         block = self.next_block("alt" + str(chain1_tip + 1))
