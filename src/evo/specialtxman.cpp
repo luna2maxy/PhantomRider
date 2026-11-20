@@ -885,6 +885,8 @@ uint256 CSpecialTxProcessor::GetDeterministicMNListHash(gsl::not_null<const CBlo
 
 void CSpecialTxProcessor::UpdatedMNListTip(gsl::not_null<const CBlockIndex*> pindex) { m_dmnman.UpdatedBlockTip(pindex); }
 
+void CSpecialTxProcessor::RebuildMNHFSignals(const CBlockIndex* pindex) { m_mnhfman->RebuildSignals(pindex); }
+
 void CSpecialTxProcessor::ResetPlatformBans(const CBlock& block, const CBlockIndex& index)
 {
     AssertLockHeld(::cs_main);
@@ -1083,8 +1085,8 @@ bool CSpecialTxProcessor::ProcessSpecialTxsInBlock(Chainstate& chainstate, const
         LogPrint(BCLog::BENCHMARK, "      - m_mnhfman->ProcessBlock: %.2fms [%.2fs]\n", Ticks<MillisecondsDouble>(nTime8 - nTime7),
                  Ticks<SecondsDouble>(nTimeMnehf));
     } catch (const EvoDbInconsistencyError& e) {
-        // Local EvoDB corruption detected below (the node is already
-        // aborting): fail with M_ERROR so the block is not marked invalid.
+        // Local EvoDB inconsistency detected below (missing or mismatched
+        // state): fail with M_ERROR so the block is not marked invalid.
         return state.Error(e.what());
     } catch (const std::exception& e) {
         LogPrintf("CSpecialTxProcessor::%s -- FAILURE! %s\n", __func__, e.what());
@@ -1145,8 +1147,8 @@ bool CSpecialTxProcessor::CheckCreditPoolDiffForBlock(const CBlock& block, const
         }
 
     } catch (const EvoDbInconsistencyError& e) {
-        // Local EvoDB corruption detected below (the node is already
-        // aborting): fail with M_ERROR so the block is not marked invalid.
+        // Local EvoDB inconsistency detected below (missing or mismatched
+        // state): fail with M_ERROR so the block is not marked invalid.
         return state.Error(e.what());
     } catch (const std::exception& e) {
         LogPrintf("CSpecialTxProcessor::%s -- FAILURE! %s\n", __func__, e.what());
@@ -1159,7 +1161,7 @@ bool CSpecialTxProcessor::CheckCreditPoolDiffForBlock(const CBlock& block, const
 template <typename ProTx>
 static bool CheckHashSig(const ProTx& proTx, const PKHash& pkhash, TxValidationState& state)
 {
-    if (std::string strError; !CHashSigner::VerifyHash(::SerializeHash(proTx), ToKeyID(pkhash), proTx.vchSig, strError)) {
+    if (std::string strError; !CHashSigner::VerifyHash(::SerializeSigHash(proTx), ToKeyID(pkhash), proTx.vchSig, strError)) {
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-protx-sig");
     }
     return true;
@@ -1179,7 +1181,7 @@ template <typename ProTx>
 static bool CheckHashSig(const ProTx& proTx, const CBLSPublicKey& pubKey, const BLSScheme scheme,
                          TxValidationState& state)
 {
-    if (!proTx.sig.VerifyInsecure(pubKey, ::SerializeHash(proTx), scheme)) {
+    if (!proTx.sig.VerifyInsecure(pubKey, ::SerializeSigHash(proTx), scheme)) {
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-protx-sig");
     }
     return true;
@@ -1699,7 +1701,7 @@ bool CheckProUpShareTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*>
     }
     if (check_sigs) {
         if (std::string strError;
-            !CHashSigner::VerifyHashCanonical(::SerializeHash(*opt_ptx),
+            !CHashSigner::VerifyHashCanonical(::SerializeSigHash(*opt_ptx),
                                               mnState.shares[opt_ptx->shareIndex].keyIDOwner, opt_ptx->vchSig,
                                               strError)) {
             return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-proupshare-sig");
@@ -1754,7 +1756,7 @@ bool CheckProUpSharedRegTx(const CTransaction& tx, gsl::not_null<const CBlockInd
         return false;
     }
     if (check_sigs) {
-        const uint256 payload_hash = ::SerializeHash(*opt_ptx);
+        const uint256 payload_hash = ::SerializeSigHash(*opt_ptx);
         for (size_t i = 0; i < mnState.shares.size(); i++) {
             if (std::string strError; !CHashSigner::VerifyHashCanonical(payload_hash, mnState.shares[i].keyIDOwner,
                                                                         opt_ptx->vchSigs[i], strError)) {
