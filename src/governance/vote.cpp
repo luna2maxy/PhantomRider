@@ -13,8 +13,8 @@
 
 #include <chainparams.h>
 #include <logging.h>
-#include <timedata.h>
 #include <util/string.h>
+#include <util/time.h>
 
 static_assert(CGovernanceVote::COMPACT_SIG_SIZE == CPubKey::COMPACT_SIGNATURE_SIZE);
 static_assert(CGovernanceVote::BLS_SIG_SIZE == CBLSSignature::SerSize);
@@ -29,16 +29,14 @@ uint256 SignatureCacheKey(const CKeyID& key, const uint256& sigHash, const std::
     return ss.GetHash();
 }
 
-//! The BLS verdict is always computed with VerifyInsecure(..., /*specificLegacyScheme=*/false),
-//! so the key must be fingerprinted under that same scheme. Serializing via operator<< would
-//! instead use the mutable bls_legacy_scheme global, and a legacy encoding of P can equal the
-//! basic encoding of -P. Across an activation or a reorg that flips the global, a verdict cached
-//! for one key could then be served for the other.
+//! The BLS verdict is basic, so the key is fingerprinted under that encoding. A legacy
+//! encoding of P can equal the basic encoding of -P, so the bytes written here are the
+//! basic ones the verifier used.
 uint256 SignatureCacheKey(const CBLSPublicKey& key, const uint256& sigHash,
                           const std::vector<unsigned char>& vchSig)
 {
     HashWriter ss{};
-    const auto key_bytes = key.ToBytes(/*specificLegacyScheme=*/false);
+    const auto key_bytes = key.ToBytes();
     ss.write(MakeByteSpan(key_bytes));
     ss << sigHash << vchSig;
     return ss.GetHash();
@@ -127,7 +125,7 @@ CGovernanceVote::CGovernanceVote(const COutPoint& outpointMasternodeIn, const ui
     nParentHash(nParentHashIn),
     nVoteOutcome(eVoteOutcomeIn),
     nVoteSignal(eVoteSignalIn),
-    nTime(TicksSinceEpoch<std::chrono::seconds>(GetAdjustedTime()))
+    nTime(TicksSinceEpoch<std::chrono::seconds>(NodeClock::now()))
 {
     UpdateHash();
 }
@@ -146,7 +144,7 @@ void CGovernanceVote::UpdateHash() const
 {
     // Note: doesn't match serialization
 
-    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+    HashWriter ss{};
     ss << masternodeOutpoint << uint8_t{} << 0xffffffff; // adding dummy values here to match old hashing format
     ss << nParentHash;
     ss << nVoteSignal;
@@ -198,8 +196,8 @@ bool CGovernanceVote::CheckSignature(const CBLSPublicKey& pubKey) const
     }
 
     CBLSSignature sig;
-    sig.SetBytes(vchSig, false);
-    const bool valid{sig.VerifyInsecure(pubKey, sigHash, false)};
+    sig.SetBytes(vchSig);
+    const bool valid{sig.VerifyInsecure(pubKey, sigHash)};
     if (!valid) {
         LogPrint(BCLog::GOBJECT, "CGovernanceVote::CheckSignature -- VerifyInsecure() failed\n");
     }
@@ -210,7 +208,7 @@ bool CGovernanceVote::CheckSignature(const CBLSPublicKey& pubKey) const
 
 bool CGovernanceVote::IsValid(const CDeterministicMNList& tip_mn_list, bool useVotingKey) const
 {
-    const auto max_time{std::chrono::time_point_cast<std::chrono::seconds>(GetAdjustedTime() + 1h)};
+    const auto max_time{std::chrono::time_point_cast<std::chrono::seconds>(NodeClock::now() + 1h)};
     if (Time() > max_time) {
         LogPrint(BCLog::GOBJECT, "CGovernanceVote::IsValid -- vote is too far ahead of current time - %s - nTime %lli - Max Time %lli\n", GetHash().ToString(), nTime, TicksSinceEpoch<std::chrono::seconds>(max_time));
         return false;

@@ -485,8 +485,8 @@ void CTxMemPool::addUnchecked(const CTxMemPoolEntry &entry, setEntries &setAnces
         minerPolicyEstimator->processTransaction(entry, validFeeEstimate);
     }
 
-    vTxHashes.emplace_back(entry.GetTx().GetInstanceHash(), newit);
-    newit->vTxHashesIdx = vTxHashes.size() - 1;
+    txns_randomized.emplace_back(entry.GetTx().GetInstanceHash(), newit);
+    newit->idx_randomized = txns_randomized.size() - 1;
 
     // Invalid ProTxes should never get this far because transactions should be
     // fully checked by AcceptToMemoryPool() at this point, so we just assume that
@@ -650,7 +650,7 @@ void CTxMemPool::addUncheckedProTx(indexed_transaction_set::iterator& newit, con
         } else {
             mapProTxPubKeyIDs.emplace(proTx.keyIDOwner, tx_hash);
         }
-        mapProTxBlsPubKeyHashes.emplace(proTx.pubKeyOperator.GetHash(), tx_hash);
+        mapProTxBlsPubKeyHashes.emplace(proTx.OperatorKey().GetHash(), tx_hash);
         if (proTx.nType == MnType::Evo && !proTx.platformNodeID.IsNull()) {
             mapProTxPlatformNodeIDs.emplace(proTx.platformNodeID, tx_hash);
         }
@@ -664,7 +664,7 @@ void CTxMemPool::addUncheckedProTx(indexed_transaction_set::iterator& newit, con
         mapProTxRefs.emplace(proTx.proTxHash, tx_hash);
         // Without a masternode to take the key from, any registrar update evicts it
         if (auto dmn = m_dmnman.GetListAtChainTip().GetMN(proTx.proTxHash)) {
-            newit->validForProTxKey = ::SerializeHash(dmn->pdmnState->pubKeyOperator);
+            newit->validForProTxKey = dmn->pdmnState->OperatorKey().GetHash();
         }
         for (const auto& entry : proTx.netInfo->GetEntries()) {
             mapProTxAddresses.emplace(entry, tx_hash);
@@ -675,9 +675,9 @@ void CTxMemPool::addUncheckedProTx(indexed_transaction_set::iterator& newit, con
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_REGISTRAR) {
         auto proTx = *Assert(GetTxPayload<CProUpRegTx>(tx));
         mapProTxRefs.emplace(proTx.proTxHash, tx_hash);
-        mapProTxBlsPubKeyHashes.emplace(proTx.pubKeyOperator.GetHash(), tx_hash);
+        mapProTxBlsPubKeyHashes.emplace(proTx.OperatorKey().GetHash(), tx_hash);
         auto dmn = Assert(m_dmnman.GetListAtChainTip().GetMN(proTx.proTxHash));
-        newit->validForProTxKey = ::SerializeHash(dmn->pdmnState->pubKeyOperator);
+        newit->validForProTxKey = dmn->pdmnState->OperatorKey().GetHash();
         if (dmn->pdmnState->pubKeyOperator != proTx.pubKeyOperator) {
             newit->isKeyChangeProTx = true;
         }
@@ -685,7 +685,7 @@ void CTxMemPool::addUncheckedProTx(indexed_transaction_set::iterator& newit, con
         auto proTx = *Assert(GetTxPayload<CProUpRevTx>(tx));
         mapProTxRefs.emplace(proTx.proTxHash, tx_hash);
         auto dmn = Assert(m_dmnman.GetListAtChainTip().GetMN(proTx.proTxHash));
-        newit->validForProTxKey = ::SerializeHash(dmn->pdmnState->pubKeyOperator);
+        newit->validForProTxKey = dmn->pdmnState->OperatorKey().GetHash();
         if (dmn->pdmnState->pubKeyOperator.Get() != CBLSPublicKey()) {
             newit->isKeyChangeProTx = true;
         }
@@ -714,7 +714,7 @@ void CTxMemPool::addUncheckedProTx(indexed_transaction_set::iterator& newit, con
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_SHARED_REGISTRAR) {
         auto proTx = *Assert(GetTxPayload<CProUpSharedRegTx>(tx));
         mapProTxRefs.emplace(proTx.proTxHash, tx_hash);
-        mapProTxBlsPubKeyHashes.emplace(proTx.pubKeyOperator.GetHash(), tx_hash);
+        mapProTxBlsPubKeyHashes.emplace(proTx.OperatorKey().GetHash(), tx_hash);
         auto dmn = Assert(m_dmnman.GetListAtChainTip().GetMN(proTx.proTxHash));
         if (dmn->pdmnState->pubKeyOperator != proTx.pubKeyOperator) {
             newit->isKeyChangeProTx = true;
@@ -749,14 +749,17 @@ void CTxMemPool::removeUnchecked(txiter it, MemPoolRemovalReason reason)
 
     RemoveUnbroadcastTx(hash, true /* add logging because unchecked */ );
 
-    if (vTxHashes.size() > 1) {
-        vTxHashes[it->vTxHashesIdx] = std::move(vTxHashes.back());
-        vTxHashes[it->vTxHashesIdx].second->vTxHashesIdx = it->vTxHashesIdx;
-        vTxHashes.pop_back();
-        if (vTxHashes.size() * 2 < vTxHashes.capacity())
-            vTxHashes.shrink_to_fit();
-    } else
-        vTxHashes.clear();
+    if (txns_randomized.size() > 1) {
+        // Remove entry from txns_randomized by replacing it with the back and deleting the back.
+        txns_randomized[it->idx_randomized] = std::move(txns_randomized.back());
+        txns_randomized[it->idx_randomized].second->idx_randomized = it->idx_randomized;
+        txns_randomized.pop_back();
+        if (txns_randomized.size() * 2 < txns_randomized.capacity()) {
+            txns_randomized.shrink_to_fit();
+        }
+    } else {
+        txns_randomized.clear();
+    }
 
     removeUncheckedProTx(it->GetTx());
 
@@ -801,7 +804,7 @@ void CTxMemPool::removeUncheckedProTx(const CTransaction& tx)
         } else {
             mapProTxPubKeyIDs.erase(proTx.keyIDOwner);
         }
-        mapProTxBlsPubKeyHashes.erase(proTx.pubKeyOperator.GetHash());
+        mapProTxBlsPubKeyHashes.erase(proTx.OperatorKey().GetHash());
         if (proTx.nType == MnType::Evo && !proTx.platformNodeID.IsNull()) {
             mapProTxPlatformNodeIDs.erase(proTx.platformNodeID);
         }
@@ -819,7 +822,7 @@ void CTxMemPool::removeUncheckedProTx(const CTransaction& tx)
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_REGISTRAR) {
         auto proTx = *Assert(GetTxPayload<CProUpRegTx>(tx));
         eraseProTxRef(proTx.proTxHash, tx_hash);
-        mapProTxBlsPubKeyHashes.erase(proTx.pubKeyOperator.GetHash());
+        mapProTxBlsPubKeyHashes.erase(proTx.OperatorKey().GetHash());
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_REVOKE) {
         auto proTx = *Assert(GetTxPayload<CProUpRevTx>(tx));
         eraseProTxRef(proTx.proTxHash, tx_hash);
@@ -846,7 +849,7 @@ void CTxMemPool::removeUncheckedProTx(const CTransaction& tx)
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_SHARED_REGISTRAR) {
         auto proTx = *Assert(GetTxPayload<CProUpSharedRegTx>(tx));
         eraseProTxRef(proTx.proTxHash, tx_hash);
-        mapProTxBlsPubKeyHashes.erase(proTx.pubKeyOperator.GetHash());
+        mapProTxBlsPubKeyHashes.erase(proTx.OperatorKey().GetHash());
     }
 }
 
@@ -894,7 +897,7 @@ void CTxMemPool::ReplaceAssetUnlockInstance(const CTransactionRef& tx)
     Assume(it->GetTx().GetTotalSize() == tx->GetTotalSize());
     const bool modified{mapTx.modify(it, [&tx](CTxMemPoolEntry& e) { e.ReplaceAssetUnlockTx(tx); })};
     assert(modified);
-    vTxHashes[it->vTxHashesIdx].first = tx->GetInstanceHash();
+    txns_randomized[it->idx_randomized].first = tx->GetInstanceHash();
     m_asset_unlock_instances.erase(old_instance_hash);
     m_asset_unlock_instances.emplace(tx->GetInstanceHash(), tx->GetHash());
     nTransactionsUpdated++;
@@ -1031,10 +1034,10 @@ void CTxMemPool::removeProTxPubKeyConflicts(const CTransaction &tx, const CKeyID
     }
 }
 
-void CTxMemPool::removeProTxPubKeyConflicts(const CTransaction &tx, const CBLSLazyPublicKey &pubKey)
+void CTxMemPool::removeProTxPubKeyConflicts(const CTransaction& tx, const uint256& pubKeyHash)
 {
-    if (mapProTxBlsPubKeyHashes.count(pubKey.GetHash())) {
-        uint256 conflictHash = mapProTxBlsPubKeyHashes[pubKey.GetHash()];
+    if (mapProTxBlsPubKeyHashes.count(pubKeyHash)) {
+        uint256 conflictHash = mapProTxBlsPubKeyHashes[pubKeyHash];
         if (conflictHash != tx.GetHash() && mapTx.count(conflictHash)) {
             removeRecursive(mapTx.find(conflictHash)->GetTx(), MemPoolRemovalReason::CONFLICT);
         }
@@ -1263,7 +1266,7 @@ void CTxMemPool::removeProTxConflicts(const CTransaction &tx)
         } else {
             removeProTxPubKeyConflicts(tx, proTx.keyIDOwner);
         }
-        removeProTxPubKeyConflicts(tx, proTx.pubKeyOperator);
+        removeProTxPubKeyConflicts(tx, proTx.OperatorKey().GetHash());
         if (proTx.nType == MnType::Evo && !proTx.platformNodeID.IsNull()) {
             removeProTxPlatformNodeIDConflicts(tx, proTx.platformNodeID);
         }
@@ -1304,8 +1307,9 @@ void CTxMemPool::removeProTxConflicts(const CTransaction &tx)
             return;
         }
 
-        removeProTxPubKeyConflicts(tx, opt_proTx->pubKeyOperator);
-        removeProTxKeyChangedConflicts(tx, opt_proTx->proTxHash, ::SerializeHash(opt_proTx->pubKeyOperator));
+        const uint256 operator_key_hash{opt_proTx->OperatorKey().GetHash()};
+        removeProTxPubKeyConflicts(tx, operator_key_hash);
+        removeProTxKeyChangedConflicts(tx, opt_proTx->proTxHash, operator_key_hash);
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_REVOKE) {
         const auto opt_proTx = GetTxPayload<CProUpRevTx>(tx);
         if (!opt_proTx) {
@@ -1321,8 +1325,9 @@ void CTxMemPool::removeProTxConflicts(const CTransaction &tx)
             return;
         }
 
-        removeProTxPubKeyConflicts(tx, opt_proTx->pubKeyOperator);
-        removeProTxKeyChangedConflicts(tx, opt_proTx->proTxHash, ::SerializeHash(opt_proTx->pubKeyOperator));
+        const uint256 operator_key_hash{opt_proTx->OperatorKey().GetHash()};
+        removeProTxPubKeyConflicts(tx, operator_key_hash);
+        removeProTxKeyChangedConflicts(tx, opt_proTx->proTxHash, operator_key_hash);
         removeProTxVotingPayeeConflicts(opt_proTx->proTxHash, opt_proTx->keyIDVoting, TRANSACTION_PROVIDER_UPDATE_SHARE);
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_SHARE) {
         const auto opt_proTx = GetTxPayload<CProUpShareTx>(tx);
@@ -1572,6 +1577,18 @@ static TxMempoolInfo GetInfo(CTxMemPool::indexed_transaction_set::const_iterator
     return TxMempoolInfo{it->GetSharedTx(), it->GetTime(), it->GetFee(), it->GetTxSize(), it->GetModifiedFee() - it->GetFee()};
 }
 
+std::vector<CTxMemPoolEntryRef> CTxMemPool::entryAll() const
+{
+    AssertLockHeld(cs);
+
+    std::vector<CTxMemPoolEntryRef> ret;
+    ret.reserve(mapTx.size());
+    for (const auto& it : GetSortedDepthAndScore()) {
+        ret.emplace_back(*it);
+    }
+    return ret;
+}
+
 std::vector<TxMempoolInfo> CTxMemPool::infoAll() const
 {
     LOCK(cs);
@@ -1584,6 +1601,13 @@ std::vector<TxMempoolInfo> CTxMemPool::infoAll() const
     }
 
     return ret;
+}
+
+const CTxMemPoolEntry* CTxMemPool::GetEntry(const uint256& txid) const
+{
+    AssertLockHeld(cs);
+    const auto i = mapTx.find(txid);
+    return i == mapTx.end() ? nullptr : &(*i);
 }
 
 CTransactionRef CTxMemPool::get(const uint256& hash) const
@@ -1627,10 +1651,10 @@ bool CTxMemPool::existsProviderTxCrossSchemeConflict(const CTransaction& tx) con
         AssertLockHeld(cs);
         const CBLSPublicKey& pubkey{key.Get()};
         if (!pubkey.IsValid()) return false;
-        for (const bool legacy_scheme : {true, false}) {
-            CBLSLazyPublicKey wrapped;
-            wrapped.Set(pubkey, legacy_scheme);
-            auto it = mapProTxBlsPubKeyHashes.find(wrapped.GetHash());
+        CBLSLazyPublicKey wrapped;
+        wrapped.Set(pubkey);
+        for (const BLSScheme scheme : {BLSScheme::Legacy, BLSScheme::Basic}) { // NOLINT(bls-legacy-scheme)
+            auto it = mapProTxBlsPubKeyHashes.find(wrapped.GetHash(scheme));
             if (it == mapProTxBlsPubKeyHashes.end()) continue;
             auto txit = mapTx.find(it->second);
             if (txit == mapTx.end()) continue;
@@ -1733,10 +1757,11 @@ bool CTxMemPool::existsProviderTxConflict(const CTransaction &tx) const {
                     return true;
                 }
             }
-            if (mapProTxBlsPubKeyHashes.count(proTx.pubKeyOperator.GetHash())) {
+            if (mapProTxBlsPubKeyHashes.count(proTx.OperatorKey().GetHash())) {
                 return true;
             }
-        } else if (isOwnerOrPlatformNodeIDClaimed(proTx.keyIDOwner) || mapProTxBlsPubKeyHashes.count(proTx.pubKeyOperator.GetHash())) {
+        } else if (isOwnerOrPlatformNodeIDClaimed(proTx.keyIDOwner) ||
+                   mapProTxBlsPubKeyHashes.count(proTx.OperatorKey().GetHash())) {
             return true;
         }
         if (proTx.nType == MnType::Evo && !proTx.platformNodeID.IsNull() && isOwnerOrPlatformNodeIDClaimed(proTx.platformNodeID)) {
@@ -1813,7 +1838,7 @@ bool CTxMemPool::existsProviderTxConflict(const CTransaction &tx) const {
             }
         }
 
-        auto it = mapProTxBlsPubKeyHashes.find(proTx.pubKeyOperator.GetHash());
+        auto it = mapProTxBlsPubKeyHashes.find(proTx.OperatorKey().GetHash());
         return it != mapProTxBlsPubKeyHashes.end() && it->second != proTx.proTxHash;
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_REVOKE) {
         const auto opt_proTx = GetTxPayload<CProUpRevTx>(tx);
@@ -1878,7 +1903,7 @@ bool CTxMemPool::existsProviderTxConflict(const CTransaction &tx) const {
             }
         }
 
-        auto it = mapProTxBlsPubKeyHashes.find(proTx.pubKeyOperator.GetHash());
+        auto it = mapProTxBlsPubKeyHashes.find(proTx.OperatorKey().GetHash());
         return it != mapProTxBlsPubKeyHashes.end() && it->second != proTx.proTxHash;
     } else if (tx.nType == TRANSACTION_PROVIDER_UPDATE_SHARE) {
         const auto opt_proTx = GetTxPayload<CProUpShareTx>(tx);
@@ -2046,7 +2071,7 @@ void CCoinsViewMemPool::PackageAddTransaction(const CTransactionRef& tx)
 size_t CTxMemPool::DynamicMemoryUsage() const {
     LOCK(cs);
     // Estimate the overhead of mapTx to be 12 pointers + an allocation, as no exact formula for boost::multi_index_contained is implemented.
-    return memusage::MallocUsage(sizeof(CTxMemPoolEntry) + 12 * sizeof(void*)) * mapTx.size() + memusage::DynamicUsage(mapNextTx) + memusage::DynamicUsage(mapDeltas) + memusage::DynamicUsage(vTxHashes) + cachedInnerUsage;
+    return memusage::MallocUsage(sizeof(CTxMemPoolEntry) + 12 * sizeof(void*)) * mapTx.size() + memusage::DynamicUsage(mapNextTx) + memusage::DynamicUsage(mapDeltas) + memusage::DynamicUsage(txns_randomized) + cachedInnerUsage;
 }
 
 void CTxMemPool::RemoveUnbroadcastTx(const uint256& txid, const bool unchecked) {

@@ -13,7 +13,6 @@
 #include <key_io.h>
 #include <logging.h>
 #include <node/interface_ui.h>
-#include <timedata.h>
 #include <tinyformat.h>
 #include <util/moneystr.h>
 #include <util/std23.h>
@@ -144,7 +143,7 @@ bool ValidateStartEndEpoch(const UniValue& objJSON, bool fCheckExpiration, std::
         return false;
     }
 
-    const auto now{std::chrono::time_point_cast<std::chrono::seconds>(GetAdjustedTime())};
+    const auto now{std::chrono::time_point_cast<std::chrono::seconds>(NodeClock::now())};
     if (fCheckExpiration && NodeSeconds{std::chrono::seconds{nEndEpoch}} <= now) {
         strErrorMessages += "expired;";
         return false;
@@ -442,7 +441,7 @@ bool CGovernanceObject::ProcessVote(CMasternodeMetaMan& mn_metaman, bool fRateCh
 
     auto vote_time_update{currentInstance.last_update};
     if (fRateChecksEnabled) {
-        const auto now{std::chrono::time_point_cast<std::chrono::seconds>(GetAdjustedTime())};
+        const auto now{std::chrono::time_point_cast<std::chrono::seconds>(NodeClock::now())};
         if (currentInstance.last_update > now - GOVERNANCE_UPDATE_MIN) {
             std::string msg{strprintf("CGovernanceObject::%s -- Masternode voting too often, MN outpoint = %s, "
                                       "governance object hash = %s, last update = %d, current time = %d",
@@ -526,7 +525,7 @@ uint256 CGovernanceObject::GetHash() const
 
 uint256 CGovernanceObject::GetDataHash() const
 {
-    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+    HashWriter ss{};
     ss << GetDataAsHexString();
 
     return ss.GetHash();
@@ -534,7 +533,7 @@ uint256 CGovernanceObject::GetDataHash() const
 
 uint256 CGovernanceObject::GetSignatureHash() const
 {
-    return SerializeHash(*this);
+    return SerializeSigHash(m_obj);
 }
 
 void CGovernanceObject::SetMasternodeOutpoint(const COutPoint& outpoint)
@@ -550,8 +549,8 @@ void CGovernanceObject::SetSignature(Span<const uint8_t> sig)
 bool CGovernanceObject::CheckSignature(const CBLSPublicKey& pubKey) const
 {
     CBLSSignature sig;
-    sig.SetBytes(m_obj.vchSig, false);
-    if (!sig.VerifyInsecure(pubKey, GetSignatureHash(), false)) {
+    sig.SetBytes(m_obj.vchSig);
+    if (!sig.VerifyInsecure(pubKey, GetSignatureHash())) {
         LogPrintf("CGovernanceObject::CheckSignature -- VerifyInsecure() failed\n");
         return false;
     }
@@ -747,7 +746,8 @@ bool CGovernanceObject::IsValidLocally(const CDeterministicMNList& tip_mn_list, 
 
         // Check that we have a valid MN signature
         if (!CheckSignature(dmn->pdmnState->pubKeyOperator.Get())) {
-            strError = "Invalid masternode signature for: " + strOutpoint + ", pubkey = " + dmn->pdmnState->pubKeyOperator.ToString();
+            strError = "Invalid masternode signature for: " + strOutpoint +
+                       ", pubkey = " + dmn->pdmnState->OperatorKey().ToString();
             return false;
         }
 

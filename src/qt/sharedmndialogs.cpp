@@ -303,8 +303,7 @@ bool ComputeSharedSignHash(SharedSigCollector::Kind kind, const QString& pro_tx_
         error = QCoreApplication::translate("SharedSigCollector", "The transaction updates a different masternode.");
         return false;
     }
-    // SER_GETHASH serialization excludes the signature vector
-    hash = ::SerializeHash(*opt_ptx);
+    hash = ::SerializeSigHash(*opt_ptx);
     return true;
 }
 
@@ -317,7 +316,6 @@ bool ComputeSharedSignHash(SharedSigCollector::Kind kind, const QString& pro_tx_
 UpdateShareDialog::UpdateShareDialog(interfaces::Node& node, WalletModel* wallet_model, const MasternodeEntry& entry, QWidget* parent) :
     MasternodeActionDialog(node, wallet_model, entry, parent),
     m_v24_active{node.isV24Active()},
-    m_is_shared{entry.isShared()},
     m_voting_address{entry.votingAddress()},
     m_shares{entry.shares()}
 {
@@ -1783,7 +1781,7 @@ void DissolveDialog::recordStandbySaved()
 RotateSharedKeysDialog::RotateSharedKeysDialog(interfaces::Node& node, WalletModel* wallet_model,
                                                const MasternodeEntry& entry, QWidget* parent) :
     SharedMnDialog(node, wallet_model, entry, parent),
-    m_current_operator_pubkey{entry.operatorPubKey(/*legacy_scheme=*/false)},
+    m_current_operator_pubkey{entry.operatorPubKey()},
     m_current_voting_address{entry.votingAddress()}
 {
     setWindowTitle(tr("Rotate Operator or Voting Key"));
@@ -1941,7 +1939,7 @@ QString RotateSharedKeysDialog::operatorKeyInput() const
 bool RotateSharedKeysDialog::IsValidOperatorKey(const QString& hex)
 {
     CBLSPublicKey key;
-    return key.SetHexStr(hex.toStdString(), /*specificLegacyScheme=*/false) && key.IsValid();
+    return key.SetHexStr(hex.toStdString()) && key.IsValid();
 }
 
 void RotateSharedKeysDialog::preloadEnvelope(const QString& text)
@@ -1986,8 +1984,7 @@ void RotateSharedKeysDialog::showRequestedChange()
     QStringList lines;
     if (DecodeHexTx(tx, m_collector->txHex().toStdString())) {
         if (const auto ptx{GetTxPayload<CProUpSharedRegTx>(tx)}) {
-            const QString new_operator{
-                QString::fromStdString(ptx->pubKeyOperator.Get().ToString(/*specificLegacyScheme=*/false))};
+            const QString new_operator{QString::fromStdString(ptx->pubKeyOperator.Get().ToString())};
             const QString new_voting{QString::fromStdString(EncodeDestination(PKHash(ptx->keyIDVoting)))};
             lines << tr("Operator key: %1")
                          .arg(new_operator.compare(m_current_operator_pubkey, Qt::CaseInsensitive) == 0
@@ -2047,7 +2044,7 @@ void RotateSharedKeysDialog::prepare()
     request.pro_tx_hash = m_protx_hash_raw;
     if (const QString key{operatorKeyInput()}; !key.isEmpty()) {
         CBLSPublicKey operator_key;
-        if (!operator_key.SetHexStr(key.toStdString(), /*specificLegacyScheme=*/false)) {
+        if (!operator_key.SetHexStr(key.toStdString())) {
             ShowStatusLabel(m_status_label, tr("Enter a valid operator public key."), /*error=*/true);
             return;
         }

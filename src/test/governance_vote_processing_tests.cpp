@@ -21,7 +21,7 @@
 #include <primitives/transaction.h>
 #include <script/standard.h>
 #include <streams.h>
-#include <timedata.h>
+#include <test/util/bls.h>
 #include <uint256.h>
 #include <util/strencodings.h>
 #include <util/time.h>
@@ -57,10 +57,8 @@ void SignWithVotingKey(CGovernanceVote& vote, const CKey& key)
 
 void SignWithOperatorKey(CGovernanceVote& vote, const CBLSSecretKey& key)
 {
-    // Vote signatures are always basic-scheme, regardless of the currently active BLS scheme:
-    // CGovernanceVote::CheckSignature() deserializes and verifies with legacy=false.
-    vote.SetSignature(
-        key.Sign(vote.GetSignatureHash(), /*specificLegacyScheme=*/false).ToByteVector(/*specificLegacyScheme=*/false));
+    // Vote signatures are basic. CGovernanceVote::CheckSignature() deserializes and verifies them as basic.
+    vote.SetSignature(key.Sign(vote.GetSignatureHash()).ToByteVector());
 }
 
 //! A trigger that is signed by the fixture masternode and passes IsValidLocally, but whose payload
@@ -72,8 +70,7 @@ CGovernanceObject MakeFailedTrigger(const COutPoint& mn_collateral, const CBLSSe
     CGovernanceObject govobj{uint256{}, /*nRevisionIn=*/1, creation_time, uint256{}, HexStr(data)};
     BOOST_REQUIRE(govobj.GetObjectType() == GovernanceObject::TRIGGER);
     govobj.SetMasternodeOutpoint(mn_collateral);
-    govobj.SetSignature(operator_key.Sign(govobj.GetSignatureHash(), /*specificLegacyScheme=*/false)
-                            .ToByteVector(/*specificLegacyScheme=*/false));
+    govobj.SetSignature(operator_key.Sign(govobj.GetSignatureHash()).ToByteVector());
     return govobj;
 }
 
@@ -140,7 +137,7 @@ struct GovernanceVoteSetup : public TestChainSetup {
                                                              *m_node.mn_sync, m_node.gov_collateral_index.get());
         BOOST_REQUIRE(m_node.govman->LoadCache(/*load_cache=*/false));
 
-        proposal_time = TicksSinceEpoch<std::chrono::seconds>(GetAdjustedTime());
+        proposal_time = TicksSinceEpoch<std::chrono::seconds>(NodeClock::now());
         CKey payment_key;
         payment_key.MakeNewKey(true);
         proposal_payment_address = EncodeDestination(PKHash(payment_key.GetPubKey()));
@@ -217,7 +214,7 @@ struct GovernanceVoteSetup : public TestChainSetup {
                              std::chrono::seconds time_offset = 0s) const
     {
         CGovernanceVote vote{mn_collateral, parent_hash, signal, outcome};
-        vote.SetTime(GetAdjustedTime() + time_offset);
+        vote.SetTime(NodeClock::now() + time_offset);
         return vote;
     }
 };
@@ -257,9 +254,9 @@ BOOST_FIXTURE_TEST_CASE(votes_follow_masternode_identity_across_reorg, Governanc
     const auto old_id = tip_mn_list().GetMN(registration.GetHash())->GetInternalId();
 
     CProUpRegTx update;
-    update.nVersion = ProTxVersion::GetMax(!bls::bls_legacy_scheme, /*is_extended_addr=*/false);
+    update.nVersion = ProTxVersionForNextBlock(chainman);
     update.proTxHash = registration.GetHash();
-    update.pubKeyOperator.Set(operator_key.GetPublicKey(), /*specificLegacyScheme=*/bls::bls_legacy_scheme);
+    update.pubKeyOperator.Set(operator_key.GetPublicKey());
     update.keyIDVoting = voting_key.GetPubKey().GetID();
     update.scriptPayout = payout_script();
     CMutableTransaction tx;
@@ -267,7 +264,7 @@ BOOST_FIXTURE_TEST_CASE(votes_follow_masternode_identity_across_reorg, Governanc
     tx.nType = TRANSACTION_PROVIDER_UPDATE_REGISTRAR;
     const auto spent = FundTransaction(chainman, tx, utxos, payout_script(), COIN);
     update.inputsHash = CalcTxInputsHash(CTransaction(tx));
-    BOOST_REQUIRE(CHashSigner::SignHash(::SerializeHash(update), owner_key, update.vchSig));
+    BOOST_REQUIRE(CHashSigner::SignHash(::SerializeSigHash(update), owner_key, update.vchSig));
     SetTxPayload(tx, update);
     SignTransaction(tx, spent, coinbaseKey);
     MineBlock({tx});
@@ -405,7 +402,7 @@ BOOST_AUTO_TEST_CASE(unsigned_and_unknown_masternode_votes_are_rejected)
     CKey stranger_key;
     stranger_key.MakeNewKey(true);
     CGovernanceVote stranger{COutPoint{uint256S("42"), 0}, parent_hash, VOTE_SIGNAL_FUNDING, VOTE_OUTCOME_YES};
-    stranger.SetTime(GetAdjustedTime());
+    stranger.SetTime(NodeClock::now());
     SignWithVotingKey(stranger, stranger_key);
 
     CGovernanceException stranger_exception;

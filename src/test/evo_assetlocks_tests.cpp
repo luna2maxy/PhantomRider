@@ -4,6 +4,7 @@
 
 #include <test/util/setup_common.h>
 
+#include <blockencodings.h>
 #include <chainparams.h>
 #include <consensus/amount.h>
 #include <consensus/tx_check.h>
@@ -513,9 +514,8 @@ BOOST_FIXTURE_TEST_CASE(evo_assetunlock, TestChain100Setup)
 
         CBLSSecretKey sk;
         sk.MakeNewKey();
-        const bool legacy_scheme = bls::bls_legacy_scheme.load();
-        const CBLSSignature sig_a{sk.Sign(uint256::ONE, legacy_scheme)};
-        const CBLSSignature sig_b{sk.Sign(uint256::TWO, legacy_scheme)};
+        const CBLSSignature sig_a{sk.Sign(uint256::ONE)};
+        const CBLSSignature sig_b{sk.Sign(uint256::TWO)};
         BOOST_REQUIRE(sig_a.IsValid() && sig_b.IsValid() && sig_a != sig_b);
         auto make_unlock_tx = [&](uint8_t version, uint64_t index, uint32_t fee, uint32_t requested_height,
                                   const uint256& quorum_hash, const CBLSSignature& quorum_sig = CBLSSignature{}) {
@@ -664,7 +664,7 @@ BOOST_FIXTURE_TEST_CASE(evo_assetunlock_cbtx_merkle_root, BasicTestingSetup)
     // exists to cover
     CBLSSecretKey sk;
     sk.MakeNewKey();
-    block.vtx.back() = make_unlock(2, 2, 700, sk.Sign(uint256::ONE, bls::bls_legacy_scheme.load()));
+    block.vtx.back() = make_unlock(2, 2, 700, sk.Sign(uint256::ONE));
     BOOST_CHECK(block.vtx.back()->GetHash() == make_unlock(2, 2, 500)->GetHash());
     BOOST_CHECK(CalcCbTxMerkleRootAssetUnlocks(block) != root_resigned);
 }
@@ -693,6 +693,21 @@ BOOST_FIXTURE_TEST_CASE(mempool_pending_asset_unlock_amount, TestChain100Setup)
     pool.ReplaceAssetUnlockInstance(unlock_v2_resigned);
     BOOST_CHECK(unlock_v2_resigned->GetInstanceHash() != unlock_v2->GetInstanceHash());
     BOOST_CHECK(pool.get(unlock_v2->GetHash())->GetInstanceHash() == unlock_v2_resigned->GetInstanceHash());
+
+    // Compact block reconstruction finds the refreshed instance and treats the replaced one as missing
+    const auto reconstructs_from_mempool = [&](const CTransactionRef& unlock) {
+        CBlock block;
+        block.nBits = 0x207fffff;
+        CMutableTransaction coinbase;
+        coinbase.vin.resize(1);
+        coinbase.vout.resize(1);
+        block.vtx = {MakeTransactionRef(coinbase), unlock};
+        PartiallyDownloadedBlock partial_block(&pool);
+        BOOST_REQUIRE(partial_block.InitData(CBlockHeaderAndShortTxIDs{block}, {}) == READ_STATUS_OK);
+        return partial_block.IsTxAvailable(1);
+    };
+    BOOST_CHECK(reconstructs_from_mempool(unlock_v2_resigned));
+    BOOST_CHECK(!reconstructs_from_mempool(unlock_v2));
     BOOST_CHECK_EQUAL(pool.GetPendingAssetUnlockAmount(), 12 * COIN + 3000);
     BOOST_CHECK(pool.GetAssetUnlockTxidsByIndex(2) == std::vector<uint256>{unlock_v2->GetHash()});
 

@@ -42,6 +42,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QComboBox>
+#include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
 #include <QFocusEvent>
@@ -75,7 +76,8 @@ namespace {
 class TestMnEntry final : public interfaces::MnEntry
 {
 public:
-    explicit TestMnEntry(MnType type = MnType::Evo, bool legacy_operator_display = false, uint16_t operator_reward = 0) :
+    explicit TestMnEntry(MnType type = MnType::Evo, BLSScheme operator_display_scheme = BLSScheme::Basic,
+                         uint16_t operator_reward = 0) :
         interfaces::MnEntry(CDeterministicMNCPtr{}),
         m_type{type},
         m_owner{NewKeyID()},
@@ -87,7 +89,7 @@ public:
     {
         m_hash.SetHex("01");
         m_primary_service = LookupNumeric("127.0.0.1", 19999);
-        setOperatorKey(legacy_operator_display);
+        setOperatorKey(operator_display_scheme);
     }
 
     bool isBanned() const override { return m_banned; }
@@ -160,7 +162,7 @@ public:
         m_platform_p2p = "127.0.0.2:26657";
         m_platform_https = "api.example.org:8443";
         m_platform_node_id = "2222222222222222222222222222222222222222";
-        setOperatorKey(/*legacy_display=*/false);
+        setOperatorKey(BLSScheme::Basic);
     }
 
     //! Point one share's owner key at a key the test wallet holds, so the
@@ -197,14 +199,14 @@ private:
         return result;
     }
 
-    void setOperatorKey(bool legacy_display)
+    void setOperatorKey(BLSScheme display_scheme)
     {
         CBLSSecretKey key;
         key.MakeNewKey();
         m_operator_secret = key;
         const auto public_key{key.GetPublicKey()};
-        m_operator_display = public_key.ToString(legacy_display);
-        m_operator_version = legacy_display ? ProTxVersion::LegacyBLS : ProTxVersion::BasicBLS;
+        m_operator_display = public_key.ToString(display_scheme);
+        m_operator_version = display_scheme == BLSScheme::Legacy ? ProTxVersion::LegacyBLS : ProTxVersion::BasicBLS;
     }
 
     bool m_banned{false};
@@ -300,6 +302,39 @@ void MasternodeMaintenanceTests::automaticFeeSource()
     const auto shared_revocation{shared_revoke.buildRequest(shared->operatorSecret(), error)};
     QVERIFY2(shared_revocation.has_value(), qPrintable(error));
     QVERIFY(shared_revocation->fee_source == std::optional<CTxDestination>{funded});
+
+    const auto empty_wallet{MakeTestWallet(m_node, context, "unfunded_operator")};
+    QVERIFY(empty_wallet != nullptr);
+    guard.keep(empty_wallet);
+    WalletModel empty_model(interfaces::MakeWallet(context, empty_wallet), models.client);
+    UpdateServiceDialog unfunded_service(m_node, &empty_model, shared_entry, capabilities, nullptr);
+    RevokeDialog unfunded_revoke(m_node, &empty_model, shared_entry, nullptr);
+    auto check_fee_selection = [&](MasternodeActionDialog& dialog, bool has_funds) {
+        auto* key_widget = dialog.findChild<OperatorSecretWidget*>();
+        QVERIFY(key_widget);
+        key_widget->findChild<QLineEdit*>()->setText(QString::fromStdString(shared->operatorSecret().ToString()));
+        QVERIFY(key_widget->isValid());
+        auto* fee_picker = dialog.findChild<FeeSourcePicker*>();
+        auto* buttons = dialog.findChild<QDialogButtonBox*>();
+        QVERIFY(fee_picker);
+        QVERIFY(buttons);
+        QCOMPARE(fee_picker->count(), has_funds ? 1 : 0);
+        auto* ok_button = buttons->button(QDialogButtonBox::Ok);
+        QCOMPARE(ok_button->isEnabled(), has_funds);
+        QCOMPARE(ok_button->toolTip().isEmpty(), has_funds);
+        if (has_funds) {
+            fee_picker->setCurrentIndex(-1);
+            QVERIFY(!ok_button->isEnabled());
+            QVERIFY(!ok_button->toolTip().isEmpty());
+            fee_picker->setCurrentIndex(0);
+            QVERIFY(ok_button->isEnabled());
+            QVERIFY(ok_button->toolTip().isEmpty());
+        }
+    };
+    check_fee_selection(unfunded_service, false);
+    check_fee_selection(unfunded_revoke, false);
+    check_fee_selection(shared_service, true);
+    check_fee_selection(shared_revoke, true);
 }
 
 void MasternodeMaintenanceTests::operatorSecretValidation()
@@ -311,11 +346,11 @@ void MasternodeMaintenanceTests::operatorSecretValidation()
     key.MakeNewKey();
     auto* edit{widget.findChild<QLineEdit*>()};
     QVERIFY(edit != nullptr);
-    edit->setText(QString::fromStdString(key.ToString(/*specificLegacyScheme=*/false)));
+    edit->setText(QString::fromStdString(key.ToString()));
     QVERIFY(widget.isValid());
     const auto parsed{widget.takeSecret()};
     QVERIFY(parsed.has_value());
-    QCOMPARE(parsed->GetPublicKey().ToByteVector(false), key.GetPublicKey().ToByteVector(false));
+    QCOMPARE(parsed->GetPublicKey().ToByteVector(), key.GetPublicKey().ToByteVector());
     QVERIFY(edit->text().isEmpty());
     QVERIFY(!widget.isValid());
 
@@ -326,18 +361,16 @@ void MasternodeMaintenanceTests::operatorSecretValidation()
 
 void MasternodeMaintenanceTests::operatorPublicKeyEncoding()
 {
-    auto source{std::make_shared<TestMnEntry>(MnType::Evo, /*legacy_operator_display=*/true)};
+    auto source{std::make_shared<TestMnEntry>(MnType::Evo, BLSScheme::Legacy)};
     MasternodeEntry entry{source, "collateral", 50};
 
     const auto raw{entry.operatorPubKeyBytes()};
     CBLSPublicKey public_key;
-    public_key.SetBytes(raw, /*specificLegacyScheme=*/false);
+    public_key.SetBytes(raw);
     QVERIFY(public_key.IsValid());
-    QCOMPARE(entry.operatorPubKey(/*legacy_scheme=*/false),
-             QString::fromStdString(public_key.ToString(/*specificLegacyScheme=*/false)));
-    QCOMPARE(entry.operatorPubKey(/*legacy_scheme=*/true),
-             QString::fromStdString(public_key.ToString(/*specificLegacyScheme=*/true)));
-    QVERIFY(entry.operatorPubKey(/*legacy_scheme=*/false) != entry.operatorPubKey(/*legacy_scheme=*/true));
+    QCOMPARE(entry.operatorPubKey(BLSScheme::Basic), QString::fromStdString(public_key.ToString(BLSScheme::Basic)));
+    QCOMPARE(entry.operatorPubKey(BLSScheme::Legacy), QString::fromStdString(public_key.ToString(BLSScheme::Legacy)));
+    QVERIFY(entry.operatorPubKey(BLSScheme::Basic) != entry.operatorPubKey(BLSScheme::Legacy));
 }
 
 void MasternodeMaintenanceTests::actionRoleGating()
@@ -412,7 +445,7 @@ void MasternodeMaintenanceTests::serviceRequestConstruction()
     m_node.setContext(&test.m_node);
 
     const auto check_request = [this](MnType type, interfaces::ProviderTxCapabilities capabilities) {
-        auto source{std::make_shared<TestMnEntry>(type, capabilities.version == ProTxVersion::LegacyBLS,
+        auto source{std::make_shared<TestMnEntry>(type, ProTxVersion::GetBLSScheme(capabilities.version),
                                                   /*operator_reward=*/500)};
         MasternodeEntry entry{source, "collateral", 50};
         UpdateServiceDialog dialog(m_node, /*wallet_model=*/nullptr, entry, capabilities, /*parent=*/nullptr);
@@ -421,8 +454,8 @@ void MasternodeMaintenanceTests::serviceRequestConstruction()
         QVERIFY2(request.has_value(), qPrintable(error));
         QCOMPARE(request->type, type);
         QCOMPARE(request->pro_tx_hash, source->getProTxHash());
-        QCOMPARE(request->operator_key.GetPublicKey().ToByteVector(false),
-                 source->operatorSecret().GetPublicKey().ToByteVector(false));
+        QCOMPARE(request->operator_key.GetPublicKey().ToByteVector(),
+                 source->operatorSecret().GetPublicKey().ToByteVector());
         QCOMPARE(request->net_info.core_p2p, std::vector<std::string>{entry.coreP2PAddresses().toStdString()});
         QVERIFY(request->operator_payout.has_value());
         QVERIFY(!request->fee_source.has_value());
@@ -447,7 +480,7 @@ void MasternodeMaintenanceTests::serviceRequestConstruction()
         if (type == MnType::Evo) {
             auto* const secret_edit{dialog.m_operator_key->findChild<QLineEdit*>()};
             QVERIFY(secret_edit != nullptr);
-            secret_edit->setText(QString::fromStdString(source->operatorSecret().ToString(/*specificLegacyScheme=*/false)));
+            secret_edit->setText(QString::fromStdString(source->operatorSecret().ToString()));
             QVERIFY(dialog.m_valid);
 
             dialog.m_platform_node_id_edit->setText(QString(40, QLatin1Char('0')));
@@ -513,7 +546,7 @@ void MasternodeMaintenanceTests::registrarRequestConstruction()
     for (const interfaces::ProviderTxCapabilities capabilities :
          {interfaces::ProviderTxCapabilities{ProTxVersion::LegacyBLS, false},
           interfaces::ProviderTxCapabilities{ProTxVersion::ExtAddr, true}}) {
-        auto source{std::make_shared<TestMnEntry>(MnType::Regular, capabilities.version == ProTxVersion::LegacyBLS)};
+        auto source{std::make_shared<TestMnEntry>(MnType::Regular, ProTxVersion::GetBLSScheme(capabilities.version))};
         MasternodeEntry entry{source, "collateral", 50};
         UpdateRegistrarDialog dialog(m_node, /*wallet_model=*/nullptr, entry, capabilities, /*parent=*/nullptr);
         QString error;
@@ -533,8 +566,8 @@ void MasternodeMaintenanceTests::registrarRequestConstruction()
 
         CBLSSecretKey replacement;
         replacement.MakeNewKey();
-        dialog.m_operator_pubkey_edit->setText(
-            QString::fromStdString(replacement.GetPublicKey().ToString(capabilities.version == ProTxVersion::LegacyBLS)));
+        dialog.m_operator_pubkey_edit->setText(QString::fromStdString(
+            replacement.GetPublicKey().ToString(ProTxVersion::GetBLSScheme(capabilities.version))));
         CKeyID voting;
         voting.SetHex("42");
         dialog.m_voting_edit->setText(QString::fromStdString(EncodeDestination(PKHash{voting})));
@@ -546,7 +579,7 @@ void MasternodeMaintenanceTests::registrarRequestConstruction()
         const auto changed{dialog.buildRequest(error)};
         QVERIFY2(changed.has_value(), qPrintable(error));
         QVERIFY(changed->operator_key.has_value());
-        QCOMPARE(changed->operator_key->ToByteVector(false), replacement.GetPublicKey().ToByteVector(false));
+        QCOMPARE(changed->operator_key->ToByteVector(), replacement.GetPublicKey().ToByteVector());
         QCOMPARE(changed->voting_key, std::optional<CKeyID>{voting});
         QVERIFY(changed->payouts.has_value());
         QCOMPARE(changed->payouts->size(), size_t{1});
@@ -689,7 +722,7 @@ QString MakeRegistrarEnvelope(const uint256& pro_tx_hash, const COutPoint& fee_i
     payload.proTxHash = pro_tx_hash;
     CBLSSecretKey operator_secret;
     operator_secret.MakeNewKey();
-    payload.pubKeyOperator.Set(operator_secret.GetPublicKey(), /*specificLegacyScheme=*/false);
+    payload.pubKeyOperator.Set(operator_secret.GetPublicKey());
     SetTxPayload(tx, payload);
 
     UniValue json(UniValue::VOBJ);
@@ -931,8 +964,7 @@ void MasternodeMaintenanceTests::rotateOperatorKeyValidation()
 
     CBLSSecretKey key;
     key.MakeNewKey();
-    QVERIFY(RotateSharedKeysDialog::IsValidOperatorKey(
-        QString::fromStdString(key.GetPublicKey().ToString(/*specificLegacyScheme=*/false))));
+    QVERIFY(RotateSharedKeysDialog::IsValidOperatorKey(QString::fromStdString(key.GetPublicKey().ToString())));
 }
 
 void MasternodeMaintenanceTests::rotationSenderComesFromTheInputs()

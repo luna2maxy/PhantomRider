@@ -49,11 +49,6 @@
 
 class CChain;
 
-// Forward declaration for CBLSLazyPublicKey:
-template<typename T> class CBLSLazyWrapper;
-class CBLSPublicKey;
-using CBLSLazyPublicKey = CBLSLazyWrapper<CBLSPublicKey>;
-
 /** Fake height value used in Coin to signify they are only in the memory pool (since 0.8) */
 static const uint32_t MEMPOOL_HEIGHT = 0x7FFFFFFF;
 
@@ -384,7 +379,7 @@ public:
     indexed_transaction_set mapTx GUARDED_BY(cs);
 
     using txiter = indexed_transaction_set::nth_index<0>::type::const_iterator;
-    std::vector<std::pair<uint256, txiter> > vTxHashes GUARDED_BY(cs); //!< All tx instance hashes (see CTransaction::GetInstanceHash)/entries in mapTx, in random order
+    std::vector<std::pair<uint256, txiter>> txns_randomized GUARDED_BY(cs); //!< All transactions in mapTx with their instance hashes, in arbitrary order
 
     typedef std::set<txiter, CompareIteratorByHash> setEntries;
 
@@ -511,7 +506,7 @@ public:
     void removeForReorg(CChain& chain, std::function<bool(txiter)> filter_final_and_mature) EXCLUSIVE_LOCKS_REQUIRED(cs, cs_main);
     void removeConflicts(const CTransaction& tx) EXCLUSIVE_LOCKS_REQUIRED(cs);
     void removeProTxPubKeyConflicts(const CTransaction &tx, const CKeyID &keyId) EXCLUSIVE_LOCKS_REQUIRED(cs);
-    void removeProTxPubKeyConflicts(const CTransaction &tx, const CBLSLazyPublicKey &pubKey) EXCLUSIVE_LOCKS_REQUIRED(cs);
+    void removeProTxPubKeyConflicts(const CTransaction& tx, const uint256& pubKeyHash) EXCLUSIVE_LOCKS_REQUIRED(cs);
     void removeProTxPlatformNodeIDConflicts(const CTransaction &tx, const uint160 &platformNodeID) EXCLUSIVE_LOCKS_REQUIRED(cs);
     void removeProTxCollateralConflicts(const CTransaction &tx, const COutPoint &collateralOutpoint) EXCLUSIVE_LOCKS_REQUIRED(cs);
     /** Remove every mempool TX that refers to proTxHash. Used when the MN it names ceases to exist
@@ -720,12 +715,15 @@ public:
         return (mapTx.count(hash) != 0);
     }
 
+    const CTxMemPoolEntry* GetEntry(const uint256& txid) const LIFETIMEBOUND EXCLUSIVE_LOCKS_REQUIRED(cs);
+
     CTransactionRef get(const uint256& hash) const;
     TxMempoolInfo info(const uint256& hash) const;
 
     /** Returns info for a transaction if its entry_sequence < last_sequence */
     TxMempoolInfo info_for_relay(const uint256& hash, uint64_t last_sequence) const;
 
+    std::vector<CTxMemPoolEntryRef> entryAll() const EXCLUSIVE_LOCKS_REQUIRED(cs);
     std::vector<TxMempoolInfo> infoAll() const;
 
     /** Get the transaction holding this version 2 asset unlock instance hash, if any. */
@@ -756,7 +754,7 @@ public:
      * Does another in-flight transaction already claim this transaction's operator key under the
      * *other* BLS encoding?
      *
-     * mapProTxBlsPubKeyHashes is keyed by CBLSLazyPublicKey::GetHash(), which is scheme-sensitive,
+     * mapProTxBlsPubKeyHashes is keyed by the hash of the operator key under its owner's scheme,
      * so existsProviderTxConflict() above compares operator keys per encoding rather than per key
      * and cannot see this.
      *

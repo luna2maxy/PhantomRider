@@ -888,6 +888,15 @@ bool CSigSharesManager::AsyncSignIfMember(Consensus::LLMQType llmqType, const ui
     }
 
     if (allowReSign) {
+        // Signing again is activity on this session, but a re-created share only duplicates ours and does not
+        // refresh it. Restart the timeout so Cleanup does not drop the shares we hold before they are re-announced.
+        const uint256 signHash{SignHash(llmqType, quorum->qc->quorumHash, id, msgHash).Get()};
+        {
+            LOCK(cs);
+            if (auto it = timeSeenForSessions.find(signHash); it != timeSeenForSessions.end()) {
+                it->second = GetTime<std::chrono::seconds>().count();
+            }
+        }
         // make us re-announce all known shares (other nodes might have run into a timeout)
         ForceReAnnouncement(*quorum, llmqType, id, msgHash);
     }
@@ -1592,8 +1601,7 @@ std::optional<CSigShare> CSigSharesManager::CreateSigShareForSingleMember(const 
 
     // TODO: This one should be SIGN by QUORUM key, not by OPERATOR key
     // see TODO in CDKGSession::FinalizeSingleCommitment for details
-    auto bls_scheme = bls::bls_legacy_scheme.load();
-    sigShare.sigShare.Set(m_mn_activeman.Sign(signHash, bls_scheme), bls_scheme);
+    sigShare.sigShare.Set(m_mn_activeman.Sign(signHash));
 
     if (!sigShare.sigShare.Get().IsValid()) {
         LogPrintf("CSigSharesManager::%s -- failed to sign sigShare. signHash=%s, id=%s, msgHash=%s, time=%s\n",
@@ -1647,8 +1655,7 @@ std::optional<CSigShare> CSigSharesManager::CreateSigShare(const CQuorum& quorum
     CSigShare sigShare(quorum.params.type, quorum.qc->quorumHash, id, msgHash, static_cast<uint16_t>(memberIdx), {});
     uint256 signHash = sigShare.buildSignHash().Get();
 
-    auto bls_scheme = bls::bls_legacy_scheme.load();
-    sigShare.sigShare.Set(skShare.Sign(signHash, bls_scheme), bls_scheme);
+    sigShare.sigShare.Set(skShare.Sign(signHash));
     if (!sigShare.sigShare.Get().IsValid()) {
         LogPrintf("CSigSharesManager::%s -- failed to sign sigShare. signHash=%s, id=%s, msgHash=%s, time=%s\n", __func__,
                   signHash.ToString(), sigShare.getId().ToString(), sigShare.getMsgHash().ToString(), t.count());

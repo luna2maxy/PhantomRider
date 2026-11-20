@@ -59,8 +59,8 @@ CActiveMasternodeManager::CActiveMasternodeManager(CConnman& connman, CDetermini
 {
     assert(sk.IsValid()); /* We can assume pk is valid if sk is valid */
     LogPrintf("MASTERNODE:\n  blsPubKeyOperator legacy: %s\n  blsPubKeyOperator basic: %s\n",
-              m_operator_pk.ToString(/*specificLegacyScheme=*/true),
-              m_operator_pk.ToString(/*specificLegacyScheme=*/false));
+              // NOLINTNEXTLINE(bls-legacy-scheme)
+              m_operator_pk.ToString(BLSScheme::Legacy), m_operator_pk.ToString(BLSScheme::Basic));
 }
 
 CActiveMasternodeManager::~CActiveMasternodeManager() = default;
@@ -159,7 +159,7 @@ void CActiveMasternodeManager::InitInternal(const CBlockIndex* pindex)
     // Check socket connectivity
     LogPrintf("CActiveMasternodeManager::Init -- Checking inbound connection to '%s'\n", m_service.ToStringAddrPort());
     std::unique_ptr<Sock> sock{ConnectDirectly(m_service, /*manual_connection=*/true)};
-    bool fConnected{sock && sock->IsSelectable(/*is_select=*/::g_socket_events_mode == SocketEventsMode::Select)};
+    bool fConnected{sock && sock->IsSelectable()};
     sock = std::make_unique<Sock>(INVALID_SOCKET);
     if (!fConnected && Params().RequireRoutableExternalIP()) {
         m_state = MasternodeState::SOME_ERROR;
@@ -288,21 +288,21 @@ template bool CActiveMasternodeManager::Decrypt(const CBLSIESEncryptedObject<CBL
 template bool CActiveMasternodeManager::Decrypt(const CBLSIESMultiRecipientObjects<CBLSSecretKey>& obj, size_t idx,
                                                 CBLSSecretKey& ret_obj, int version) const;
 
-[[nodiscard]] CBLSSignature CActiveMasternodeManager::Sign(const uint256& hash, const bool is_legacy) const
+[[nodiscard]] CBLSSignature CActiveMasternodeManager::Sign(const uint256& hash) const
 {
     AssertLockNotHeld(cs);
-    return WITH_READ_LOCK(cs, return m_operator_sk.Sign(hash, is_legacy));
+    return WITH_READ_LOCK(cs, return m_operator_sk.Sign(hash));
 }
 
 [[nodiscard]] std::vector<uint8_t> CActiveMasternodeManager::SignBasic(const uint256& hash) const
 {
     AssertLockNotHeld(cs);
-    auto sig = Sign(hash, /*is_legacy=*/false);
+    auto sig = Sign(hash);
     assert(sig.IsValid());
-    return sig.ToByteVector(/*specificLegacyScheme=*/false);
+    return sig.ToByteVector();
 }
 
-// We need to pass a copy as opposed to a const ref because CBLSPublicKeyVersionWrapper
+// We need to pass a copy as opposed to a const ref because BLSEncoded
 // does not accept a const ref in its construction args
 [[nodiscard]] CBLSPublicKey CActiveMasternodeManager::GetPubKey() const
 {

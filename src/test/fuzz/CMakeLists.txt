@@ -105,7 +105,6 @@ add_executable(fuzz
   string.cpp
   strprintf.cpp
   system.cpp
-  timedata.cpp
   timeoffsets.cpp
   torcontrol.cpp
   transaction.cpp
@@ -122,6 +121,7 @@ add_executable(fuzz
 )
 target_link_libraries(fuzz
   core_interface
+  fuzzer_interface
   test_fuzz
   test_util
   bitcoin_cli

@@ -80,18 +80,6 @@ static bool SetStateVersion(CDeterministicMNState& state_mn, uint16_t nVersion, 
         state_mn.scriptPayout.clear();
     }
 
-    // Keep the operator key's BLS encoding a deterministic function of nVersion, matching the SML and
-    // on-disk serialization, so the stored key and the (scheme-dependent) unique-property index use
-    // the same scheme on every node whether the list was built online or reloaded from a snapshot.
-    // Set() rather than SetLegacy(): the latter only flips the flag and leaves the cached
-    // serialization in the old encoding, so a reloaded node would decode a different key. This runs
-    // before the early return because callers pre-set nVersion, so the version may already match here
-    // while the key still needs re-encoding.
-    if (state_mn.pubKeyOperator != CBLSLazyPublicKey()) {
-        const CBLSPublicKey& pubkey{state_mn.pubKeyOperator.Get()};
-        state_mn.pubKeyOperator.Set(pubkey, nVersion == ProTxVersion::LegacyBLS);
-    }
-
     if (state_mn.nVersion == nVersion && state_mn.netInfo->CanStorePlatform() == needs_extended) {
         return true;
     }
@@ -270,7 +258,7 @@ bool CSpecialTxProcessor::CheckSpecialTxInner(const CChain* chain, const CTransa
         case TRANSACTION_PROVIDER_UPDATE_REGISTRAR:
             return CheckProUpRegTx(tx, pindexPrev, m_dmnman, view, m_consensus_params, rules, state, check_sigs);
         case TRANSACTION_PROVIDER_UPDATE_REVOKE:
-            return CheckProUpRevTx(tx, pindexPrev, m_dmnman, m_consensus_params, rules.v24, state, check_sigs);
+            return CheckProUpRevTx(tx, pindexPrev, m_dmnman, m_consensus_params, rules, state, check_sigs);
         case TRANSACTION_PROVIDER_DISSOLVE:
             return CheckProDisTx(tx, pindexPrev, m_dmnman, m_consensus_params, rules.v24, state, check_sigs);
         case TRANSACTION_PROVIDER_UPDATE_SHARE:
@@ -456,10 +444,10 @@ bool CSpecialTxProcessor::ApplyTxToList(const CTransaction& tx, gsl::not_null<co
                     return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-protx-dup-key");
                 }
             }
-            if (newList.HasUniqueProperty(proTx.pubKeyOperator)) {
+            if (newList.HasUniqueProperty(proTx.OperatorKey())) {
                 return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-protx-dup-key");
             }
-        } else if (newList.HasUniqueProperty(proTx.keyIDOwner) || newList.HasUniqueProperty(proTx.pubKeyOperator)) {
+        } else if (newList.HasUniqueProperty(proTx.keyIDOwner) || newList.HasUniqueProperty(proTx.OperatorKey())) {
             return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-protx-dup-key");
         }
 
@@ -540,11 +528,10 @@ bool CSpecialTxProcessor::ApplyTxToList(const CTransaction& tx, gsl::not_null<co
             }
         }
 
-        // Migrating a legacy masternode to the basic scheme re-encodes its stored key
-        // (SetStateVersion), moving it to the basic-scheme slot. Per-transaction checks ran
-        // against pindexPrev, so re-check against the list as rebuilt so far: if another
-        // masternode holds this key under either encoding, the re-key in UpdateMN() would throw
-        // out of block assembly.
+        // Migrating a legacy masternode to the basic scheme stores its operator key under the
+        // basic-scheme slot. Per-transaction checks ran against pindexPrev, so re-check against
+        // the list as rebuilt so far: if another masternode holds this key under either encoding,
+        // the re-key in UpdateMN() would throw out of block assembly.
         if (is_v24_active && IsSchemeMigration(current_version, target_version) &&
             newList.HasOperatorKeyUnderAnyScheme(dmn->pdmnState->pubKeyOperator.Get(),
                                                  /*self=*/opt_proTx->proTxHash)) {
@@ -579,10 +566,10 @@ bool CSpecialTxProcessor::ApplyTxToList(const CTransaction& tx, gsl::not_null<co
         // Per-transaction checks ran against pindexPrev, so an earlier transaction in this same
         // block is invisible to them. Re-evaluate against the list as rebuilt so far: this update
         // moves the operator key to a new unique-property slot if it rotates the key or crosses
-        // the legacy->basic boundary (which re-encodes the key), and if that slot is held by
-        // another masternode the re-key in UpdateMN() would throw out of block assembly. Reject
-        // cleanly. Scoped to those two cases so a pre-existing cross-scheme pair's non-migrating
-        // routine update is not blocked.
+        // the legacy->basic boundary (the key is then stored under the new scheme), and if that
+        // slot is held by another masternode the re-key in UpdateMN() would throw out of block
+        // assembly. Reject cleanly. Scoped to those two cases so a pre-existing cross-scheme
+        // pair's non-migrating routine update is not blocked.
         {
             const bool migrating{IsSchemeMigration(old_version, target_version)};
             if (is_v24_active && (operator_changed || migrating) &&
@@ -599,9 +586,9 @@ bool CSpecialTxProcessor::ApplyTxToList(const CTransaction& tx, gsl::not_null<co
             newState->pubKeyOperator = opt_proTx->pubKeyOperator;
         }
         newState->keyIDVoting = opt_proTx->keyIDVoting;
-        // SetStateVersion() re-encodes the operator key to target_version's scheme, so the stored
-        // key stays consistent with its version whether it was carried in this payload (possibly
-        // under a different version's encoding) or migrated in place.
+        // The state version selects the operator key's encoding, so the stored key
+        // stays consistent with its version whether it was carried in this payload (possibly
+        // under a different version's encoding) or kept while the version changes.
         if (!SetStateVersion(*newState, target_version, dmn->nType, state)) {
             return false;
         }
@@ -713,10 +700,6 @@ bool CSpecialTxProcessor::ApplyTxToList(const CTransaction& tx, gsl::not_null<co
         if (!SetStateVersion(*newState, old_version, dmn->nType, state)) {
             return false;
         }
-        if (operator_changed) {
-            newState->pubKeyOperator.SetLegacy(false);
-        }
-
         // CheckProUpSharedRegTx ran against pindexPrev, so transactions earlier in this same
         // block are invisible to it. Re-evaluate against the list as rebuilt so far: another
         // update may have taken the operator key (under either encoding; the re-key in
@@ -901,6 +884,8 @@ uint256 CSpecialTxProcessor::GetDeterministicMNListHash(gsl::not_null<const CBlo
 }
 
 void CSpecialTxProcessor::UpdatedMNListTip(gsl::not_null<const CBlockIndex*> pindex) { m_dmnman.UpdatedBlockTip(pindex); }
+
+void CSpecialTxProcessor::RebuildMNHFSignals(const CBlockIndex* pindex) { m_mnhfman->RebuildSignals(pindex); }
 
 void CSpecialTxProcessor::ResetPlatformBans(const CBlock& block, const CBlockIndex& index)
 {
@@ -1099,16 +1084,9 @@ bool CSpecialTxProcessor::ProcessSpecialTxsInBlock(Chainstate& chainstate, const
         nTimeMnehf += nTime8 - nTime7;
         LogPrint(BCLog::BENCHMARK, "      - m_mnhfman->ProcessBlock: %.2fms [%.2fs]\n", Ticks<MillisecondsDouble>(nTime8 - nTime7),
                  Ticks<SecondsDouble>(nTimeMnehf));
-
-        if (DeploymentActiveAfter(pindex, m_consensus_params, Consensus::DEPLOYMENT_V19) && bls::bls_legacy_scheme.load()) {
-            // NOTE: The block next to the activation is the one that is using new rules.
-            // V19 activated just activated, so we must switch to the new rules here.
-            bls::bls_legacy_scheme.store(false);
-            LogPrintf("CSpecialTxProcessor::%s -- bls_legacy_scheme=%d\n", __func__, bls::bls_legacy_scheme.load());
-        }
     } catch (const EvoDbInconsistencyError& e) {
-        // Local EvoDB corruption detected below (the node is already
-        // aborting): fail with M_ERROR so the block is not marked invalid.
+        // Local EvoDB inconsistency detected below (missing or mismatched
+        // state): fail with M_ERROR so the block is not marked invalid.
         return state.Error(e.what());
     } catch (const std::exception& e) {
         LogPrintf("CSpecialTxProcessor::%s -- FAILURE! %s\n", __func__, e.what());
@@ -1122,16 +1100,7 @@ bool CSpecialTxProcessor::UndoSpecialTxsInBlock(const Chainstate& chainstate, co
 {
     AssertLockHeld(::cs_main);
 
-    auto bls_legacy_scheme = bls::bls_legacy_scheme.load();
-
     try {
-        if (!DeploymentActiveAt(*pindex, m_consensus_params, Consensus::DEPLOYMENT_V19) && !bls_legacy_scheme) {
-            // NOTE: The block next to the activation is the one that is using new rules.
-            // Removing the activation block here, so we must switch back to the old rules.
-            bls::bls_legacy_scheme.store(true);
-            LogPrintf("CSpecialTxProcessor::%s -- bls_legacy_scheme=%d\n", __func__, bls::bls_legacy_scheme.load());
-        }
-
         if (!m_mnhfman->UndoBlock(block, pindex)) {
             return false;
         }
@@ -1144,8 +1113,6 @@ bool CSpecialTxProcessor::UndoSpecialTxsInBlock(const Chainstate& chainstate, co
             return false;
         }
     } catch (const std::exception& e) {
-        bls::bls_legacy_scheme.store(bls_legacy_scheme);
-        LogPrintf("CSpecialTxProcessor::%s -- bls_legacy_scheme=%d\n", __func__, bls::bls_legacy_scheme.load());
         LogError("CSpecialTxProcessor::%s -- FAILURE! %s\n", __func__, e.what());
         return false;
     }
@@ -1180,8 +1147,8 @@ bool CSpecialTxProcessor::CheckCreditPoolDiffForBlock(const CBlock& block, const
         }
 
     } catch (const EvoDbInconsistencyError& e) {
-        // Local EvoDB corruption detected below (the node is already
-        // aborting): fail with M_ERROR so the block is not marked invalid.
+        // Local EvoDB inconsistency detected below (missing or mismatched
+        // state): fail with M_ERROR so the block is not marked invalid.
         return state.Error(e.what());
     } catch (const std::exception& e) {
         LogPrintf("CSpecialTxProcessor::%s -- FAILURE! %s\n", __func__, e.what());
@@ -1194,7 +1161,7 @@ bool CSpecialTxProcessor::CheckCreditPoolDiffForBlock(const CBlock& block, const
 template <typename ProTx>
 static bool CheckHashSig(const ProTx& proTx, const PKHash& pkhash, TxValidationState& state)
 {
-    if (std::string strError; !CHashSigner::VerifyHash(::SerializeHash(proTx), ToKeyID(pkhash), proTx.vchSig, strError)) {
+    if (std::string strError; !CHashSigner::VerifyHash(::SerializeSigHash(proTx), ToKeyID(pkhash), proTx.vchSig, strError)) {
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-protx-sig");
     }
     return true;
@@ -1211,9 +1178,10 @@ static bool CheckStringSig(const ProTx& proTx, const PKHash& pkhash, TxValidatio
 }
 
 template <typename ProTx>
-static bool CheckHashSig(const ProTx& proTx, const CBLSPublicKey& pubKey, TxValidationState& state)
+static bool CheckHashSig(const ProTx& proTx, const CBLSPublicKey& pubKey, const BLSScheme scheme,
+                         TxValidationState& state)
 {
-    if (!proTx.sig.VerifyInsecure(pubKey, ::SerializeHash(proTx))) {
+    if (!proTx.sig.VerifyInsecure(pubKey, ::SerializeSigHash(proTx), scheme)) {
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-protx-sig");
     }
     return true;
@@ -1383,10 +1351,10 @@ bool CheckProRegTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> pin
                     return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-protx-dup-key");
                 }
             }
-            if (mnList.HasUniqueProperty(opt_ptx->pubKeyOperator)) {
+            if (mnList.HasUniqueProperty(opt_ptx->OperatorKey())) {
                 return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-protx-dup-key");
             }
-        } else if (mnList.HasUniqueProperty(opt_ptx->keyIDOwner) || mnList.HasUniqueProperty(opt_ptx->pubKeyOperator)) {
+        } else if (mnList.HasUniqueProperty(opt_ptx->keyIDOwner) || mnList.HasUniqueProperty(opt_ptx->OperatorKey())) {
             return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-protx-dup-key");
         }
 
@@ -1544,7 +1512,7 @@ bool CheckProUpServTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> 
         // pass the state returned by the function above
         return false;
     }
-    if (check_sigs && !CheckHashSig(*opt_ptx, dmn->pdmnState->pubKeyOperator.Get(), state)) {
+    if (check_sigs && !CheckHashSig(*opt_ptx, dmn->pdmnState->pubKeyOperator.Get(), rules.bls_scheme, state)) {
         // pass the state returned by the function above
         return false;
     }
@@ -1627,8 +1595,8 @@ bool CheckProUpRegTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> p
     if (!IsPayoutListKeySafe(owner_payouts, collateralTxDest, dmn->pdmnState->keyIDOwner, opt_ptx->keyIDVoting,
                              check_payout_collateral_reuse, state)) return false;
 
-    if (mnList.HasUniqueProperty(opt_ptx->pubKeyOperator)) {
-        auto otherDmn = mnList.GetUniquePropertyMN(opt_ptx->pubKeyOperator);
+    if (mnList.HasUniqueProperty(opt_ptx->OperatorKey())) {
+        auto otherDmn = mnList.GetUniquePropertyMN(opt_ptx->OperatorKey());
         if (opt_ptx->proTxHash != otherDmn->proTxHash) {
             return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-protx-dup-key");
         }
@@ -1655,10 +1623,10 @@ bool CheckProUpRegTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> p
 }
 
 bool CheckProUpRevTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> pindexPrev,
-                     CDeterministicMNManager& dmnman, const Consensus::Params& consensus_params, bool is_v24_active,
+                     CDeterministicMNManager& dmnman, const Consensus::Params& consensus_params, SpecialTxRules rules,
                      TxValidationState& state, bool check_sigs)
 {
-    const auto opt_ptx = GetValidatedPayload<CProUpRevTx>(tx, pindexPrev, consensus_params, is_v24_active, state);
+    const auto opt_ptx = GetValidatedPayload<CProUpRevTx>(tx, pindexPrev, consensus_params, rules.v24, state);
     if (!opt_ptx) {
         // pass the state returned by the function above
         return false;
@@ -1670,7 +1638,7 @@ bool CheckProUpRevTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> p
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-protx-hash");
     }
 
-    if (!IsVersionChangeValid(dmn->pdmnState->nVersion, opt_ptx->nVersion, is_v24_active, state)) {
+    if (!IsVersionChangeValid(dmn->pdmnState->nVersion, opt_ptx->nVersion, rules.v24, state)) {
         // pass the state returned by the function above
         return false;
     }
@@ -1679,7 +1647,7 @@ bool CheckProUpRevTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*> p
         // pass the state returned by the function above
         return false;
     }
-    if (check_sigs && !CheckHashSig(*opt_ptx, dmn->pdmnState->pubKeyOperator.Get(), state)) {
+    if (check_sigs && !CheckHashSig(*opt_ptx, dmn->pdmnState->pubKeyOperator.Get(), rules.bls_scheme, state)) {
         // pass the state returned by the function above
         return false;
     }
@@ -1733,7 +1701,7 @@ bool CheckProUpShareTx(const CTransaction& tx, gsl::not_null<const CBlockIndex*>
     }
     if (check_sigs) {
         if (std::string strError;
-            !CHashSigner::VerifyHashCanonical(::SerializeHash(*opt_ptx),
+            !CHashSigner::VerifyHashCanonical(::SerializeSigHash(*opt_ptx),
                                               mnState.shares[opt_ptx->shareIndex].keyIDOwner, opt_ptx->vchSig,
                                               strError)) {
             return state.Invalid(TxValidationResult::TX_BAD_SPECIAL, "bad-proupshare-sig");
@@ -1788,7 +1756,7 @@ bool CheckProUpSharedRegTx(const CTransaction& tx, gsl::not_null<const CBlockInd
         return false;
     }
     if (check_sigs) {
-        const uint256 payload_hash = ::SerializeHash(*opt_ptx);
+        const uint256 payload_hash = ::SerializeSigHash(*opt_ptx);
         for (size_t i = 0; i < mnState.shares.size(); i++) {
             if (std::string strError; !CHashSigner::VerifyHashCanonical(payload_hash, mnState.shares[i].keyIDOwner,
                                                                         opt_ptx->vchSigs[i], strError)) {

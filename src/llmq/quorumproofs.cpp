@@ -118,14 +118,14 @@ static ProofTransaction ReadTransaction(CDataStream& in)
 static void WriteCertificate(CDataStream& out, const ProofCertificate& cert)
 {
     out << cert.height << cert.header;
-    cert.signature.Serialize(out, false);
+    cert.signature.Serialize(out);
 }
 
 static ProofCertificate ReadCertificate(CDataStream& in)
 {
     ProofCertificate cert;
     in >> cert.height >> cert.header;
-    cert.signature.Unserialize(in, false);
+    cert.signature.Unserialize(in);
     return cert;
 }
 
@@ -309,15 +309,15 @@ bool ProofCertificate::Verify(const CFinalCommitment& signer, uint32_t minimum, 
     SignHash hash{kind, signer.quorumHash, chainlock::GenSigRequestId(height), header.GetHash()};
     // Bind every input to Basic BLS verification, including the public key and
     // signature themselves. A quorum hash or signed message alone is insufficient.
-    CHashWriter writer(SER_GETHASH, 0);
+    HashWriter writer{};
     writer << hash.Get();
-    signer.quorumPublicKey.Serialize(writer, false);
-    signature.Serialize(writer, false);
+    signer.quorumPublicKey.Serialize(writer);
+    signature.Serialize(writer);
     const auto key = writer.GetHash();
     static ProofCache<bool, 16384> cache;
     bool valid{false};
     if (cache.Get(key, valid)) return valid;
-    if (!signature.VerifyInsecure(signer.quorumPublicKey, hash.Get(), false)) return false;
+    if (!signature.VerifyInsecure(signer.quorumPublicKey, hash.Get())) return false;
     cache.Insert(key, true);
     return true;
 }
@@ -573,7 +573,7 @@ std::optional<CFinalCommitment> QuorumProofBuilder::DetermineChainlockSigningCom
     if (!start) return std::nullopt;
     // This hash commits to the entire selection history, including its branch.
     // The type and request height fix the remaining signing-selection inputs.
-    const auto key = (CHashWriter(SER_GETHASH, 0) << start->GetBlockHash() << params->type << height).GetHash();
+    const auto key = (HashWriter{} << start->GetBlockHash() << params->type << height).GetHash();
     // Two levels: every candidate height needs an entry, but thousands of heights
     // share a few dozen commitments. Heights map to a commitment's content hash,
     // which cannot alias across branches, and each commitment is stored once.
@@ -608,7 +608,7 @@ static const CBlockIndex* MinedCommitmentBlock(const CQuorumBlockProcessor& proc
                                                const node::BlockManager& blocks, Consensus::LLMQType kind,
                                                const uint256& quorum)
 {
-    const auto key = (CHashWriter(SER_GETHASH, 0) << kind << quorum).GetHash();
+    const auto key = (HashWriter{} << kind << quorum).GetHash();
     static ProofCache<uint256, 4096> cache;
     uint256 mined_hash;
     LOCK(cs_main);
@@ -633,7 +633,7 @@ static const CBlockIndex* MinedCommitmentBlock(const CQuorumBlockProcessor& proc
  *  commitments, each carrying BLS points that are costly to decode). */
 static ProofTransaction MiningTransaction(const node::BlockManager& blocks, const CBlockIndex* mined, Consensus::LLMQType kind, const uint256& quorum)
 {
-    const auto key = (CHashWriter(SER_GETHASH, 0) << mined->GetBlockHash() << kind << quorum).GetHash();
+    const auto key = (HashWriter{} << mined->GetBlockHash() << kind << quorum).GetHash();
     static ProofCache<ProofTransaction, 2048> cache;
     ProofTransaction cached;
     if (cache.Get(key, cached)) return cached;
