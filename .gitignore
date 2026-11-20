@@ -45,3 +45,13 @@ compile_commands.json
 # Linux perf profiling artifacts
 perf.data
 perf.data.old
+
+# Local backup and PHR audit/report notes
+/backup.md
+/New-Genesis.md
+/PHR_AUDIT_REPORT.md
+/PHR_CONSENSUS_METADATA_REPORT.md
+/PHR_REMEDIATION_REPORT.md
+
+# Functional test cache
+/test/cache/

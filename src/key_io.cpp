@@ -45,21 +45,29 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     uint160 hash;
     error_str = "";
 
-    // Note this will be false if it is a valid Bech32 address for a different network
-    bool is_bech32 = (ToLower(str.substr(0, params.Bech32PlatformHRP().size())) == params.Bech32PlatformHRP());
+    // Bech32/Platform HRP can collide with Base58 address prefixes (e.g. regtest
+    // HRP "rphr" vs P2PKH "rP..."), so do not let an HRP prefix match preclude
+    // Base58Check decoding.
+    bool bech32_hrp_match = false;
+    const std::string hrp = params.Bech32PlatformHRP();
+    if (str.size() >= hrp.size()) {
+        bech32_hrp_match = (ToLower(str.substr(0, hrp.size())) == hrp);
+    }
 
-    if (!is_bech32 && DecodeBase58Check(str, data, 21)) {
-        // base58-encoded Dash addresses.
-        // Public-key-hash-addresses have version 76 (or 140 testnet).
+    const std::vector<unsigned char>& pubkey_prefix = params.Base58Prefix(CChainParams::PUBKEY_ADDRESS);
+    const std::vector<unsigned char>& script_prefix = params.Base58Prefix(CChainParams::SCRIPT_ADDRESS);
+    const int max_addr_len = static_cast<int>(hash.size() + std::max(pubkey_prefix.size(), script_prefix.size()));
+
+    if (DecodeBase58Check(str, data, max_addr_len)) {
+        // base58-encoded addresses.
+        // Public-key-hash-addresses have the PUBKEY_ADDRESS version prefix.
         // The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
-        const std::vector<unsigned char>& pubkey_prefix = params.Base58Prefix(CChainParams::PUBKEY_ADDRESS);
         if (data.size() == hash.size() + pubkey_prefix.size() && std::equal(pubkey_prefix.begin(), pubkey_prefix.end(), data.begin())) {
             std::copy(data.begin() + pubkey_prefix.size(), data.end(), hash.begin());
             return PKHash(hash);
         }
-        // Script-hash-addresses have version 16 (or 19 testnet).
+        // Script-hash-addresses have the SCRIPT_ADDRESS version prefix.
         // The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
-        const std::vector<unsigned char>& script_prefix = params.Base58Prefix(CChainParams::SCRIPT_ADDRESS);
         if (data.size() == hash.size() + script_prefix.size() && std::equal(script_prefix.begin(), script_prefix.end(), data.begin())) {
             std::copy(data.begin() + script_prefix.size(), data.end(), hash.begin());
             return ScriptHash(hash);
@@ -75,7 +83,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
             error_str = "Invalid or unsupported Base58-encoded address.";
         }
         return CNoDestination();
-    } else if (!is_bech32) {
+    } else if (!bech32_hrp_match) {
         // Try Base58 decoding without the checksum, using a much larger max length
         if (!DecodeBase58(str, data, 100)) {
             error_str = "Invalid or unsupported Bech32m or Base58 encoding.";

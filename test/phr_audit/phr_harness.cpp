@@ -412,7 +412,7 @@ int Mine(std::uint64_t blocks, std::uint32_t bits) {
         PutU32LE(h, 1);
         std::copy(prev.begin(), prev.end(), h + 4);
         for (int i = 0; i < 32; ++i) h[36 + static_cast<std::size_t>(i)] = static_cast<std::uint8_t>(i);
-        PutU32LE(h + 68, 1417713337u + static_cast<std::uint32_t>(b));
+        PutU32LE(h + 68, 1794980401u + static_cast<std::uint32_t>(b));
         PutU32LE(h + 72, bits);
         std::uint64_t attempts = 0;
         phr_pow::Hash found{};
@@ -499,8 +499,8 @@ uint256 DigestToUint256(const phr_pow::Hash& d)
 int CompactTarget()
 {
     const uint256 main_limit = MainPowLimit();
-    const auto genesis = GenesisHeader(1417713337u, 0x207fffffu, 0u,
-                                       "e0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7");
+    const auto genesis = GenesisHeader(1794980401u, 0x207fffffu, 0u,
+                                       "4da075e30f08d540bfb166d36b417872636dea23a4ef4bd5c05fdb8efee7c305");
     const uint256 genesis_hash = DigestToUint256(phr_pow::HashHeaderPHR(genesis.data(), genesis.size()));
 
     struct Case { const char* name; uint256 hash; std::uint32_t bits; uint256 limit; bool expected; };
@@ -524,7 +524,7 @@ int CompactTarget()
     // Nonce scan under regtest consensus, same shape as the in-tree Boost test.
     std::uint8_t h[80] = {};
     PutU32LE(h, 1);
-    PutU32LE(h + 68, 1417713337u);
+    PutU32LE(h + 68, 1794980401u);
     PutU32LE(h + 72, 0x207fffffu);
     std::uint32_t nonce = 0;
     while (nonce < 1000 && !TargetOk(DigestToUint256(phr_pow::HashHeaderPHR(h, sizeof(h))),
@@ -538,13 +538,13 @@ int CompactTarget()
 }
 
 int Consensus() {
-    const std::string merkle = "e0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7";
+    const std::string merkle = "4da075e30f08d540bfb166d36b417872636dea23a4ef4bd5c05fdb8efee7c305";
     struct Case { const char* name; std::uint32_t time; std::uint32_t nonce; const char* expected; };
     const Case cases[] = {
-        {"main", 1390095618u, 0u, "67215764b843ce5cbb30a6166c083fe4808019e844c3b57d4cc117d9186ad2fc"},
-        {"testnet", 1390666206u, 1u, "26aea3dd1aad231fc1cf628b1ba2946bcdb709a814eff5d08f4538ed86bacea3"},
-        {"devnet_base", 1417713337u, 0u, "403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077"},
-        {"regtest", 1417713337u, 0u, "403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077"},
+        {"main", 1795153201u, 0u, "5ac6f70a6cad661ed30f552c289a8e9ec9cec5e411aa943a7fd26ef8d5485f47"},
+        {"testnet", 1795066801u, 1u, "607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3"},
+        {"devnet_base", 1795066801u, 1u, "607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3"},
+        {"regtest", 1794980401u, 0u, "6d9b7b133a86603a69e4beb8c140f33741bbec14dc3f50ba0264e983b3a7bbb6"},
     };
     int fails = 0;
     std::cout << "network\tserialized_header_hex\texpected\tactual\tstatus\tpow_valid\n";
@@ -564,7 +564,7 @@ int Consensus() {
                   << '\t' << (ok ? "PASS" : "FAIL") << '\t' << (pow ? "PASS" : "FAIL") << '\n';
     }
     // Verify HashPHR uint256 mapping equals raw big-endian digest.
-    std::vector<std::uint8_t> h = GenesisHeader(1390095618u, 0x207fffffu, 0u, merkle);
+    std::vector<std::uint8_t> h = GenesisHeader(1795153201u, 0x207fffffu, 0u, merkle);
     uint256 u = HashPHR(h.data(), h.data() + h.size());
     auto raw = phr_pow::HashHeaderPHR(h.data(), h.size());
     std::string mapped;

@@ -24,7 +24,7 @@ def base_header() -> bytes:
     h = bytearray(80)
     h[0:4] = (1).to_bytes(4, "little")       # nVersion
     h[36:68] = bytes(range(32))              # hashMerkleRoot (distinct bytes)
-    h[68:72] = (1390095618).to_bytes(4, "little")  # nTime
+    h[68:72] = (1795153201).to_bytes(4, "little")  # nTime
     h[72:76] = (0x207FFFFF).to_bytes(4, "little")  # nBits
     h[76:80] = (0).to_bytes(4, "little")     # nNonce
     return bytes(h)

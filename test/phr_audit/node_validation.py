@@ -17,7 +17,7 @@ import tempfile
 import time
 from pathlib import Path
 
-GENESIS = "403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077"
+GENESIS = "6d9b7b133a86603a69e4beb8c140f33741bbec14dc3f50ba0264e983b3a7bbb6"
 RPC_USER = "phraudit"
 RPC_PASSWORD = "phraudit"
 PORT1, RPC1 = 21899, 21898

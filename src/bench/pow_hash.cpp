@@ -32,10 +32,10 @@ static void Pow_PHR_1024b(benchmark::Bench& bench) { return Pow_PHR(bench, 1024)
 static void Pow_PHR_2048b(benchmark::Bench& bench) { return Pow_PHR(bench, 2048); }
 static void Pow_PHR_1M(benchmark::Bench& bench) { return Pow_PHR(bench, BUFFER_SIZE); }
 
-BENCHMARK(Pow_PHR_0032b);
-BENCHMARK(Pow_PHR_0080b);
-BENCHMARK(Pow_PHR_0128b);
-BENCHMARK(Pow_PHR_0512b);
-BENCHMARK(Pow_PHR_1024b);
-BENCHMARK(Pow_PHR_2048b);
-BENCHMARK(Pow_PHR_1M);
+BENCHMARK(Pow_PHR_0032b, benchmark::PriorityLevel::HIGH);
+BENCHMARK(Pow_PHR_0080b, benchmark::PriorityLevel::HIGH);
+BENCHMARK(Pow_PHR_0128b, benchmark::PriorityLevel::HIGH);
+BENCHMARK(Pow_PHR_0512b, benchmark::PriorityLevel::HIGH);
+BENCHMARK(Pow_PHR_1024b, benchmark::PriorityLevel::HIGH);
+BENCHMARK(Pow_PHR_2048b, benchmark::PriorityLevel::HIGH);
+BENCHMARK(Pow_PHR_1M, benchmark::PriorityLevel::HIGH);

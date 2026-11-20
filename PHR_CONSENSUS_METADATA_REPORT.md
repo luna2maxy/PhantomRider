@@ -16,7 +16,7 @@ The PHR-256-YP integration replaced the PoW hash function and **genesis block** 
 - fork activation heights (BIP/DIP/V19/V20/etc.) and retarget transition heights (`nPowKGWHeight`, `nPowDGWHeight`) still use old chain numbering;
 - regtest assume-UTXO data also comes from the old chain.
 
-This is not a bug in the PHR algorithm, but a **consensus metadata mismatch**. For Mainnet this is **CRITICAL**; for regtest/devnet **HIGH**.
+This is not a bug in the PHR algorithm, but a **consensus metadata mismatch**. For Mainnet this is **CRITICAL**; for regtest/devnet **HIGH** (historical assessment at audit time). **Status update:** Option A (fresh-chain reset) was implemented in `src/kernel/chainparams.cpp`; the CRITICAL/HIGH/MEDIUM metadata items identified below are marked **PASSED** where resolved in code, or remain open/not applicable as noted.
 
 ---
 
@@ -91,21 +91,21 @@ With the new genesis, all of the following activation heights still refer to X11
 
 ## 3. Complete list of old X11 chain references
 
-| # | Location | Reference | Category | Risk |
+| # | Location | Reference | Category | Risk / Status |
 |---|---|---|---|---|
 | 1 | `chainparams.cpp:84` | comment `hash=00000ffd…`, `nBits=1e0ffff0`, `nNonce=28917698` | Documentation | LOW |
-| 2 | `chainparams.cpp:242` | `nMinimumChainWork` main | Work assumption | CRITICAL |
-| 3 | `chainparams.cpp:243` | `defaultAssumeValid` main | Assume-valid | CRITICAL |
-| 4 | `chainparams.cpp:318-361` | 40 checkpoints main | Checkpoint | HIGH |
-| 5 | `chainparams.cpp:367-373` | `chainTxData` main | History | MEDIUM |
-| 6 | `chainparams.cpp:453` | `nMinimumChainWork` testnet | Work assumption | HIGH |
-| 7 | `chainparams.cpp:454` | `defaultAssumeValid` testnet | Assume-valid | HIGH |
-| 8 | `chainparams.cpp:523-546` | 20 checkpoints testnet | Checkpoint | HIGH |
-| 9 | `chainparams.cpp:552-558` | `chainTxData` testnet | History | MEDIUM |
-| 10 | `chainparams.cpp:189-216` | Main fork & retarget heights | Activation | HIGH |
-| 11 | `chainparams.cpp:400-427` | Testnet fork & retarget heights | Activation | HIGH |
-| 12 | `chainparams.cpp:878-906` | Regtest fork & retarget heights | Activation | MEDIUM |
-| 13 | `chainparams.cpp:982-991` | regtest assume-UTXO | Snapshot | MEDIUM |
+| 2 | `chainparams.cpp:242` | `nMinimumChainWork` main | Work assumption | CRITICAL — **PASSED** (cleared to `uint256{}`) |
+| 3 | `chainparams.cpp:243` | `defaultAssumeValid` main | Assume-valid | CRITICAL — **PASSED** (cleared to `uint256{}`) |
+| 4 | `chainparams.cpp:318-361` | 40 checkpoints main | Checkpoint | HIGH — **PASSED** (replaced with PHR genesis checkpoint) |
+| 5 | `chainparams.cpp:367-373` | `chainTxData` main | History | MEDIUM — **PASSED** (reset to fresh-chain genesis stats) |
+| 6 | `chainparams.cpp:453` | `nMinimumChainWork` testnet | Work assumption | HIGH — **PASSED** (cleared to `uint256{}`) |
+| 7 | `chainparams.cpp:454` | `defaultAssumeValid` testnet | Assume-valid | HIGH — **PASSED** (cleared to `uint256{}`) |
+| 8 | `chainparams.cpp:523-546` | 20 checkpoints testnet | Checkpoint | HIGH — **PASSED** (replaced with PHR genesis checkpoint) |
+| 9 | `chainparams.cpp:552-558` | `chainTxData` testnet | History | MEDIUM — **PASSED** (reset to fresh-chain genesis stats) |
+| 10 | `chainparams.cpp:189-216` | Main fork & retarget heights | Activation | HIGH — **PASSED** (BIP/DIP/V19/V20/MN_RR/Withdrawals set to height 1; `nPowKGWHeight=0`, `nPowDGWHeight=0`, DGW immediate; see migration docs) |
+| 11 | `chainparams.cpp:400-427` | Testnet fork & retarget heights | Activation | HIGH — **PASSED** (fresh-chain activation/retarget schedule applied) |
+| 12 | `chainparams.cpp:878-906` | Regtest fork & retarget heights | Activation | MEDIUM — **NOT PASSED / retained by design** (regtest keeps legacy/test-framework activation and retarget parameters in places for compatibility; review if long-term PHR regtest validation requires change) |
+| 13 | `chainparams.cpp:982-991` | regtest assume-UTXO | Snapshot | MEDIUM — **PASSED** (old snapshot cleared; no PHR regtest snapshot available) |
 | 14 | `audit.md:85-88` | Old/new genesis comparison table | Historical documentation | INFORMATIONAL (intentional) |
 
 Old genesis references in `contrib/linearize/*` and functional tests were **already updated** to PHR hashes in the previous integration (see `audit.md:103-109`); no old hash remnants were found there via searches for `00000ffd…`, `00000baf…`, `000008ca…`.
@@ -163,9 +163,9 @@ Cannot be applied directly because the genesis and PoW function have already bee
 | Metadata audit | **COMPLETED** |
 | Impact report & migration plan | **COMPLETED (this document)** |
 | Consensus owner approval | **OBTAINED** (implementation instructions 2026-11-19) |
-| Consensus value changes | **ALREADY PERFORMED** in `src/kernel/chainparams.cpp` |
+| Consensus value changes | **ALREADY PERFORMED** in `src/kernel/chainparams.cpp` — identified CRITICAL/HIGH/MEDIUM stale-metadata findings marked **PASSED** in Section 3 where resolved (item 12 retained by design) |
 | Final migration report | **SEE** `docs/PHR_FRESH_CHAIN_MIGRATION.md` |
-| Mainnet readiness | **NOT READY** until full node validation is complete |
+| Mainnet readiness | **NOT READY** until full node validation is complete and remaining open HIGH findings are addressed |
 
 ---
 

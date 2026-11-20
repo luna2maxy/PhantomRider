@@ -45,7 +45,7 @@ will be printed.
 * `file_timestamp`: Set each file's last-accessed and last-modified times,
 respectively, to the current time and to the timestamp of the most recent block
 written to the script's blockchain.
-* `genesis`: The hash of the genesis block in the blockchain. (default is '67215764b843ce5cbb30a6166c083fe4808019e844c3b57d4cc117d9186ad2fc', mainnet)
+* `genesis`: The hash of the genesis block in the blockchain. (default is '5ac6f70a6cad661ed30f552c289a8e9ec9cec5e411aa943a7fd26ef8d5485f47', mainnet)
 * `input`: dashd blocks/ directory containing blkNNNNN.dat
 * `hashlist`: text file containing list of block hashes created by
 linearize-hashes.py.

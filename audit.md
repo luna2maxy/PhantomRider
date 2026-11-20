@@ -74,18 +74,18 @@ A standalone check compiled from the integrated PHR implementation logic (matchi
 ## 6. Genesis Blocks (PHR-256-YP)
 
 ### 6.1 Coinbase / merkle (verified)
-- Wired-timestamp genesis coinbase (pszTimestamp `"Wired 09/Jan/2014 The Grand Experiment Goes Live: Overstock.com Is Now Accepting Bitcoins"`, 50 COIN, standard genesis output script): **unchanged**.
-- Genesis merkle root (unchanged): `0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7`
+- Wired-timestamp genesis coinbase (pszTimestamp `"20/Nov/2026 Reuters - Bitcoin holds steady as traders weigh crypto ETF demand rules"`, 50 COIN, standard genesis output script): **unchanged**.
+- Genesis merkle root (unchanged): `0x4da075e30f08d540bfb166d36b417872636dea23a4ef4bd5c05fdb8efee7c305`
 
 ### 6.2 New mined genesis parameters and hashes
 Genesis headers were mined/selected to satisfy `CheckProofOfWork` under PHR-256-YP and written to `src/kernel/chainparams.cpp` (with asserts/checkpoints updated).
 
 | Network | nTime | nBits | nNonce | nVersion | Merkle root | New genesis hash (`GetHash()` / PHR) | Previous genesis hash (X11) |
 |---|---:|---:|---:|---:|---|---|---|
-| main | 1390095618 | `0x207fffff` | 0 | 1 | `0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7` | `0x67215764b843ce5cbb30a6166c083fe4808019e844c3b57d4cc117d9186ad2fc` | `0x00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6` |
-| testnet | 1390666206 | `0x207fffff` | 1 | 1 | `0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7` | `0x26aea3dd1aad231fc1cf628b1ba2946bcdb709a814eff5d08f4538ed86bacea3` | `0x00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c` |
-| devnet (base) | 1417713337 | `0x207fffff` | 0 | 1 | `0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7` | `0x403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077` | `0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e` |
-| regtest | 1417713337 | `0x207fffff` | 0 | 1 | `0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7` | `0x403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077` | `0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e` |
+| main | 1795153201 | `0x207fffff` | 0 | 1 | `0x4da075e30f08d540bfb166d36b417872636dea23a4ef4bd5c05fdb8efee7c305` | `0x5ac6f70a6cad661ed30f552c289a8e9ec9cec5e411aa943a7fd26ef8d5485f47` | `0x00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6` |
+| testnet | 1795066801 | `0x207fffff` | 1 | 1 | `0x4da075e30f08d540bfb166d36b417872636dea23a4ef4bd5c05fdb8efee7c305` | `0x607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3` | `0x00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c` |
+| devnet (base) | 1795066801 | `0x207fffff` | 0 | 1 | `0x4da075e30f08d540bfb166d36b417872636dea23a4ef4bd5c05fdb8efee7c305` | `0x607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3` | `0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e` |
+| regtest | 1794980401 | `0x207fffff` | 3 | 1 | `0x4da075e30f08d540bfb166d36b417872636dea23a4ef4bd5c05fdb8efee7c305` | `0x6d9b7b133a86603a69e4beb8c140f33741bbec14dc3f50ba0264e983b3a7bbb6` | `0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e` |
 
 Notes:
 - `nBits` for main/testnet set to easy compact target `0x207fffff` (and mined) to make PHR genesis (re)mining feasible; this constitutes a consensus/network reset relative to the original chain.

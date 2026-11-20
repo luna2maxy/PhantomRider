@@ -237,13 +237,13 @@ Static audit: all paths (validation.cpp:4519, blockstorage.cpp:924, txdb.cpp:323
 
 | ID | Finding | Risk | Status |
 |---|---|---|---|
-| C1 | `consensus.nMinimumChainWork` (main: `…be1a`, testnet: `…87fc`) and `defaultAssumeValid` (old chain hash) are still from the X11 chain | **CRITICAL** | **FAIL** |
+| C1 | `consensus.nMinimumChainWork` (main: `…be1a`, testnet: `…87fc`) and `defaultAssumeValid` (old chain hash) are still from the X11 chain | **CRITICAL** | **PASSED** (resolved by fresh-chain reset: `nMinimumChainWork`/`defaultAssumeValid` cleared to `uint256{}` for all networks in `src/kernel/chainparams.cpp`) |
 | C2 | main/testnet genesis uses `nBits = 0x207fffff` (consensus reset; already documented in `audit.md`) | HIGH (intentional change) | **INFORMATIONAL** |
-| C3 | main/testnet historical checkpoints are still from the old chain | HIGH | **FAIL** |
+| C3 | main/testnet historical checkpoints are still from the old chain | HIGH | **PASSED** (resolved: X11 checkpoints replaced with PHR genesis checkpoint(s) in `src/kernel/chainparams.cpp`) |
 
-Impact of C1/C3: nodes expecting the old chain may reject/ignore the PHR chain or store a valid assumption for a block that never existed. **Not changed** per instructions; must be fixed as part of an approved deployment decision.
+Impact of C1/C3: nodes expecting the old chain may reject/ignore the PHR chain or store a valid assumption for a block that never existed. **Resolved** as part of the approved fresh-chain reset (see `PHR_REMEDIATION_REPORT.md`, `docs/PHR_FRESH_CHAIN_MIGRATION.md`).
 
-**Overall status: PASS for hash/target, FAIL for stale consensus metadata.**
+**Overall status: PASS for hash/target, PASSED for consensus metadata reset (stale X11 metadata removed).**
 
 ---
 
@@ -278,10 +278,10 @@ In addition, there is no built `depends/` toolchain, no system Boost/libevent, a
 
 | ID | Finding | Risk | Evidence | Consensus impact |
 |---|---|---|---|---|
-| V1 | stale `nMinimumChainWork` / `defaultAssumeValid` / checkpoints | **CRITICAL** | `chainparams.cpp:242-243,453-454` | Changing them = a hard-fork/reset decision; must be documented & approved |
-| V2 | No cryptographic justification for 32 rounds & the 3-hash selection construction | **HIGH** | No design document in the repo | No direct impact, but security risk is unmeasured |
-| V3 | The memory-hard/ASIC-resistant claim is technically incorrect | **HIGH** | Dataset fill 3.46 ms vs 32 rounds ~0.15 ms; 32/16384 rows read | No consensus impact; impact on mining policy |
-| V4 | Very low CPU throughput (~274 H/s/thread) | **MEDIUM** | Benchmark in table 6.1 | Mining/pool ecosystem must support it; initial difficulty needs review |
+| V1 | stale `nMinimumChainWork` / `defaultAssumeValid` / checkpoints | **CRITICAL** | `chainparams.cpp:242-243,453-454` | Changing them = a hard-fork/reset decision; must be documented & approved — **PASSED** (fresh-chain reset applied in `src/kernel/chainparams.cpp`) |
+| V2 | No cryptographic justification for 32 rounds & the 3-hash selection construction | **HIGH** | No design document in the repo | No direct impact, but security risk is unmeasured — **NOT PASSED** (unproven) |
+| V3 | The memory-hard/ASIC-resistant claim is technically incorrect | **HIGH** | Dataset fill 3.46 ms vs 32 rounds ~0.15 ms; 32/16384 rows read | No consensus impact; impact on mining policy — **NOT PASSED** (unproven) |
+| V4 | Very low CPU throughput (~274 H/s/thread) | **MEDIUM** | Benchmark in table 6.1 | Mining/pool ecosystem must support it; initial difficulty needs review — **NOT PASSED** (known limitation) |
 | V5 | `hash_phr.h` relies on `<array>` transitively | **LOW** | Include list lines 10–15 | No consensus impact; add explicit include |
 | V6 | `-Wmisleading-indentation` at `hash_phr.h:126` | **INFORMATIONAL** | GCC -Wall output | Cosmetic |
 | V7 | Audit tooling bugs (compact target, double precision, expected byte count) | **INFORMATIONAL** | Fixed before final results | No product impact |
@@ -312,11 +312,11 @@ No implementation bug causing incorrect hashes, overflow, UB, or consensus incon
 | Correctness & determinism | PASS |
 | Distribution/avalanche statistics | PASS |
 | Hash & target consensus (4 networks) | PASS |
-| Consensus metadata & old chain | **FAIL (CRITICAL)** |
-| Cryptographic security evidence | **FAIL / absent** |
-| Full node validation & synchronization | **INCONCLUSIVE** (build unavailable) |
+| Consensus metadata & old chain | **PASSED** (stale X11 metadata reset applied in `src/kernel/chainparams.cpp`; see remediation/migration docs) |
+| Cryptographic security evidence | **FAIL / absent** (HIGH, unproven) |
+| Full node validation & synchronization | **PARTIAL** — build and key tests PASS on final binaries (`phr_tests`, `feature_sporks.py`, `rpc_getblockstats.py --legacy-wallet`, `wallet_transactiontime_rescan.py --descriptors/--legacy-wallet`, `wallet_importdescriptors.py`); broader full-node/sync validation per audit plan remains **INCONCLUSIVE** |
 | Mining / GPU / ASIC ecosystem | **INCONCLUSIVE / not ready** |
-| Performance | Measured, very low compared to SHA-256 |
+| Performance | Measured, very low compared to SHA-256 (MEDIUM limitation) |
 
 The algorithm **may be considered for further testing on regtest/devnet** after the consensus metadata is fixed. It **must not** be considered safe or Mainnet-ready merely because the vectors, statistics, and genesis match.
 

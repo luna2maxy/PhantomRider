@@ -126,8 +126,7 @@ The suite was compiled and run in the full `test_dash` binary: 8/8 cases PASS, `
 ### 4.2 Official Dash Core unit tests
 
 `./build/src/test/test_dash --run_test=phr_tests --log_level=test_suite` ran 8/8 cases with
-`*** No errors detected` (`test/phr_audit/out/unit_phr.log`). Full-suite and functional results
-are recorded in Section 5.2.
+`*** No errors detected` (`test/phr_audit/out/unit_phr.log`). **PASSED** on current build/final binaries. Full-suite and broader functional/node-validation results are partially recorded in Section 5.2 (see also migration notes).
 
 ---
 

@@ -73,7 +73,7 @@ int main()
         const auto params = MakeParams(s.pow_limit, s.kgw, s.dgw, s.no_retarget);
         std::vector<CBlockIndex> chain(static_cast<std::size_t>(kBlocks) + 1);
         chain[0].nHeight = 0;
-        chain[0].nTime = 1390095618u;
+        chain[0].nTime = 1795153201u;
         chain[0].nBits = kGenesisBits;
         chain[0].pprev = nullptr;
 

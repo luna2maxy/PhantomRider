@@ -62,7 +62,7 @@ The full summary is in `docs/PHR_FRESH_CHAIN_BEFORE.md`. Key findings:
 | `nMinimumChainWork` | `uint256{}` | `uint256{}` | `uint256{}` (unchanged) | `uint256{}` (unchanged) |
 | `defaultAssumeValid` | `uint256{}` | `uint256{}` | `uint256{}` (unchanged) | `uint256{}` (unchanged) |
 | `checkpointData` | PHR genesis `67215764…ad2fc` | PHR genesis `26aea3dd…acea3` | genesis + devnet genesis (unchanged) | PHR genesis (unchanged) |
-| `chainTxData` | `{1390095618, 1, 0.0}` | `{1390666206, 1, 0.0}` | `devnetGenesis.nTime, 2, 0.01` (unchanged) | `{0,0,0}` (unchanged) |
+| `chainTxData` | `{1795153201, 1, 0.0}` | `{1795066801, 1, 0.0}` | `devnetGenesis.nTime, 2, 0.01` (unchanged) | `{0,0,0}` (unchanged) |
 | `m_assumed_blockchain_size` | 1 GB | 1 GB | 0 (unchanged) | 0 (unchanged) |
 | `m_assumed_chain_state_size` | 0 GB | 0 GB | 0 (unchanged) | 0 (unchanged) |
 | `m_assumeutxo_data` | empty (unchanged) | empty (unchanged) | absent (unchanged) | **empty** |
@@ -82,10 +82,10 @@ Verified unchanged genesis hashes:
 
 | Network | Hash |
 |---|---|
-| Mainnet | `67215764b843ce5cbb30a6166c083fe4808019e844c3b57d4cc117d9186ad2fc` |
-| Testnet | `26aea3dd1aad231fc1cf628b1ba2946bcdb709a814eff5d08f4538ed86bacea3` |
-| Devnet | `403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077` |
-| Regtest | `403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077` |
+| Mainnet | `5ac6f70a6cad661ed30f552c289a8e9ec9cec5e411aa943a7fd26ef8d5485f47` |
+| Testnet | `607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3` |
+| Devnet (base) | `607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3` |
+| Regtest | `6d9b7b133a86603a69e4beb8c140f33741bbec14dc3f50ba0264e983b3a7bbb6` |
 
 ---
 

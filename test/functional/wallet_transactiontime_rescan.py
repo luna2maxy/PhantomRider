@@ -76,7 +76,8 @@ class TransactionTimeRescanTest(BitcoinTestFramework):
 
         # generate some DASH to create transactions and check blockcount
         initial_mine = COINBASE_MATURITY + 1
-        self.generatetoaddress(minernode, initial_mine, m1)
+        for _ in range(initial_mine):
+            self.generatetoaddress(minernode, 1, m1)
         assert_equal(minernode.getblockcount(), initial_mine + 200)
 
         # synchronize nodes and time
@@ -87,7 +88,8 @@ class TransactionTimeRescanTest(BitcoinTestFramework):
         miner_wallet.sendtoaddress(wo1, 10)
 
         # generate blocks and check blockcount
-        self.generatetoaddress(minernode, COINBASE_MATURITY, m1)
+        for _ in range(COINBASE_MATURITY):
+            self.generatetoaddress(minernode, 1, m1)
         assert_equal(minernode.getblockcount(), initial_mine + 300)
 
         # synchronize nodes and time
@@ -98,7 +100,8 @@ class TransactionTimeRescanTest(BitcoinTestFramework):
         miner_wallet.sendtoaddress(wo2, 5)
 
         # generate blocks and check blockcount
-        self.generatetoaddress(minernode, COINBASE_MATURITY, m1)
+        for _ in range(COINBASE_MATURITY):
+            self.generatetoaddress(minernode, 1, m1)
         assert_equal(minernode.getblockcount(), initial_mine + 400)
 
         # synchronize nodes and time
@@ -109,7 +112,8 @@ class TransactionTimeRescanTest(BitcoinTestFramework):
         miner_wallet.sendtoaddress(wo3, 1)
 
         # generate more blocks and check blockcount
-        self.generatetoaddress(minernode, COINBASE_MATURITY, m1)
+        for _ in range(COINBASE_MATURITY):
+            self.generatetoaddress(minernode, 1, m1)
         assert_equal(minernode.getblockcount(), initial_mine + 500)
 
         self.log.info('Check user\'s final balance and transaction count')
@@ -197,8 +201,11 @@ class TransactionTimeRescanTest(BitcoinTestFramework):
             for i in range(399):
                 temp_wallet.getnewaddress()
 
-            self.generatetoaddress(usernode, COINBASE_MATURITY + 1, temp_wallet.getnewaddress())
-            self.generatetoaddress(usernode, COINBASE_MATURITY + 1, temp_wallet.getnewaddress())
+            mine_addr = usernode.get_deterministic_priv_key().address
+            for _ in range(COINBASE_MATURITY + 1):
+                self.generatetoaddress(usernode, 1, mine_addr)
+            for _ in range(COINBASE_MATURITY + 1):
+                self.generatetoaddress(usernode, 1, mine_addr)
 
             minernode.createwallet("encrypted_wallet", blank=True, passphrase="passphrase", descriptors=False)
             encrypted_wallet = minernode.get_wallet_rpc("encrypted_wallet")
@@ -207,7 +214,7 @@ class TransactionTimeRescanTest(BitcoinTestFramework):
             encrypted_wallet.sethdseed(seed=hd_seed)
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=1) as thread:
-                with minernode.assert_debug_log(expected_msgs=["Rescan started from block 403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077... (slow variant inspecting all blocks)"], timeout=5):
+                with minernode.assert_debug_log(expected_msgs=["Rescan started from block 6d9b7b133a86603a69e4beb8c140f33741bbec14dc3f50ba0264e983b3a7bbb6... (slow variant inspecting all blocks)"], timeout=5):
                     rescanning = thread.submit(encrypted_wallet.rescanblockchain)
 
                 # set the passphrase timeout to 1 to test that the wallet remains unlocked during the rescan

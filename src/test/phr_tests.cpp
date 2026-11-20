@@ -119,15 +119,15 @@ BOOST_FIXTURE_TEST_CASE(genesis_hash, BasicTestingSetup)
     };
 
     check(*CChainParams::Main(),
-          "67215764b843ce5cbb30a6166c083fe4808019e844c3b57d4cc117d9186ad2fc");
+          "5ac6f70a6cad661ed30f552c289a8e9ec9cec5e411aa943a7fd26ef8d5485f47");
     check(*CChainParams::TestNet(),
-          "26aea3dd1aad231fc1cf628b1ba2946bcdb709a814eff5d08f4538ed86bacea3");
+          "607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3");
     check(*CChainParams::RegTest({}),
-          "403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077");
+          "6d9b7b133a86603a69e4beb8c140f33741bbec14dc3f50ba0264e983b3a7bbb6");
     CChainParams::DevNetOptions devnet_opts;
     devnet_opts.name = "phraudit";
     check(*CChainParams::DevNet(devnet_opts),
-          "403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077");
+          "607706684d0ccb6c495f7784e27ab615e1212a7e1939e14ee037e058c3e94ba3");
 }
 
 BOOST_FIXTURE_TEST_CASE(header_serialization, BasicTestingSetup)
@@ -203,7 +203,7 @@ BOOST_FIXTURE_TEST_CASE(compact_target_validation, BasicTestingSetup)
     const auto regtest = CChainParams::RegTest({});
     CBlockHeader header;
     header.nVersion = 1;
-    header.nTime = 1417713337;
+    header.nTime = 1794980401;
     header.nBits = 0x207fffff;
     while (!CheckProofOfWork(header.GetHash(), header.nBits, regtest->GetConsensus())) {
         ++header.nNonce;
