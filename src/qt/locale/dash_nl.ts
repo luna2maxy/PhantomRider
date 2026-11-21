@@ -373,7 +373,7 @@
         <translation>&amp;Ontvangen</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>Vraag betaling aan (genereert QR-codes en Dash: URI's)</translation>
     </message>
     <message>
@@ -643,8 +643,8 @@
         <translation>Open &amp;portemonnee configuratiebestand</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>Open een dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Open een phantomrider: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,8 +2385,8 @@ Het migratieproces maakt vóór het migreren een back-up van de portemonnee. Dit
         <translation>Het bestand is geen sessiebestand van een gedeelde masternode.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>Het sessiebestand gebruikt een niet-ondersteunde formaatversie. Werk Dash Core bij om het te openen.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>Het sessiebestand gebruikt een niet-ondersteunde formaatversie. Werk PhantomRider Core bij om het te openen.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ Het migratieproces maakt vóór het migreren een back-up van de portemonnee. Dit
         <translation>Het sessiebestand heeft geen fase.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>Het sessiebestand bevindt zich in de onbekende fase "%1". Het is waarschijnlijk gemaakt met een nieuwere versie van Dash Core.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>Het sessiebestand bevindt zich in de onbekende fase "%1". Het is waarschijnlijk gemaakt met een nieuwere versie van PhantomRider Core.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,8 +3316,8 @@ Het migratieproces maakt vóór het migreren een back-up van de portemonnee. Dit
         <translation>Transacties met outputs gelijk aan of lager dan dit bedrag worden als dust beschouwd wanneer ze van externe bronnen worden ontvangen.</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,7 +3408,7 @@ Het migratieproces maakt vóór het migreren een back-up van de portemonnee. Dit
         <translation>Maximum</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>Open automatisch de Dash client poort op de router. Dit werkt alleen als uw router UPnP ondersteunt en dit is ingeschakeld.</translation>
     </message>
     <message>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Portmapping via &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Open automatisch de Dash Core poort op de router. Dit werkt alleen wanneer je router NAT-PMP ondersteunt en ingeschakeld is. De externe poort kan willekeurig zijn.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Open automatisch de PhantomRider Core poort op de router. Dit werkt alleen wanneer je router NAT-PMP ondersteunt en ingeschakeld is. De externe poort kan willekeurig zijn.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4009,7 +4009,7 @@ Om te mixen moeten andere gebruikers exact dezelfde denominaties inbrengen.</tra
         <translation>Fout bij betalingsverzoek</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>Kan Dash niet starten: click-to-pay handler</translation>
     </message>
     <message>
@@ -4017,8 +4017,8 @@ Om te mixen moeten andere gebruikers exact dezelfde denominaties inbrengen.</tra
         <translation>URI-afhandeling</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' is geen geldige URI. Gebruik in plaats daarvan 'dash:'.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' is geen geldige URI. Gebruik in plaats daarvan 'phantomrider:'.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6283,8 +6283,8 @@ Nota: Het bericht zal niet verzonden worden met de betaling over het Dash netwer
         <translation>Sla hem nu op: de registratie kan pas beginnen nadat u dit bevestigt.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Voeg deze regel toe aan dash.conf op uw masternodeserver:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Voeg deze regel toe aan phantomrider.conf op uw masternodeserver:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6995,8 +6995,8 @@ Nota: Het bericht zal niet verzonden worden met de betaling over het Dash netwer
         <translation>Bevestigingstijddoel:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Als de aangepaste vergoeding is ingesteld op 1000 duffs en de transactie is maar 250 bytes, dan wordt bij "per kilobyte" 250 duffs aan toeslag berekend, &lt;br /&gt;terwijl er bij "tenminste" 1000 duffs worden berekend. Voor transacties die groter zijn dan een kilobyte, wordt in beide gevallen per kilobyte de toeslag berekend.</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Als de aangepaste vergoeding is ingesteld op 1000 phr en de transactie is maar 250 bytes, dan wordt bij "per kilobyte" 250 phr aan toeslag berekend, &lt;br /&gt;terwijl er bij "tenminste" 1000 phr worden berekend. Voor transacties die groter zijn dan een kilobyte, wordt in beide gevallen per kilobyte de toeslag berekend.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -7385,8 +7385,8 @@ Nota: Het bericht zal niet verzonden worden met de betaling over het Dash netwer
         <translation>Bericht:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
-        <translation>Een boodschap die was bijgevoegd aan de dash: URI die met de transactie voor uw referentie wordt opgeslagen. Opmerking: Dit bericht zal niet over het Dash netwerk worden verzonden.</translation>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <translation>Een boodschap die was bijgevoegd aan de phantomrider: URI die met de transactie voor uw referentie wordt opgeslagen. Opmerking: Dit bericht zal niet over het Dash netwerk worden verzonden.</translation>
     </message>
 </context>
 <context>
@@ -7723,8 +7723,8 @@ Nota: Het bericht zal niet verzonden worden met de betaling over het Dash netwer
         <translation>Kopiëren</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Voeg deze regel toe aan dash.conf op de masternodeserver:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Voeg deze regel toe aan phantomrider.conf op de masternodeserver:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10546,8 +10546,8 @@ Kan back-up van portemonnee niet herstellen.</translation>
         <translation>Sectie [%s] wordt niet herkend.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Stelt een venstertitel in die wordt toegevoegd aan "Dash Core - "</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Stelt een venstertitel in die wordt toegevoegd aan "PhantomRider Core - "</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

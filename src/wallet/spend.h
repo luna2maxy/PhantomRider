@@ -20,7 +20,7 @@ constexpr int RANDOM_CHANGE_POSITION{-1};
 
 /**
  * Smallest credit output Dash Platform will credit to a Platform address: its asset lock
- * processing floor (50,000 duffs) plus the fee for the one output a claim needs (6,000 duffs).
+ * processing floor (50,000 phr) plus the fee for the one output a claim needs (6,000 phr).
  * See calculate_address_funding_from_asset_lock_min_required_fee() in dashpay/platform.
  */
 static constexpr CAmount MIN_PLATFORM_TRANSFER_AMOUNT{56'000};

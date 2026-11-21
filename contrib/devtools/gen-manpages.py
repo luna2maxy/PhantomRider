@@ -8,12 +8,12 @@ import sys
 import tempfile
 
 BINARIES = [
-'src/dashd',
-'src/dash-cli',
-'src/dash-tx',
-'src/dash-wallet',
-'src/dash-util',
-'src/qt/dash-qt',
+'src/phantomriderd',
+'src/phantomrider-cli',
+'src/phantomrider-tx',
+'src/phantomrider-wallet',
+'src/phantomrider-util',
+'src/qt/phantomrider-qt',
 ]
 
 # Paths to external utilities.

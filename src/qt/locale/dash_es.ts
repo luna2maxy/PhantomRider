@@ -373,7 +373,7 @@
         <translation>&amp;Recibir</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>Solicitar pagos (genera códigos QR y URIs de Dash)</translation>
     </message>
     <message>
@@ -643,7 +643,7 @@
         <translation>Abrir archivo de configuración de la &amp;billetera</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
+        <source>Open a phantomrider: URI</source>
         <translation>Abrir un guión: URI</translation>
     </message>
     <message>
@@ -2385,8 +2385,8 @@ El proceso de migración creará una copia de seguridad de la billetera antes de
         <translation>El archivo no es un archivo de sesión de masternodo compartido.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>El archivo de sesión usa una versión de formato no admitida. Actualiza Dash Core para abrirlo.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>El archivo de sesión usa una versión de formato no admitida. Actualiza PhantomRider Core para abrirlo.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ El proceso de migración creará una copia de seguridad de la billetera antes de
         <translation>El archivo de sesión no tiene etapa.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>El archivo de sesión está en la etapa desconocida "%1". Probablemente lo creó una versión más reciente de Dash Core.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>El archivo de sesión está en la etapa desconocida "%1". Probablemente lo creó una versión más reciente de PhantomRider Core.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,8 +3316,8 @@ El proceso de migración creará una copia de seguridad de la billetera antes de
         <translation>Las transacciones con salidas iguales o inferiores a esta cantidad se considerarán polvo cuando se reciban de fuentes externas.</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,8 +3408,8 @@ El proceso de migración creará una copia de seguridad de la billetera antes de
         <translation>Máximo</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto del cliente Dash Core en el enrutador. Esto solo funciona cuando su enrutador admite UPnP y está habilitado.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente el puerto del cliente PhantomRider Core en el enrutador. Esto solo funciona cuando su enrutador admite UPnP y está habilitado.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Mapear puerto usando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Abre automáticamente el puerto del cliente Dash Core en el enrutador. Esto solo funciona cuando el enrutador admite NAT-PMP y está habilitado. El puerto externo puede ser aleatorio.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Abre automáticamente el puerto del cliente PhantomRider Core en el enrutador. Esto solo funciona cuando el enrutador admite NAT-PMP y está habilitado. El puerto externo puede ser aleatorio.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,16 +4008,16 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Error en solicitud de pago</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
-        <translation>No se pudo iniciar dash: manejador de pago-por-clic</translation>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
+        <translation>No se pudo iniciar phantomrider: manejador de pago-por-clic</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>Gestión de URI</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' no es un URI válido. Usa 'dash:'.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' no es un URI válido. Usa 'phantomrider:'.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ Para obtener más información sobre el uso de esta consola, escribe %6.
         <translation>Guárdala ahora: el registro no puede comenzar hasta que lo confirmes.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Agrega esta línea a dash.conf en el servidor de tu masternodo:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Agrega esta línea a phantomrider.conf en el servidor de tu masternodo:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,8 +6994,8 @@ Para obtener más información sobre el uso de esta consola, escribe %6.
         <translation>Objetivo de tiempo de confirmación</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Si la comisión personalizada se establece en 1000 duffs y la transacción sólo ocupa 250 bytes, entonces "por kilobyte" sólo se pagan 250 duffs de comisión,&lt;br /&gt;mientras que "como mínimo" paga 1000 duffs. Para transacciones mayores de un kilobyte ambas pagan por kilobyte.</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Si la comisión personalizada se establece en 1000 phr y la transacción sólo ocupa 250 bytes, entonces "por kilobyte" sólo se pagan 250 phr de comisión,&lt;br /&gt;mientras que "como mínimo" paga 1000 phr. Para transacciones mayores de un kilobyte ambas pagan por kilobyte.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -7384,7 +7384,7 @@ Para obtener más información sobre el uso de esta consola, escribe %6.
         <translation>Mensaje:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>Un mensaje que se adjuntó al Dash: URI que será almacenada con la transacción para su referencia. Nota: Este mensaje no se enviará a través de la red Dash.</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ Para obtener más información sobre el uso de esta consola, escribe %6.
         <translation>Copiar</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Agrega esta línea a dash.conf en el servidor del masternodo:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Agrega esta línea a phantomrider.conf en el servidor del masternodo:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ No se puede restaurar la copia de seguridad de la billetera.</translation>
         <translation>La sección [%s] no se reconoce</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Establece un título de ventana que se añade a "Dash Core - "</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Establece un título de ventana que se añade a "PhantomRider Core - "</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

@@ -1,4 +1,4 @@
-Dash Core version 0.17.0.2
+PhantomRider Core version 0.17.0.2
 ==========================
 
 Release is now available from:
@@ -24,13 +24,13 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux). If you upgrade after DIP0003 activation and you were
+phantomriderd/phantomrider-qt (on Linux). If you upgrade after DIP0003 activation and you were
 using version < 0.13 you will have to reindex (start with -reindex-chainstate
 or -reindex) to make sure your wallet has all the new data synced. Upgrading
 from version 0.13 should not require any additional actions.
 
 When upgrading from a version prior to 0.14.0.3, the
-first startup of Dash Core will run a migration process which can take a few
+first startup of PhantomRider Core will run a migration process which can take a few
 minutes to finish. After the migration, a downgrade to an older version is only
 possible with a reindex (or reindex-chainstate).
 
@@ -92,14 +92,14 @@ the same bit 6 introduced to activate new opcodes.
 
 BLS update
 ----------
-Dash Core’s BLS signature library has been updated based on v1.0 of the
+PhantomRider Core’s BLS signature library has been updated based on v1.0 of the
 Chia BLS library to support migration to a new BLS signature scheme which will
-be implemented in a future version of DashCore. These changes will be made to
+be implemented in a future version of PhantomRiderCore. These changes will be made to
 align with standards and improve security.
 
 Network performance improvements
 --------------------------------
-This version of Dash Core includes multiple optimizations to the network and
+This version of PhantomRider Core includes multiple optimizations to the network and
 p2p message handling code.
 
 We reintroduced [Intra-Quorum Connections](https://github.com/dashpay/dips/blob/master/dip-0006.md#intra-quorum-communication)
@@ -132,7 +132,7 @@ Also, enabling wallet encryption no longer requires a wallet restart.
 Sporks
 ------
 Several spork changes have been made to streamline code and improve system
-reliability. Activation of `SPORK_22_PS_MORE_PARTICIPANTS` in DashCore v0.16
+reliability. Activation of `SPORK_22_PS_MORE_PARTICIPANTS` in PhantomRiderCore v0.16
 has rendered that spork unnecessary. The associated logic has been hardened
 and the spork removed. `SPORK_21_QUORUM_ALL_CONNECTED` logic has been split
 into two sporks, `SPORK_21_QUORUM_ALL_CONNECTED` and `SPORK_23_QUORUM_POSE`,
@@ -197,7 +197,7 @@ The new RPCs are:
 - `upgradetohd`
 
 The deprecated RPCs are all related to the deprecation of wallet accounts and
-will be removed in DashCore v0.18. Note that the deprecation of wallet accounts
+will be removed in PhantomRiderCore v0.18. Note that the deprecation of wallet accounts
 means that any RPCs that previously accepted an “account” parameter are
 affected — please refer to the RPC help for details about specific RPCs.
 
@@ -246,7 +246,7 @@ Also, please note that all mixing-related command-line options have been
 renamed to replace “PrivateSend” with “CoinJoin” (e.g. `setprivatesendrounds`
 -> `setcoinjoinrounds`).
 
-Please check `Help -> Command-line options` in Qt wallet or `dashd --help` for
+Please check `Help -> Command-line options` in Qt wallet or `phantomriderd --help` for
 more information.
 
 Backports from Bitcoin Core 0.17
@@ -302,12 +302,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Dash Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+PhantomRider Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Dash.
 
-Dash Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+PhantomRider Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Dash Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+PhantomRider Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

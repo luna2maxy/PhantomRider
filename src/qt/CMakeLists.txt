@@ -284,7 +284,7 @@ add_executable(bitcoin-qt
   main.cpp
   ../init/bitcoin-qt.cpp
 )
-set_target_properties(bitcoin-qt PROPERTIES OUTPUT_NAME dash-qt)
+set_target_properties(bitcoin-qt PROPERTIES OUTPUT_NAME phantomrider-qt)
 
 add_windows_resources(bitcoin-qt res/dash-qt-res.rc)
 
@@ -313,7 +313,7 @@ if(WITH_MULTIPROCESS)
     bitcoin_ipc
     dashbls
   )
-  set_target_properties(bitcoin-gui PROPERTIES OUTPUT_NAME dash-gui)
+  set_target_properties(bitcoin-gui PROPERTIES OUTPUT_NAME phantomrider-gui)
   import_plugins(bitcoin-gui)
   list(APPEND installable_targets bitcoin-gui)
   if(WIN32)

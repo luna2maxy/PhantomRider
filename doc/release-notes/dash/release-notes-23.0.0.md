@@ -1,4 +1,4 @@
-# Dash Core version v23.0.0
+# PhantomRider Core version v23.0.0
 
 This is a new major version release, bringing new features, various bugfixes and other improvements.
 This release is **mandatory** for all masternodes.
@@ -15,7 +15,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -51,11 +51,11 @@ The compact block filter index format has been updated to include Dash special t
 
 ## Other notable changes
 
-* Performance of block validation in Dash Core has been significantly improved, index from
+* Performance of block validation in PhantomRider Core has been significantly improved, index from
   scratch and reindex are up to 20% faster compared to v22.x.
-* To help prevent fingerprinting transactions created by the Dash Core wallet, change output
+* To help prevent fingerprinting transactions created by the PhantomRider Core wallet, change output
   amounts are now randomized. (#6685)
-* Dash Core will no longer migrate EvoDb databases generated in v19 and v20, users upgrading
+* PhantomRider Core will no longer migrate EvoDb databases generated in v19 and v20, users upgrading
   from these versions are recommended to run `-reindex` to rebuild all databases and indexes. (#6579)
 
 ## Updated REST APIs
@@ -77,9 +77,9 @@ The compact block filter index format has been updated to include Dash special t
 
 - `MIN_PEER_PROTO_VERSION` has been bumped to `70221`. (#6877)
 - `PROTO_VERSION` has been bumped to `70238` with the introduction of the `platformban` p2p message.
-  This message allows evonodes to initiate PoSe masternode banning in Dash Core for evonodes which are
+  This message allows evonodes to initiate PoSe masternode banning in PhantomRider Core for evonodes which are
   not providing adequate service on Dash Platform.
-- `cycleHash` field in `isdlock` message will now represent a DKG cycle starting block of the signing quorum instead of a DKG cycle starting block corresponding to the current chain height. While this is fully backwards compatible with older versions of Dash Core, other implementations might not be expecting this, so the P2P protocol version was bumped to 70237. (#6608)
+- `cycleHash` field in `isdlock` message will now represent a DKG cycle starting block of the signing quorum instead of a DKG cycle starting block corresponding to the current chain height. While this is fully backwards compatible with older versions of PhantomRider Core, other implementations might not be expecting this, so the P2P protocol version was bumped to 70237. (#6608)
 - UNIX domain sockets can now be used for proxy connections. Set `-onion` or `-proxy` to the local socket path with the prefix `unix:` (e.g. `-onion=unix:/home/me/torsocket`). UNIX socket paths are now accepted for `-zmqpubrawblock` and `-zmqpubrawtx` with the format `-zmqpubrawtx=unix:/path/to/file`. (#6634)
 
 ## Updated RPCs
@@ -89,15 +89,15 @@ The compact block filter index format has been updated to include Dash special t
    highest `ProUpRevTx` version. (#6729)
 
 * The RPCs `protx register_legacy`, `protx register_fund_legacy`, `protx register_prepare_legacy` and
-  `protx update_registrar_legacy` have been deprecated in Dash Core v23 and may be removed in a future version.
+  `protx update_registrar_legacy` have been deprecated in PhantomRider Core v23 and may be removed in a future version.
   They can be re-enabled with the runtime argument `-deprecatedrpc=legacy_mn`.
 
-* The argument `legacy` in `bls generate` has been deprecated in Dash Core v23 and may be ignored in a future version.
+* The argument `legacy` in `bls generate` has been deprecated in PhantomRider Core v23 and may be ignored in a future version.
   It can be re-enabled with the runtime argument `-deprecatedrpc=legacy_mn`. (#6723)
 
 * A new optional field `submit` has been introduced to the `protx revoke`, `protx update_registrar`, `protx update_service` RPCs. It behaves identically to `submit` in `protx register` or `protx register_fund`. (#6720)
 
-* The `instantsendtoaddress` RPC was deprecated in Dash Core v0.15 and is now removed. (#6686)
+* The `instantsendtoaddress` RPC was deprecated in PhantomRider Core v0.15 and is now removed. (#6686)
 
 * `quorum rotationinfo` will now expect the third param to be a JSON array. (#6628)
 
@@ -106,7 +106,7 @@ The compact block filter index format has been updated to include Dash special t
 * `coinjoin status` is a new RPC that reports the status message of all running mix sessions. `coinjoin start` will no longer
   report errors from mix sessions; users are recommended to query the status using `coinjoin status` instead. (#6594)
 
-* The RPCs `masternode current` and `masternode winner` were deprecated in Dash Core v0.17 and are now removed. The `getpoolinfo` RPC was deprecated in Dash Core v0.15 and is now removed. (#6567)
+* The RPCs `masternode current` and `masternode winner` were deprecated in PhantomRider Core v0.17 and are now removed. The `getpoolinfo` RPC was deprecated in PhantomRider Core v0.15 and is now removed. (#6567)
 
 * The `-deprecatedrpc=addresses` configuration option has been removed.  RPCs `gettxout`, `getrawtransaction`, `decoderawtransaction`, `decodescript`, `gettransaction verbose=true` and REST endpoints `/rest/tx`, `/rest/getutxos`, `/rest/block` no longer return the `addresses` and `reqSigs` fields, which were previously deprecated in 21.0. (#6569)
 
@@ -120,7 +120,7 @@ The compact block filter index format has been updated to include Dash special t
 
 ### Extended address support
 
-Dash Core v23 introduces support for extended masternode addresses, replacing legacy single-endpoint fields and
+PhantomRider Core v23 introduces support for extended masternode addresses, replacing legacy single-endpoint fields and
 enabling more flexible network setups. The following RPC changes implement this functionality:
 
 #### New and deprecated fields
@@ -129,13 +129,13 @@ enabling more flexible network setups. The following RPC changes implement this 
   `decodepsbt`, `getblock`, `getrawtransaction`, `gettransaction`, `masternode status` (only the `dmnState` key),
   `protx diff`, `protx listdiff` and has been replaced with the key `addresses`.
   * The deprecated key is still available without additional runtime arguments, but is liable to be removed in future versions
-    of Dash Core. (#6811)
+    of PhantomRider Core. (#6811)
 * The key `service` has been deprecated for some RPCs (`decoderawtransaction`, `decodepsbt`, `getblock`, `getrawtransaction`,
   `gettransaction`, `masternode status` (only for the `dmnState` key), `protx diff`, `protx listdiff`) and has been replaced
   with the key `addresses`.
   * This deprecation also extends to the functionally identical key, `address` in `masternode list` (and its alias, `masternodelist`).
   * The deprecated key is still available without additional runtime arguments, but is liable to be removed in future versions
-    of Dash Core.
+    of PhantomRider Core.
   * This change does not affect `masternode status` (except for the `dmnState` key) as `service` does not represent a payload
     value but the external address advertised by the active masternode. (#6665)
 
@@ -178,7 +178,7 @@ enabling more flexible network setups. The following RPC changes implement this 
     * Attempting to populate any three address fields will make populating all fields mandatory.
   * Continue to allow specifying only the port number for `platformP2PAddrs` and `platformHTTPSAddrs`, pairing it with the address
     from the first `coreP2PAddrs` entry. This mirrors existing behavior.
-    * This method of entry may not be available in future releases of Dash Core and operators are recommended to switch over to
+    * This method of entry may not be available in future releases of PhantomRider Core and operators are recommended to switch over to
       explicitly specifying (arrays of) addr:port strings for all address fields. (#6666)
   * No longer default to the core P2P port if a port is not specified in the addr:port pair. All ports must be specified explicitly.
 
@@ -211,7 +211,7 @@ Masternodes ineligible for extended addresses (i.e. all nodes before fork activa
 
 ## Build System
 
-GCC 11.1 or later, or Clang 16.0 or later, are now required to compile Dash Core. (#6389)
+GCC 11.1 or later, or Clang 16.0 or later, are now required to compile PhantomRider Core. (#6389)
 
 ## Command-line Options
 
@@ -227,7 +227,7 @@ GCC 11.1 or later, or Clang 16.0 or later, are now required to compile Dash Core
 
 ### Mobile CoinJoin Compatibility
 
-- Fixed an issue where CoinJoin funds mixed in the Dash Android wallet were invisible when importing the mnemonic into Dash Core. Descriptor Wallets now include an additional default descriptor for mobile CoinJoin funds, ensuring seamless wallet migration and complete fund visibility across different Dash wallet implementations.
+- Fixed an issue where CoinJoin funds mixed in the Dash Android wallet were invisible when importing the mnemonic into PhantomRider Core. Descriptor Wallets now include an additional default descriptor for mobile CoinJoin funds, ensuring seamless wallet migration and complete fund visibility across different Dash wallet implementations.
 - This is a breaking change that increases the default number of descriptors from 2 to 3 on mainnet (internal, external, mobile CoinJoin) for newly created descriptor wallets only - existing wallets are unaffected. (#6835)
 
 ## GUI changes

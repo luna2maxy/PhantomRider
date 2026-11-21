@@ -1,6 +1,6 @@
 FROM phusion/baseimage:jammy-1.0.4
 LABEL maintainer="Dash Developers <dev@dash.org>"
-LABEL description="Dockerised DashCore, built from CI"
+LABEL description="Dockerised PhantomRiderCore, built from CI"
 
 ARG USER_ID
 ARG GROUP_ID
@@ -12,7 +12,7 @@ ENV USER_ID="${USER_ID:-1000}"
 ENV GROUP_ID="${GROUP_ID:-1000}"
 RUN groupadd -g ${GROUP_ID} dash && \
     useradd -u ${USER_ID} -g dash -s /bin/bash -m -d /home/dash dash && \
-    mkdir /home/dash/.dashcore && \
+    mkdir /home/dash/.phantomridercore && \
     chown ${USER_ID}:${GROUP_ID} -R /home/dash
 
 COPY bin/* /usr/local/bin/

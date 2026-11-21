@@ -373,7 +373,7 @@
         <translation>&amp;รับ</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>เรียกเก็บการชำระเงิน (สร้างคิว อาร์ โค้ด QR codes และแหล่งที่มาของ Dash: URIs)</translation>
     </message>
     <message>
@@ -643,7 +643,7 @@
         <translation>เปิดไฟล์การกำหนดค่า&amp;กระเป๋าสตางค์</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
+        <source>Open a phantomrider: URI</source>
         <translation>เปิด Dash: URI</translation>
     </message>
     <message>
@@ -2385,8 +2385,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>ไฟล์ไม่ใช่ไฟล์เซสชันมาสเตอร์โหนดร่วม</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>ไฟล์เซสชันใช้รูปแบบเวอร์ชันที่ไม่รองรับ โปรดอัปเดต Dash Core เพื่อเปิดไฟล์</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>ไฟล์เซสชันใช้รูปแบบเวอร์ชันที่ไม่รองรับ โปรดอัปเดต PhantomRider Core เพื่อเปิดไฟล์</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>ไฟล์เซสชันไม่มีขั้นตอน</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>ไฟล์เซสชันอยู่ในขั้นตอนที่ไม่รู้จัก "%1" น่าจะสร้างโดย Dash Core เวอร์ชันที่ใหม่กว่า</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>ไฟล์เซสชันอยู่ในขั้นตอนที่ไม่รู้จัก "%1" น่าจะสร้างโดย PhantomRider Core เวอร์ชันที่ใหม่กว่า</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,8 +3316,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>ธุรกรรมที่มีเอาต์พุตเท่ากับหรือต่ำกว่าจำนวนนี้จะถือว่าเป็น dust เมื่อได้รับจากแหล่งภายนอก</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,8 +3408,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>สูงสุด</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>เปิด port ลูกค้าของ Dash Core บนเราเตอร์โดยอัตโนมัติ การทำงานนี้ใช้ได้เฉพาะเมื่อเราเตอร์ของคุณรองรับ UPnP และเปิดใช้งานแล้ว</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>เปิด port ลูกค้าของ PhantomRider Core บนเราเตอร์โดยอัตโนมัติ การทำงานนี้ใช้ได้เฉพาะเมื่อเราเตอร์ของคุณรองรับ UPnP และเปิดใช้งานแล้ว</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>แผนที่ port โดยใช้ &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>เปิดพอร์ตไคลเอนต์ Dash Core บนเราเตอร์โดยอัตโนมัติ ใช้งานได้เฉพาะเมื่อเราเตอร์ของคุณรองรับ NAT-PMP และเปิดใช้งานอยู่ พอร์ตภายนอกอาจเป็นแบบสุ่ม</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>เปิดพอร์ตไคลเอนต์ PhantomRider Core บนเราเตอร์โดยอัตโนมัติ ใช้งานได้เฉพาะเมื่อเราเตอร์ของคุณรองรับ NAT-PMP และเปิดใช้งานอยู่ พอร์ตภายนอกอาจเป็นแบบสุ่ม</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>คำขอการชำระเงินผิดพลาด</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>ไม่สามารถเริ่มต้น Dash: คลิกเพื่อจ่ายเงิน</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>การจัดการ URI</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' ไม่ใช่ URI ที่ถูกต้องใช้ 'dash:' แทน</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' ไม่ใช่ URI ที่ถูกต้องใช้ 'phantomrider:' แทน</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ For more information on using this console, type %6.
         <translation>บันทึกเดี๋ยวนี้ — ไม่สามารถเริ่มลงทะเบียนได้จนกว่าคุณจะยืนยัน</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>เพิ่มบรรทัดนี้ลงใน dash.conf บนเซิร์ฟเวอร์มาสเตอร์โหนดของคุณ:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>เพิ่มบรรทัดนี้ลงใน phantomrider.conf บนเซิร์ฟเวอร์มาสเตอร์โหนดของคุณ:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,8 +6994,8 @@ For more information on using this console, type %6.
         <translation>การยืนยันเวลาเป้าหมาย</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>หากค่าธรรมเนียมที่กำหนดเองถูกตั้งค่าเป็น 1000 duffs และการทำธุรกรรมนี้มีเพียง 250 ไบต์   ซึ่ง "ต่อกิโลไบต์" จะจ่ายเพียง 250 duffs ในขณะที่ "อย่างน้อย" จ่าย 1000 duffs สำหรับธุรกรรมที่มีขนาดใหญ่กว่ากิโลไบต์จะต้องจ่ายเป็นกิโลไบต์</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>หากค่าธรรมเนียมที่กำหนดเองถูกตั้งค่าเป็น 1000 phr และการทำธุรกรรมนี้มีเพียง 250 ไบต์   ซึ่ง "ต่อกิโลไบต์" จะจ่ายเพียง 250 phr ในขณะที่ "อย่างน้อย" จ่าย 1000 phr สำหรับธุรกรรมที่มีขนาดใหญ่กว่ากิโลไบต์จะต้องจ่ายเป็นกิโลไบต์</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -7384,7 +7384,7 @@ For more information on using this console, type %6.
         <translation>ข้อความ: </translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>ข้อความที่แนบมาไปยัง Dash: URI ซึ่งจะถูกเก็บไว้กับธุรกรรมเพื่อเป็นข้อมูลอ้างอิงของคุณ  หมายเหตุ: ข้อความนี้จะถูกส่งไปยังเครือข่าย Dash </translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ For more information on using this console, type %6.
         <translation>คัดลอก</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>เพิ่มบรรทัดนี้ลงใน dash.conf บนเซิร์ฟเวอร์มาสเตอร์โหนด:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>เพิ่มบรรทัดนี้ลงใน phantomrider.conf บนเซิร์ฟเวอร์มาสเตอร์โหนด:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Unable to restore backup of wallet.</source>
         <translation>ส่วน [%s] ไม่ได้รับการยอมรับ</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>ตั้งชื่อหน้าต่างซึ่งจะต่อท้าย "Dash Core - "</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>ตั้งชื่อหน้าต่างซึ่งจะต่อท้าย "PhantomRider Core - "</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

@@ -1,4 +1,4 @@
-Dash Core version 0.15
+PhantomRider Core version 0.15
 ======================
 
 Release is now available from:
@@ -21,13 +21,13 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux). If you upgrade after DIP0003 activation and you were
+phantomriderd/phantomrider-qt (on Linux). If you upgrade after DIP0003 activation and you were
 using version < 0.13 you will have to reindex (start with -reindex-chainstate
 or -reindex) to make sure your wallet has all the new data synced. Upgrading from
 version 0.13 should not require any additional actions.
 
 When upgrading from a version prior to 0.14.0.3, the
-first startup of Dash Core will run a migration process which can take a few minutes
+first startup of PhantomRider Core will run a migration process which can take a few minutes
 to finish. After the migration, a downgrade to an older version is only possible with
 a reindex (or reindex-chainstate).
 
@@ -144,7 +144,7 @@ will print a line that looks like this:
 ```
 2020-01-06 14:41:08 Windows Exception: EXCEPTION_ACCESS_VIOLATION
 No debug information available for stacktrace. You should add debug information and then run:
-dashd.exe -printcrashinfo=bvcgc43iinzgc43ijfxgm3yba....
+phantomriderd.exe -printcrashinfo=bvcgc43iinzgc43ijfxgm3yba....
 ```
 If you encounter such a crash, include these lines when you report the crash and we will be able to debug it
 further. Anyone interested in running the specified `-printcrashinfo` command can do so after copying the debug info
@@ -202,7 +202,7 @@ Few cmd-line options are no longer supported:
 Make sure to check Bitcoin Core 0.15 release notes in a [section](#backports-from-bitcoin-core-015) below
 for more changes in command-line options.
 
-See `Help -> Command-line options` in Qt wallet or `dashd --help` for more info.
+See `Help -> Command-line options` in Qt wallet or `phantomriderd --help` for more info.
 
 Build system
 ------------
@@ -213,7 +213,7 @@ option (default is `no`). When using this option on macOS make sure to build bin
 Backports from Bitcoin Core 0.15
 --------------------------------
 
-Most of the changes between Bitcoin Core 0.14 and Bitcoin Core 0.15 have been backported into Dash Core 0.15.
+Most of the changes between Bitcoin Core 0.14 and Bitcoin Core 0.15 have been backported into PhantomRider Core 0.15.
 We only excluded backports which do not align with Dash, like SegWit or RBF related changes.
 
 You can read about changes brought by backporting from Bitcoin Core 0.15 in following docs:
@@ -410,7 +410,7 @@ See detailed [set of changes](https://github.com/dashpay/dash/compare/v0.14.0.5.
 - [`02f6188e8`](https://github.com/dashpay/dash/commit/02f6188e8) Do not count 0-fee txes for fee estimation (#3037)
 - [`f0c73f5ce`](https://github.com/dashpay/dash/commit/f0c73f5ce) Revert "Skip mempool.dat when wallet is starting in "zap" mode (#2782)"
 - [`be3bc48c9`](https://github.com/dashpay/dash/commit/be3bc48c9) Fix broken link in PrivateSend info dialog (#3031)
-- [`acab8c552`](https://github.com/dashpay/dash/commit/acab8c552) Add Dash Core Group codesign certificate (#3027)
+- [`acab8c552`](https://github.com/dashpay/dash/commit/acab8c552) Add PhantomRider Core Group codesign certificate (#3027)
 - [`a1c4321e9`](https://github.com/dashpay/dash/commit/a1c4321e9) Fix osslsigncode compile issue in gitian-build (#3026)
 - [`2f21e5551`](https://github.com/dashpay/dash/commit/2f21e5551) Remove legacy InstantSend code (#3020)
 - [`7a440d626`](https://github.com/dashpay/dash/commit/7a440d626) Optimize on-disk deterministic masternode storage to reduce size of evodb (#3017)
@@ -498,12 +498,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Dash Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+PhantomRider Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Dash.
 
-Dash Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+PhantomRider Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Dash Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+PhantomRider Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

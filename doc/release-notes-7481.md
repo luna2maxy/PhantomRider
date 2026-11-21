@@ -1,7 +1,7 @@
 Build System
 ------------
 
-Dash Core is now built with CMake. The Autotools build system
+PhantomRider Core is now built with CMake. The Autotools build system
 (`autogen.sh`, `configure` and the `Makefile.am` files) has been removed,
 following Bitcoin Core's migration. See the build guides in `doc/` for the
 new instructions; in short:

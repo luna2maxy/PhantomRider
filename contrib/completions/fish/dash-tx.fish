@@ -1,5 +1,5 @@
 # Disable files from being included in completions by default
-complete --command dash-tx --no-files
+complete --command phantomrider-tx --no-files
 
 # Modified version of __fish_seen_subcommand_from
 # Uses regex to detect cmd= syntax
@@ -47,19 +47,19 @@ end
 
 # Add options
 complete \
-    --command dash-tx \
+    --command phantomrider-tx \
     --condition "not __fish_dash_seen_cmd (__fish_dash_tx_get_commands --commandsonly)" \
     --arguments "(__fish_dash_tx_get_options)" \
     --no-files
 
 # Add commands
 complete \
-    --command dash-tx \
+    --command phantomrider-tx \
     --arguments "(__fish_dash_tx_get_commands)" \
     --no-files
 
 # Add file completions for load and set commands
 complete \
-    --command dash-tx \
+    --command phantomrider-tx \
     --condition 'string match --regex -- "(load|set)=" (commandline -pt)' \
     --force-files

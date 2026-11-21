@@ -378,7 +378,7 @@ void SharedMnWalkthroughTests::walkthrough()
         SyncWallet(m_node, *wallet);
         const CAmount balance{wallet::GetBalance(*wallet).m_mine_trusted};
         QVERIFY2(balance >= 700 * COIN,
-                 qPrintable(QStringLiteral("wallet %1 only has %2 duffs")
+                 qPrintable(QStringLiteral("wallet %1 only has %2 phr")
                                 .arg(QString::fromStdString(wallet->GetName()))
                                 .arg(balance)));
     }
@@ -516,7 +516,7 @@ void SharedMnWalkthroughTests::walkthrough()
     coord.m_next_button->click();
     QCOMPARE(int(coord.currentPage()), int(SharedMnCreateDialog::PageSecret));
     Shots().capture(&coord, "coord", "09-save-operator-key",
-                    "Save operator key gate: the generated secret, the dash.conf line and the 4 character "
+                    "Save operator key gate: the generated secret, the phantomrider.conf line and the 4 character "
                     "confirmation");
     const QString operator_secret{coord.m_operator_widget->secretHex()};
     QVERIFY(!operator_secret.isEmpty());

@@ -31,7 +31,7 @@ fi
 cd "build-ci/dashcore-$BUILD_TARGET"
 
 if [ -n "${CI_LIMIT_STACK_SIZE}" ]; then
-  # Upstream uses 512, which segfaults dashd during test framework startup.
+  # Upstream uses 512, which segfaults phantomriderd during test framework startup.
   ulimit -s 1024
 fi
 
@@ -47,7 +47,7 @@ if [ "$SOCKETEVENTS" = "" ]; then
   fi
 fi
 echo "Using socketevents mode: $SOCKETEVENTS"
-EXTRA_ARGS="--dashd-arg=-socketevents=$SOCKETEVENTS"
+EXTRA_ARGS="--phantomriderd-arg=-socketevents=$SOCKETEVENTS"
 
 set +e
 # shellcheck disable=SC2086

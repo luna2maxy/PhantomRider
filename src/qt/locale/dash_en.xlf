@@ -488,7 +488,7 @@
         <context-group purpose="location"><context context-type="linenumber">394</context></context-group>
       </trans-unit>
       <trans-unit id="_msg108">
-        <source xml:space="preserve">Request payments (generates QR codes and dash: URIs)</source>
+        <source xml:space="preserve">Request payments (generates QR codes and phantomrider: URIs)</source>
         <context-group purpose="location"><context context-type="linenumber">395</context></context-group>
       </trans-unit>
       <trans-unit id="_msg109">
@@ -757,7 +757,7 @@
         <context-group purpose="location"><context context-type="linenumber">457</context></context-group>
       </trans-unit>
       <trans-unit id="_msg175">
-        <source xml:space="preserve">Open a dash: URI</source>
+        <source xml:space="preserve">Open a phantomrider: URI</source>
         <context-group purpose="location"><context context-type="linenumber">477</context></context-group>
       </trans-unit>
       <trans-unit id="_msg176">
@@ -3480,7 +3480,7 @@ Network rejection: %1</source>
         <context-group purpose="location"><context context-type="linenumber">380</context></context-group>
       </trans-unit>
       <trans-unit id="_msg799">
-        <source xml:space="preserve">The session file uses an unsupported format version. Update Dash Core to open it.</source>
+        <source xml:space="preserve">The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
         <context-group purpose="location"><context context-type="linenumber">385</context></context-group>
       </trans-unit>
       <trans-unit id="_msg800">
@@ -3504,7 +3504,7 @@ Network rejection: %1</source>
         <context-group purpose="location"><context context-type="linenumber">411</context></context-group>
       </trans-unit>
       <trans-unit id="_msg805">
-        <source xml:space="preserve">The session file is at the unknown stage &quot;%1&quot;. It was probably created by a newer Dash Core.</source>
+        <source xml:space="preserve">The session file is at the unknown stage &quot;%1&quot;. It was probably created by a newer PhantomRider Core.</source>
         <context-group purpose="location"><context context-type="linenumber">416</context></context-group>
       </trans-unit>
       <trans-unit id="_msg806">
@@ -4269,7 +4269,7 @@ Network rejection: %1</source>
         <context-group purpose="location"><context context-type="linenumber">1008</context></context-group>
       </trans-unit>
       <trans-unit id="_msg985">
-        <source xml:space="preserve">Add this line to dash.conf on the masternode server:</source>
+        <source xml:space="preserve">Add this line to phantomrider.conf on the masternode server:</source>
         <context-group purpose="location"><context context-type="linenumber">808</context></context-group>
       </trans-unit>
       <trans-unit id="_msg986">
@@ -5738,7 +5738,7 @@ Network rejection: %1</source>
         <context-group purpose="location"><context context-type="linenumber">412</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1320">
-        <source xml:space="preserve">duffs</source>
+        <source xml:space="preserve">phr</source>
         <context-group purpose="location"><context context-type="linenumber">428</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1321">
@@ -5830,7 +5830,7 @@ Network rejection: %1</source>
         <context-group purpose="location"><context context-type="linenumber">675</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1343">
-        <source xml:space="preserve">Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source xml:space="preserve">Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <context-group purpose="location"><context context-type="linenumber">721</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1344">
@@ -5914,7 +5914,7 @@ https://explore.transifex.com/dash/dash/</source>
         <context-group purpose="location"><context context-type="linenumber">724</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1363">
-        <source xml:space="preserve">Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <source xml:space="preserve">Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
         <context-group purpose="location"><context context-type="linenumber">731</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1364">
@@ -6477,7 +6477,7 @@ https://explore.transifex.com/dash/dash/</source>
         <context-group purpose="location"><context context-type="linenumber">144</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1488">
-        <source xml:space="preserve">Cannot start dash: click-to-pay handler</source>
+        <source xml:space="preserve">Cannot start phantomrider: click-to-pay handler</source>
         <context-group purpose="location"><context context-type="linenumber">145</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1489">
@@ -6488,7 +6488,7 @@ https://explore.transifex.com/dash/dash/</source>
         <context-group purpose="location"><context context-type="linenumber">222</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1490">
-        <source xml:space="preserve">&apos;dash://&apos; is not a valid URI. Use &apos;dash:&apos; instead.</source>
+        <source xml:space="preserve">&apos;phantomrider://&apos; is not a valid URI. Use &apos;phantomrider:&apos; instead.</source>
         <context-group purpose="location"><context context-type="linenumber">193</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1491">
@@ -8694,7 +8694,7 @@ For more information on using this console, type %6.
         <context-group purpose="location"><context context-type="linenumber">605</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1955">
-        <source xml:space="preserve">Add this line to dash.conf on your masternode server:</source>
+        <source xml:space="preserve">Add this line to phantomrider.conf on your masternode server:</source>
         <context-group purpose="location"><context context-type="linenumber">612</context></context-group>
       </trans-unit>
       <trans-unit id="_msg1956">
@@ -9212,7 +9212,7 @@ For more information on using this console, type %6.
         <context-group purpose="location"><context context-type="linenumber">951</context></context-group>
       </trans-unit>
       <trans-unit id="_msg2078">
-        <source xml:space="preserve">If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 duffs in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source xml:space="preserve">If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 phr in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <context-group purpose="location"><context context-type="linenumber">772</context></context-group>
       </trans-unit>
       <trans-unit id="_msg2079">
@@ -9623,7 +9623,7 @@ For more information on using this console, type %6.
         <context-group purpose="location"><context context-type="linenumber">180</context></context-group>
       </trans-unit>
       <trans-unit id="_msg2172">
-        <source xml:space="preserve">A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source xml:space="preserve">A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <context-group purpose="location"><context context-type="linenumber">190</context></context-group>
       </trans-unit>
     </group>
@@ -11163,7 +11163,7 @@ Unable to restore backup of wallet.</source>
         <context-group purpose="location"><context context-type="linenumber">441</context></context-group>
       </trans-unit>
       <trans-unit id="_msg2533">
-        <source xml:space="preserve">Sets a window title which is appended to &quot;Dash Core - &quot;</source>
+        <source xml:space="preserve">Sets a window title which is appended to &quot;PhantomRider Core - &quot;</source>
         <context-group purpose="location"><context context-type="linenumber">443</context></context-group>
       </trans-unit>
       <trans-unit id="_msg2534">

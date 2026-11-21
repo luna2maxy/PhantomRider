@@ -495,7 +495,7 @@ def main():
     parser.add_argument('--filter', help='filter scripts to run by regular expression')
     parser.add_argument('--skipunit', '-u', action='store_true', help='skip unit tests for the test framework')
     parser.add_argument("--nocleanup", dest="nocleanup", default=False, action="store_true",
-                        help="Leave dashds and test.* datadir on exit or error")
+                        help="Leave phantomriderds and test.* datadir on exit or error")
 
 
     args, unknown_args = parser.parse_known_args()
@@ -693,11 +693,11 @@ class RamDisk:
 def run_tests(*, test_list, src_dir, build_dir, tmpdir, jobs=1, attempts=1, enable_coverage=False, args=None, combined_logs_len=0, failfast=False, use_term_control, skipunit=False):
     args = args or []
 
-    # Warn if dashd is already running
+    # Warn if phantomriderd is already running
     try:
         # pgrep exits with code zero when one or more matching processes found
-        if subprocess.run(["pgrep", "-x", "dashd"], stdout=subprocess.DEVNULL).returncode == 0:
-            print("%sWARNING!%s There is already a dashd process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
+        if subprocess.run(["pgrep", "-x", "phantomriderd"], stdout=subprocess.DEVNULL).returncode == 0:
+            print("%sWARNING!%s There is already a phantomriderd process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
     except OSError:
         # pgrep not supported
         pass
@@ -1018,7 +1018,7 @@ class RPCCoverage():
     Coverage calculation works by having each test script subprocess write
     coverage files into a particular directory. These files contain the RPC
     commands invoked during testing, as well as a complete listing of RPC
-    commands per `dash-cli help` (`rpc_interface.txt`).
+    commands per `phantomrider-cli help` (`rpc_interface.txt`).
 
     After all tests complete, the commands run are combined and diff'd against
     the complete list to calculate uncovered RPC commands.

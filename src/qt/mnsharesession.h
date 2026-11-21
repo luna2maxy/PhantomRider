@@ -69,7 +69,7 @@ bool CheckFingerprint(const UniValue& json, QString& warning);
 //!  terms{}, contributions[], protx, consentHash, collateralIndex, sigs[],
 //!  prepareWallet, operatorSecretHolder}
 //!
-//! All amounts are duffs (CAmount). All user-displayable errors come back as
+//! All amounts are phr (CAmount). All user-displayable errors come back as
 //! translated QStrings. Signature verification is native (recompute the
 //! consent digest from the envelope's protx hex and check each compact
 //! signature against the share owner key). fromJson() verifies every

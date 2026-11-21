@@ -1,4 +1,4 @@
-# Dash Core version v23.1.0
+# PhantomRider Core version v23.1.0
 
 This is a new minor version release, bringing new features, important bugfixes, and significant performance improvements.
 This release is highly recommended for all nodes. All Masternodes are required to upgrade.
@@ -14,7 +14,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -73,10 +73,10 @@ create and use descriptor wallets without the experimental warning. (#7038)
 
 Configuration changes made in the Dash GUI (such as the pruning setting, proxy settings, UPNP preferences) are now
 saved to `<datadir>/settings.json` rather than to the Qt settings backend (Windows registry or Unix desktop config
-files), so these settings will now apply to `dashd` as well, instead of being ignored.
+files), so these settings will now apply to `phantomriderd` as well, instead of being ignored.
 
-Settings from `dash.conf` are now displayed normally in the GUI settings dialog, instead of in a separate warning
-message. These settings can now be edited because `settings.json` values take precedence over `dash.conf` values.
+Settings from `phantomrider.conf` are now displayed normally in the GUI settings dialog, instead of in a separate warning
+message. These settings can now be edited because `settings.json` values take precedence over `phantomrider.conf` values.
 (#6833)
 
 ## Other notable changes
@@ -116,12 +116,12 @@ Changes to wallet related RPCs can be found in the Wallet section below.
 
 ## Updated settings
 
-- The `shutdownnotify` option is used to specify a command to execute synchronously before Dash Core has begun its
+- The `shutdownnotify` option is used to specify a command to execute synchronously before PhantomRider Core has begun its
   shutdown sequence. (#6901)
 
 ## Build System
 
-- Dash Core binaries now target Windows 10 and macOS 14 (Sonoma), replacing the previous targets of Windows 7 and
+- PhantomRider Core binaries now target Windows 10 and macOS 14 (Sonoma), replacing the previous targets of Windows 7 and
   macOS 11 (Big Sur). (#6927)
 - The minimum supported Clang version has been bumped to Clang 19 for improved C++20 support and diagnostics. (#6995)
 

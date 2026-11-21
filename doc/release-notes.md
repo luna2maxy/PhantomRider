@@ -1,4 +1,4 @@
-# Dash Core version v24.0.1
+# PhantomRider Core version v24.0.1
 
 This is a new patch version release. It fixes a problem that has delayed the
 `v24` network upgrade on mainnet: `LLMQ_400_85` quorums were failing to form
@@ -26,7 +26,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 Upgrading from v24.0.0 needs no further steps. If you are upgrading from
 v23.1.x or older, read "How to Upgrade" in the
@@ -126,7 +126,7 @@ opens at block 2573818 (around November 17).
 
 - The depends build fetches the miniupnpc sources from a location that still
   serves them. (#8088)
-- `test_dash-qt` no longer hangs or crashes when built against a distribution
+- `test_phantomrider-qt` no longer hangs or crashes when built against a distribution
   Qt that uses the GLib event loop. (#8080)
 
 # v24.0.1 Change log

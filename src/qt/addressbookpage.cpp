@@ -228,7 +228,7 @@ void AddressBookPage::on_showAddressQRCode_clicked()
     QRDialog* dialog = new QRDialog(this);
 
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setInfo(tr("QR code"), "dash:"+strAddress, "", strAddress);
+    dialog->setInfo(tr("QR code"), "phantomrider:"+strAddress, "", strAddress);
     dialog->show();
 }
 

@@ -2,7 +2,7 @@
 
 **Updated for OpenBSD [7.3](https://www.openbsd.org/73.html)**
 
-This guide describes how to build dashd, command-line utilities, and GUI on OpenBSD.
+This guide describes how to build phantomriderd, command-line utilities, and GUI on OpenBSD.
 
 ## Preparation
 
@@ -17,8 +17,8 @@ pkg_add python
 
 See [dependencies.md](dependencies.md) for a complete overview.
 
-### 2. Clone Dash Core Repo
-Clone the Dash Core repository to a directory. All build scripts and commands will run from this directory.
+### 2. Clone PhantomRider Core Repo
+Clone the PhantomRider Core repository to a directory. All build scripts and commands will run from this directory.
 ``` bash
 git clone https://github.com/dashpay/dash.git
 ```
@@ -27,7 +27,7 @@ git clone https://github.com/dashpay/dash.git
 
 #### Wallet Dependencies
 
-It is not necessary to build wallet functionality to run either `dashd` or `dash-qt`.
+It is not necessary to build wallet functionality to run either `phantomriderd` or `phantomrider-qt`.
 
 ###### Descriptor Wallet Support
 
@@ -58,7 +58,7 @@ export BDB_PREFIX="/path/to/dash/depends/x86_64-unknown-openbsd"
 #### GUI Dependencies
 ###### Qt5
 
-Dash Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, Qt 5 is required. Pass `-DBUILD_GUI=ON` to CMake.
+PhantomRider Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, Qt 5 is required. Pass `-DBUILD_GUI=ON` to CMake.
 
 ```bash
 pkg_add qt5
@@ -75,16 +75,16 @@ pkg_add libqrencode
 #### Notifications
 ###### ZeroMQ
 
-Dash Core can provide notifications via ZeroMQ. Pass `-DWITH_ZMQ=ON` to CMake to enable support.
+PhantomRider Core can provide notifications via ZeroMQ. Pass `-DWITH_ZMQ=ON` to CMake to enable support.
 ```bash
 pkg_add zeromq
 ```
 
-## Building Dash Core
+## Building PhantomRider Core
 
 ### 1. Configuration
 
-There are many ways to configure Dash Core, here are a few common examples:
+There are many ways to configure PhantomRider Core, here are a few common examples:
 
 ##### Descriptor Wallet and GUI:
 This enables the GUI and descriptor wallet support, assuming `sqlite` and `qt5` are installed.

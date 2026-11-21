@@ -1,4 +1,4 @@
-# Dash Core version v22.1.2
+# PhantomRider Core version v22.1.2
 
 This is a new minor version release, bringing various bugfixes and performance improvements.
 This release is **optional** for all nodes, although recommended.
@@ -15,7 +15,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -56,7 +56,7 @@ Minor Build and Test Fixes
 P2P Changes
 -----------
 
-- `cycleHash` field in `isdlock` message will now represent a DKG cycle starting block of the signing quorum instead of a DKG cycle starting block corresponding to the current chain height. While this is fully backwards compatible with older versions of Dash Core, other implementations might not be expecting this, so the P2P protocol version was bumped to 70237. (#6608)
+- `cycleHash` field in `isdlock` message will now represent a DKG cycle starting block of the signing quorum instead of a DKG cycle starting block corresponding to the current chain height. While this is fully backwards compatible with older versions of PhantomRider Core, other implementations might not be expecting this, so the P2P protocol version was bumped to 70237. (#6608)
 
 # v22.1.2 Change log
 

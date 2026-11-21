@@ -440,7 +440,7 @@ QT_TRANSLATE_NOOP("dash-core", "SQLiteDatabase: Failed to read database verifica
 QT_TRANSLATE_NOOP("dash-core", "SQLiteDatabase: Unexpected application id. Expected %u, got %u"),
 QT_TRANSLATE_NOOP("dash-core", "Section [%s] is not recognized."),
 QT_TRANSLATE_NOOP("dash-core", "Session not complete!"),
-QT_TRANSLATE_NOOP("dash-core", "Sets a window title which is appended to \"Dash Core - \""),
+QT_TRANSLATE_NOOP("dash-core", "Sets a window title which is appended to \"PhantomRider Core - \""),
 QT_TRANSLATE_NOOP("dash-core", "Settings file could not be read"),
 QT_TRANSLATE_NOOP("dash-core", "Settings file could not be written"),
 QT_TRANSLATE_NOOP("dash-core", "Signer did not echo address"),

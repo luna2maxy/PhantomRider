@@ -373,7 +373,7 @@
         <translation>받기(&amp;R)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>지불 요청하기 (QR코드와 대시 URI가 생성됩니다.)</translation>
     </message>
     <message>
@@ -643,7 +643,7 @@
         <translation>지갑 설정 파일 열기(&amp;W)</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
+        <source>Open a phantomrider: URI</source>
         <translation>대시: URI 열기</translation>
     </message>
     <message>
@@ -2385,7 +2385,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>공유 마스터노드 세션 파일이 아닙니다.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
         <translation>세션 파일이 지원되지 않는 형식 버전을 사용합니다. 열려면 대시 코어를 업데이트하세요.</translation>
     </message>
     <message>
@@ -2409,7 +2409,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>세션 파일에 단계 정보가 없습니다.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
         <translation>세션 파일이 알 수 없는 단계 "%1"에 있습니다. 더 최신 버전의 대시 코어에서 생성되었을 가능성이 높습니다.</translation>
     </message>
     <message>
@@ -3316,8 +3316,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>외부 출처에서 수신한 이 금액 이하의 출력이 있는 트랜잭션은 더스트로 간주됩니다.</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,7 +3408,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>최대</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>라우터에서 대시 코어 클라이언트를 자동으로 엽니다. 이 기능은 당신의 라우터가 UPnP를 지원하고 해당 기능이 작동하는 경우에만 가능합니다.</translation>
     </message>
     <message>
@@ -3490,7 +3490,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>UPnP를 사용하는 맵 포트(&amp;U)</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
         <translation>라우터에서 대시 코어 클라이언트 포트를 자동으로 엽니다. 이 기능은 당신의 라우터가 NAT-PMP를 지원하고 활성화되어 있는 경우에만 작동합니다. 이 외부 포트는 무작위일 수 있습니다.</translation>
     </message>
     <message>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>지불 요청 오류</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>대시를 시작할 수 없습니다: 원클릭 지불 핸들러</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>URI 처리</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' 는 유효하지 않은 URI 입니다. 'dash:' 를 사용하세요.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' 는 유효하지 않은 URI 입니다. 'phantomrider:' 를 사용하세요.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ For more information on using this console, type %6.
         <translation>지금 저장하세요. 확인하기 전에는 등록을 시작할 수 없습니다.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>마스터노드 서버의 dash.conf에 다음 줄을 추가하세요:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>마스터노드 서버의 phantomrider.conf에 다음 줄을 추가하세요:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,7 +6994,7 @@ For more information on using this console, type %6.
         <translation>승인 시간 목표:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>만일 사용자 지정 수수료가 1000 더프로 설정되어 있으나 거래는 250바이트에 불과한 경우, 'KB 당'은 오직 250 더프를 수수료로 지불하는 한편 &lt;br /&gt;'최소'는 1000더프를 지불합니다. 1 KB보다 큰 거래를 진행하는 경우 두 옵션 모두 KB 당으로 지불합니다.</translation>
     </message>
     <message>
@@ -7384,7 +7384,7 @@ For more information on using this console, type %6.
         <translation>메시지:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>대시: URI에 첨부된 메시지는 거래와 함께 참고용으로 저장됩니다. 주의: 이 메시지는 대시 네트워크로 전송되지 않습니다.</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ For more information on using this console, type %6.
         <translation>복사</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>마스터노드 서버의 dash.conf에 다음 줄을 추가하세요:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>마스터노드 서버의 phantomrider.conf에 다음 줄을 추가하세요:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Unable to restore backup of wallet.</source>
         <translation>섹션 [%s]이 인식되지 않습니다.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>"Dash Core - " 뒤에 덧붙일 창 제목을 설정합니다</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>"PhantomRider Core - " 뒤에 덧붙일 창 제목을 설정합니다</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

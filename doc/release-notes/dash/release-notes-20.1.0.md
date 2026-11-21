@@ -1,4 +1,4 @@
-# Dash Core version v20.1.0
+# PhantomRider Core version v20.1.0
 
 This is a new minor version release, including various new features, improvements, and bug fixes.
 
@@ -16,7 +16,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -31,10 +31,10 @@ reindex or re-sync the whole chain.
 ## HD Wallets Enabled by Default
 
 In this release, we are taking a significant step towards enhancing the Dash wallet's usability by enabling Hierarchical
-Deterministic (HD) wallets by default. This change aligns the behavior of `dashd` and `dash-qt` with the previously
+Deterministic (HD) wallets by default. This change aligns the behavior of `phantomriderd` and `phantomrider-qt` with the previously
 optional `-usehd=1` flag, making HD wallets the standard for all users.
 
-While HD wallets are now enabled by default to improve user experience, Dash Core still allows for the creation of
+While HD wallets are now enabled by default to improve user experience, PhantomRider Core still allows for the creation of
 non-HD wallets by using the `-usehd=0` flag. However, users should be aware that this option is intended for legacy
 support and will be removed in future releases. Importantly, even with an HD wallet, users can still import non-HD
 private keys, ensuring flexibility in managing their funds.
@@ -81,9 +81,9 @@ possible. This RPC is whitelisted for the Platform RPC user.
 
 ## Docker Build System
 
-Modified the Dockerfile to exclude the `dash-qt` graphical wallet interface from the set of binaries copied to
+Modified the Dockerfile to exclude the `phantomrider-qt` graphical wallet interface from the set of binaries copied to
 `/usr/local/bin` during the Docker image build process. This change streamlines the Docker image, making it more
-suitable for server environments and headless applications, where the graphical user interface of `dash-qt` is not
+suitable for server environments and headless applications, where the graphical user interface of `phantomrider-qt` is not
 required. The update enhances the Docker image's efficiency by reducing its size and minimizing unnecessary components.
 
 ## Command-line options
@@ -98,7 +98,7 @@ notification to different ZeroMQ sockets.
 - `-walletnotify` notifications are now sent for wallet transactions that are removed from the mempool because they
 conflict with a new block. These notifications were sent previously, but have been broken since
 the v18.1 release.
-- The `startupnotify` option is used to specify a command to execute when Dash Core has finished with its startup
+- The `startupnotify` option is used to specify a command to execute when PhantomRider Core has finished with its startup
 sequence.
 
 ## Build System

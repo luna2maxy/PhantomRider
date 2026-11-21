@@ -43,7 +43,7 @@ const std::map<std::string, RPCResult> RPCRESULT_MAP{{
     RESULT_MAP_ENTRY("collateralHash", RPCResult::Type::STR_HEX, "Collateral transaction hash"),
     RESULT_MAP_ENTRY("collateralIndex", RPCResult::Type::NUM, "Collateral transaction output index"),
     RESULT_MAP_ENTRY("consecutivePayments", RPCResult::Type::NUM, "Consecutive payments masternode has received in payment cycle"),
-    RESULT_MAP_ENTRY("earlyPenalty", RPCResult::Type::NUM, "Penalty in duffs for unilateral dissolution during the early period"),
+    RESULT_MAP_ENTRY("earlyPenalty", RPCResult::Type::NUM, "Penalty in phr for unilateral dissolution during the early period"),
     RESULT_MAP_ENTRY("earlyPeriodBlocks", RPCResult::Type::NUM, "Length in blocks of the early period during which unilateral dissolution is penalized"),
     RESULT_MAP_ENTRY("height", RPCResult::Type::NUM, "Block height"),
     RESULT_MAP_ENTRY("inputsHash", RPCResult::Type::STR_HEX, "Hash of all the outpoints of the transaction inputs"),
@@ -86,7 +86,7 @@ const std::map<std::string, RPCResult> RPCRESULT_MAP{{
     {
         {RPCResult::Type::OBJ, "", "",
         {
-            {RPCResult::Type::NUM, "amount", "Collateral contribution in duffs"},
+            {RPCResult::Type::NUM, "amount", "Collateral contribution in phr"},
             {RPCResult::Type::STR, "refundAddress", "Dash address the principal is refunded to at dissolution"},
             {RPCResult::Type::STR_HEX, "refundScript", "Refund scriptPubKey"},
             {RPCResult::Type::STR, "rewardAddress", "Dash address this share's owner rewards are paid to"},
@@ -120,7 +120,7 @@ RPCResult CAssetLockPayload::GetJsonHelp(const std::string& key, bool optional)
         {RPCResult::Type::ARR, "creditOutputs", "", {
             {RPCResult::Type::OBJ, "", "", {
                 {RPCResult::Type::NUM, "value", "The value in Dash"},
-                {RPCResult::Type::NUM, "valueSat", "The value in duffs"},
+                {RPCResult::Type::NUM, "valueSat", "The value in phr"},
                 {RPCResult::Type::OBJ, "scriptPubKey", "", {
                     {RPCResult::Type::STR, "asm", "The asm"},
                     {RPCResult::Type::STR_HEX, "hex", "The hex"},
@@ -137,7 +137,7 @@ RPCResult CAssetUnlockPayload::GetJsonHelp(const std::string& key, bool optional
     {
         GetRpcResult("version"),
         {RPCResult::Type::NUM, "index", "Index of the transaction"},
-        {RPCResult::Type::NUM, "fee", "Transaction fee in duffs awarded to the miner"},
+        {RPCResult::Type::NUM, "fee", "Transaction fee in phr awarded to the miner"},
         {RPCResult::Type::NUM, "requestedHeight", "Payment chain block height known by Platform when signing the withdrawal"},
         GetRpcResult("quorumHash"),
         GetRpcResult("quorumSig"),

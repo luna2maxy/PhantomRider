@@ -80,7 +80,7 @@ cmake --build build --target bench_bitcoin
 ```
 
 These target names currently retain their upstream names; they produce Dash
-executables such as `build/src/dashd` and `build/src/qt/dash-qt`. Enable the GUI
+executables such as `build/src/phantomriderd` and `build/src/qt/phantomrider-qt`. Enable the GUI
 with `-DBUILD_GUI=ON` or benchmarks with `-DBUILD_BENCH=ON` before building those
 targets. You can combine `--target` with `-j`, as above, for a parallel build.
 

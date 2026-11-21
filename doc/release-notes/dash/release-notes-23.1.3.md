@@ -1,4 +1,4 @@
-# Dash Core version v23.1.3
+# PhantomRider Core version v23.1.3
 
 This is a new patch version release, bringing GUI improvements and bugfixes.
 This release is **optional** for all nodes, although recommended.
@@ -14,7 +14,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 

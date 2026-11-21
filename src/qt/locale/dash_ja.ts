@@ -373,8 +373,8 @@
         <translation>入金する (&amp;R)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
-        <translation>送金を要求 (QRコードとdash:URIを生成)</translation>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
+        <translation>送金を要求 (QRコードとphantomrider:URIを生成)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -642,7 +642,7 @@
         <translation>ウォレット設定ファイルを開く(&amp;W)</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
+        <source>Open a phantomrider: URI</source>
         <translation>dashを開く: URI</translation>
     </message>
     <message>
@@ -2385,8 +2385,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>ファイルは共有マスターノードのセッションファイルではありません。</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>このセッションファイルは未対応のフォーマットバージョンです。開くには Dash Core を更新してください。</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>このセッションファイルは未対応のフォーマットバージョンです。開くには PhantomRider Core を更新してください。</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>セッションファイルにステージがありません。</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>セッションファイルのステージ "%1" は不明です。より新しい Dash Core で作成された可能性があります。</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>セッションファイルのステージ "%1" は不明です。より新しい PhantomRider Core で作成された可能性があります。</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,8 +3316,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>外部ソースから受信した場合、この金額以下の出力を持つトランザクションはダストとみなされます。</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,8 +3408,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>最大</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自動的にルーターのDash Core クライアントポートを開放します。これはルーターがUPnP機能をサポートしておりUPnP機能が有効な場合にのみ機能します。</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自動的にルーターのPhantomRider Core クライアントポートを開放します。これはルーターがUPnP機能をサポートしておりUPnP機能が有効な場合にのみ機能します。</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,7 +3490,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>UPnPを使ってポートを割り当てる (&amp;U)</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
         <translation>ルーター上でDashコアのクライアントポートを自動的に開きます。これは、ルーターがNAT-PMPをサポートしており、有効になっている場合にのみ機能します。外部ポートはランダムになる可能性があります。</translation>
     </message>
     <message>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>支払いリクエストのエラー</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>Dash を起動できません: click-to-pay ハンドラー</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>URI のハンドリング</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>「dash://」は有効なURIではありません。代わりに「dash:」を使ってください。</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>「phantomrider://」は有効なURIではありません。代わりに「phantomrider:」を使ってください。</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ For more information on using this console, type %6.
         <translation>今すぐ保存してください。確認するまで登録を開始できません。</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>マスターノードのサーバーの dash.conf に、次の行を追加してください：</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>マスターノードのサーバーの phantomrider.conf に、次の行を追加してください：</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,8 +6994,8 @@ For more information on using this console, type %6.
         <translation>検証時間ターゲット:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>カスタマイズされた手数料が1000duffsに設定され、トランザクションが250 bytesしかなかった場合、キロバイトあたりでは250 duffsしか手数料を支払いませんが&lt;br /&gt;最低でも1000 duffs支払います。1キロバイト以上のトランザクションに対しては、1キロバイトあたり1000duffs支払います。</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>カスタマイズされた手数料が1000phrに設定され、トランザクションが250 bytesしかなかった場合、キロバイトあたりでは250 phrしか手数料を支払いませんが&lt;br /&gt;最低でも1000 phr支払います。1キロバイト以上のトランザクションに対しては、1キロバイトあたり1000phr支払います。</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -7384,7 +7384,7 @@ For more information on using this console, type %6.
         <translation>メッセージ：</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>Dash: URIに添付されていたメッセージです。これは参照用としてトランザクションとともに保存されます。注意：このメッセージはDashネットワークを経由して送信されるわけではありません。</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ For more information on using this console, type %6.
         <translation>コピー</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>マスターノードのサーバーの dash.conf に、次の行を追加してください：</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>マスターノードのサーバーの phantomrider.conf に、次の行を追加してください：</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Unable to restore backup of wallet.</source>
         <translation>[%s]のセクションは認識されません。</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>"Dash Core - " の後ろに追加されるウィンドウタイトルを設定します</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>"PhantomRider Core - " の後ろに追加されるウィンドウタイトルを設定します</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

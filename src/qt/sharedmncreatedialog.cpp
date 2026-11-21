@@ -844,7 +844,7 @@ QWidget* SharedMnCreateDialog::createSecretPage()
     connect(copy_secret, &QPushButton::clicked, this, [this] { GUIUtil::setClipboard(m_secret_edit->text()); });
     secret_row->addWidget(copy_secret);
     box->addLayout(secret_row);
-    box->addWidget(makeHint(tr("Add this line to dash.conf on the masternode server:"), card));
+    box->addWidget(makeHint(tr("Add this line to phantomrider.conf on the masternode server:"), card));
     auto* conf_row{new QHBoxLayout()};
     m_conf_line_edit = new QLineEdit(card);
     m_conf_line_edit->setReadOnly(true);

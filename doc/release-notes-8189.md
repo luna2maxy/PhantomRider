@@ -8,7 +8,7 @@ P2P and network changes
   accepted within 30 seconds of the receiving node's clock, while the
   out-of-sync warning below only fires above 10 minutes.
 - The `-maxtimeadjustment` option has been removed. Passing it on the command
-  line is now an error; a leftover entry in `dash.conf` is ignored with a log
+  line is now an error; a leftover entry in `phantomrider.conf` is ignored with a log
   message.
 - The time offsets of outbound peers are now only used to warn that the local
   clock appears to be out of sync. Once at least 5 outbound peers have

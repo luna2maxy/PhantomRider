@@ -1,4 +1,4 @@
-# Dash Core version v19.0.0
+# PhantomRider Core version v19.0.0
 
 Release is now available from:
 
@@ -21,13 +21,13 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux). If you upgrade after DIP0003 activation and you were
+phantomriderd/phantomrider-qt (on Linux). If you upgrade after DIP0003 activation and you were
 using version < 0.13 you will have to reindex (start with -reindex-chainstate
 or -reindex) to make sure your wallet has all the new data synced. Upgrading
 from version 0.13 should not require any additional actions.
 
 When upgrading from a version prior to 18.0.1, the
-first startup of Dash Core will run a migration process which can take anywhere
+first startup of PhantomRider Core will run a migration process which can take anywhere
 from a few minutes to thirty minutes to finish. After the migration, a
 downgrade to an older version is only possible with a reindex
 (or reindex-chainstate).
@@ -43,9 +43,9 @@ Downgrading to a version older than v19.0.0 is not supported due to changes in t
 
 In preparation for the release of Dash Platform to mainnet, a new masternode type has been added. High-performance masternodes will be responsible for hosting Dash Platform services (once they are on mainnet) in addition to the existing responsibilities like ChainLocks and InstantSend.
 
-Activation of the DashCore v19.0 hard fork will enable registration of the new 4000 DASH collateral masternodes. Until Dash Platform is released to mainnet, high-performance masternodes will provide the same services as regular masternodes with one small exception. Regular masternodes will no longer participate in the Platform-specific LLMQ after the hard fork since they will not be responsible for hosting Dash Platform.
+Activation of the PhantomRiderCore v19.0 hard fork will enable registration of the new 4000 DASH collateral masternodes. Until Dash Platform is released to mainnet, high-performance masternodes will provide the same services as regular masternodes with one small exception. Regular masternodes will no longer participate in the Platform-specific LLMQ after the hard fork since they will not be responsible for hosting Dash Platform.
 
-Note: In DashCore v19.0 the relative rewards and voting power are equivalent between regular and high-performance masternodes. Masternodes effectively receive one payout and one governance vote per 1000 DASH collateral. So, there is no difference in reward amount for running four regular masternodes or one high-performance masternode. In v19.0, high-performance masternodes simply receive payments in four consecutive blocks when they are selected for payout. Some frequently asked questions may be found at https://www.dash.org/hpmn-faq/.
+Note: In PhantomRiderCore v19.0 the relative rewards and voting power are equivalent between regular and high-performance masternodes. Masternodes effectively receive one payout and one governance vote per 1000 DASH collateral. So, there is no difference in reward amount for running four regular masternodes or one high-performance masternode. In v19.0, high-performance masternodes simply receive payments in four consecutive blocks when they are selected for payout. Some frequently asked questions may be found at https://www.dash.org/hpmn-faq/.
 
 ## BLS Scheme Upgrade
 
@@ -111,19 +111,19 @@ The `version` field indicates which BLS scheme is used to serialise the `pubKeyO
 
 ## Automatic wallet creation removed
 
-Dash Core will no longer automatically create new wallets on startup. It will
+PhantomRider Core will no longer automatically create new wallets on startup. It will
 load existing wallets specified by -wallet options on the command line or in
-dash.conf or settings.json files. And by default it will also load a
+phantomrider.conf or settings.json files. And by default it will also load a
 top-level unnamed ("") wallet. However, if specified wallets don't exist,
-Dash Core will now just log warnings instead of creating new wallets with
+PhantomRider Core will now just log warnings instead of creating new wallets with
 new keys and addresses like previous releases did.
 
 New wallets can be created through the GUI (which has a more prominent create
-wallet option), through the dash-wallet create command or the createwallet RPC.
+wallet option), through the phantomrider-wallet create command or the createwallet RPC.
 
 ## P2P and Network Changes
 
-## Removal of reject network messages from Dash Core (BIP61)
+## Removal of reject network messages from PhantomRider Core (BIP61)
 
 The command line option to enable BIP61 (-enablebip61) has been removed.
 
@@ -133,7 +133,7 @@ Please use the recommended alternatives if you rely on this deprecated feature:
 
 - Testing or debugging of implementations of the Dash P2P network protocol
 should be done by inspecting the log messages that are produced by a recent
-version of Dash Core. Dash Core logs debug messages
+version of PhantomRider Core. PhantomRider Core logs debug messages
 (-debug=<category>) to a stream (-printtoconsole) or to a file
 (-debuglogfile=<debug.log>).
 
@@ -200,9 +200,9 @@ Removed cmd-line options:
 
 Changes in existing cmd-line options:
 - `llmqinstantsend` and `llmqinstantsenddip0024` can be used in regtest now
-- Passing an invalid `-rpcauth` argument now cause dashd to fail to start.
+- Passing an invalid `-rpcauth` argument now cause phantomriderd to fail to start.
 
-Please check `Help -> Command-line options` in Qt wallet or `dashd --help` for
+Please check `Help -> Command-line options` in Qt wallet or `phantomriderd --help` for
 more information.
 
 ## Backports from Bitcoin Core
@@ -241,12 +241,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Dash Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+PhantomRider Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Dash.
 
-Dash Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+PhantomRider Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Dash Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+PhantomRider Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

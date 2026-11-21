@@ -2,7 +2,7 @@
 
 **Updated for FreeBSD [14.0](https://www.freebsd.org/releases/14.0R/announce/)**
 
-This guide describes how to build dashd, command-line utilities, and GUI on FreeBSD.
+This guide describes how to build phantomriderd, command-line utilities, and GUI on FreeBSD.
 
 ## Preparation
 
@@ -17,14 +17,14 @@ pkg install cmake boost-libs git gmake libevent pkgconf libbacktrace zstd
 See [dependencies.md](dependencies.md) for a complete overview.
 
 ### 2. Clone Dash Repo
-Now that `git` and all the required dependencies are installed, let's clone the Dash Core repository to a directory. All build scripts and commands will run from this directory.
+Now that `git` and all the required dependencies are installed, let's clone the PhantomRider Core repository to a directory. All build scripts and commands will run from this directory.
 ``` bash
 git clone https://github.com/dashpay/dash.git
 ```
 
 ### 3. Install Optional Dependencies
 
-It is not necessary to build wallet functionality to run either `dashd` or `dash-qt`.
+It is not necessary to build wallet functionality to run either `phantomriderd` or `phantomrider-qt`.
 
 ###### Descriptor Wallet Support
 
@@ -63,7 +63,7 @@ sh/bash: export BDB_PREFIX=[path displayed above]
 #### GUI Dependencies
 ###### Qt5
 
-Dash Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, install the necessary parts of Qt and pass `-DBUILD_GUI=ON` to CMake. Skip if you don't intend to use the GUI.
+PhantomRider Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, install the necessary parts of Qt and pass `-DBUILD_GUI=ON` to CMake. Skip if you don't intend to use the GUI.
 ```bash
 pkg install qt5-buildtools qt5-core qt5-gui qt5-linguisttools qt5-testlib qt5-widgets
 ```
@@ -79,7 +79,7 @@ pkg install libqrencode
 #### Notifications
 ###### ZeroMQ
 
-Dash Core can provide notifications via ZeroMQ. Pass `-DWITH_ZMQ=ON` to CMake to enable support.
+PhantomRider Core can provide notifications via ZeroMQ. Pass `-DWITH_ZMQ=ON` to CMake to enable support.
 ```bash
 pkg install libzmq4
 ```
@@ -93,11 +93,11 @@ pkg install python3 databases/py-sqlite3
 ```
 ---
 
-## Building Dash Core
+## Building PhantomRider Core
 
 ### 1. Configuration
 
-There are many ways to configure Dash Core, here are a few common examples:
+There are many ways to configure PhantomRider Core, here are a few common examples:
 
 ##### Descriptor Wallet and GUI:
 This explicitly enables the GUI and disables legacy wallet support, assuming `sqlite` and `qt` are installed.

@@ -26,14 +26,14 @@ get_directory_property(precious_variables CACHE_VARIABLES)
 #=============================
 # Project / Package metadata
 #=============================
-set(PACKAGE_NAME "Dash Core")
+set(PACKAGE_NAME "PhantomRider Core")
 # AC_INIT's tarname argument; used for the NSIS installer and URI class.
-set(PACKAGE_TARNAME "dashcore")
-set(CLIENT_VERSION_MAJOR 24)
-set(CLIENT_VERSION_MINOR 1)
+set(PACKAGE_TARNAME "phantomridercore")
+set(CLIENT_VERSION_MAJOR 1)
+set(CLIENT_VERSION_MINOR 0)
 set(CLIENT_VERSION_BUILD 0)
 set(CLIENT_VERSION_RC 0)
-set(CLIENT_VERSION_IS_RELEASE "false")
+set(CLIENT_VERSION_IS_RELEASE "true")
 set(COPYRIGHT_YEAR "2026")
 
 # After enabling the C, CXX and OBJCXX languages, we modify
@@ -55,8 +55,8 @@ set(CMAKE_TRY_COMPILE_PLATFORM_VARIABLES
 
 project(BitcoinCore
   VERSION ${CLIENT_VERSION_MAJOR}.${CLIENT_VERSION_MINOR}.${CLIENT_VERSION_BUILD}
-  DESCRIPTION "Dash client software"
-  HOMEPAGE_URL "https://dash.org/"
+  DESCRIPTION "PhantomRider client software"
+  HOMEPAGE_URL "https://github.com/PhantomRider/PhantomRider"
   LANGUAGES NONE
 )
 
@@ -66,8 +66,8 @@ if(CLIENT_VERSION_RC GREATER 0)
 endif()
 
 set(COPYRIGHT_HOLDERS "The %s developers")
-set(COPYRIGHT_HOLDERS_FINAL "The ${PACKAGE_NAME} developers")
-set(PACKAGE_BUGREPORT "https://github.com/dashpay/dash/issues")
+set(COPYRIGHT_HOLDERS_FINAL "The ${PACKAGE_NAME} developers, The Dash Core developers")
+set(PACKAGE_BUGREPORT "https://github.com/PhantomRider/PhantomRider/issues")
 
 #=============================
 # Language setup
@@ -83,7 +83,7 @@ enable_language(C)
 if(MSVC)
   # Dash's stack-trace support (src/stacktraces.{h,cpp}) still relies on
   # GCC/Clang-only extensions, so the build cannot succeed yet.
-  message(FATAL_ERROR "Building Dash Core with MSVC is not supported yet. See doc/build-windows.md.")
+  message(FATAL_ERROR "Building PhantomRider Core with MSVC is not supported yet. See doc/build-windows.md.")
 endif()
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -843,20 +843,20 @@ message("\n")
 message("Configure summary")
 message("=================")
 message("Executables:")
-message("  dashd ............................... ${BUILD_DAEMON}")
-message("  dash-node (multiprocess) ............ ${WITH_MULTIPROCESS}")
-message("  dash-qt (GUI) ....................... ${BUILD_GUI}")
+message("  phantomriderd ....................... ${BUILD_DAEMON}")
+message("  phantomrider-node (multiprocess) .... ${WITH_MULTIPROCESS}")
+message("  phantomrider-qt (GUI) ............... ${BUILD_GUI}")
 if(BUILD_GUI AND WITH_MULTIPROCESS)
   set(bitcoin_gui_status ON)
 else()
   set(bitcoin_gui_status OFF)
 endif()
 message("  dash-gui (GUI, multiprocess) ........ ${bitcoin_gui_status}")
-message("  dash-cli ............................ ${BUILD_CLI}")
-message("  dash-tx ............................. ${BUILD_TX}")
-message("  dash-util ........................... ${BUILD_UTIL}")
-message("  dash-wallet ......................... ${BUILD_WALLET_TOOL}")
-message("  dash-chainstate (experimental) ...... ${BUILD_UTIL_CHAINSTATE}")
+message("  phantomrider-cli .................... ${BUILD_CLI}")
+message("  phantomrider-tx ..................... ${BUILD_TX}")
+message("  phantomrider-util ................... ${BUILD_UTIL}")
+message("  phantomrider-wallet ................. ${BUILD_WALLET_TOOL}")
+message("  phantomrider-chainstate (experimental) ${BUILD_UTIL_CHAINSTATE}")
 message("  libdashconsensus .................... ${BUILD_CONSENSUS_LIB}")
 message("Optional features:")
 message("  wallet support ...................... ${ENABLE_WALLET}")

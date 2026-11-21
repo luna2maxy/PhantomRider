@@ -569,7 +569,7 @@ void SharedMnWizardTests::reservingAgainKeepsEarlierReplies()
     QVERIFY(!dialog.m_session.hasContribution(twice));
     QVERIFY(dialog.m_session.hasContribution(sent));
 
-    // One with 100 duffs of change to this wallet, which could never be relayed
+    // One with 100 phr of change to this wallet, which could never be relayed
     MnShareSession::Contribution dust_change{twice};
     dust_change.inputs = {{QString::fromStdString(dust_change_coin.hash.ToString()), dust_change_coin.n}};
     dust_change.changeAmount = 100;

@@ -2,7 +2,7 @@
 # Copyright (c) 2020-2021 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Script for verifying Dash Core release binaries
+"""Script for verifying PhantomRider Core release binaries
 
 This script attempts to download the signature file SHA256SUMS.asc from
 github.com and dashcore-binaries.thepasta.org and compares them.
@@ -135,7 +135,7 @@ def main(args):
         if retval == 1:
             print("Bad signature.")
         elif retval == 2:
-            print("gpg error. Do you have the Dash Core binary release "
+            print("gpg error. Do you have the PhantomRider Core binary release "
                   "signing key installed?")
         print("gpg output:")
         print(indent(output, '\t'))
@@ -166,7 +166,7 @@ def main(args):
             if retval == 1:
                 print("Bad signature.")
             elif retval == 2:
-                print("gpg error. Do you have the Dash Core binary release signing key installed?")
+                print("gpg error. Do you have the PhantomRider Core binary release signing key installed?")
             print("gpg output:")
             print(indent(output, '\t'))
             remove_files([signature_file, binary_filename, sigfile1, sigfile2])

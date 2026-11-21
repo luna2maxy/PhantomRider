@@ -373,7 +373,7 @@
         <translation>接收(&amp;R)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>请求付款(生成二维码和Dash付款协议的URI)</translation>
     </message>
     <message>
@@ -643,8 +643,8 @@
         <translation>打开钱包配置文件(&amp;W)</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>打开一个dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>打开一个phantomrider: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,8 +2385,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>该文件不是共享主节点会话文件。</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>该会话文件使用了不受支持的格式版本。请更新 Dash Core 后再打开。</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>该会话文件使用了不受支持的格式版本。请更新 PhantomRider Core 后再打开。</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>该会话文件没有阶段信息。</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>该会话文件处于未知阶段“%1”。它可能由更新版本的 Dash Core 创建。</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>该会话文件处于未知阶段“%1”。它可能由更新版本的 PhantomRider Core 创建。</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,8 +3316,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>从外部来源收到的输出等于或低于此金额的交易将被视为粉尘。</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,8 +3408,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>最大</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动在路由器打开Dash Core客户端端口。此项只在路由器支持UPnP且开启时有效。</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动在路由器打开PhantomRider Core客户端端口。此项只在路由器支持UPnP且开启时有效。</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>使用UPnP映射端口(&amp;U)</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>自动打开路由器上Dash Core客户端端口. 这仅在您的路由器支持NAT-PMP并且已启用时才有效. 外部端口可以是随机的.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>自动打开路由器上PhantomRider Core客户端端口. 这仅在您的路由器支持NAT-PMP并且已启用时才有效. 外部端口可以是随机的.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>支付请求出错</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>无法启动Dash程序：click-to-pay handler</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>URI 处理</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' 不是一个有效链接. 请使用'dash:'</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' 不是一个有效链接. 请使用'phantomrider:'</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ For more information on using this console, type %6.
         <translation>请立即保存——确认之前无法开始注册。</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>请将这一行添加到您主节点服务器上的 dash.conf 中：</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>请将这一行添加到您主节点服务器上的 phantomrider.conf 中：</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,8 +6994,8 @@ For more information on using this console, type %6.
         <translation>确认时间目标：</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>如果自定手续费设定为1000 duffs，而交易信息只有250字节的话，那么选择"每千字节"就只会支付250 duffs的手续费，&lt;br /&gt;而"至少"会支付1000 duffs。但如果交易信息大于一千字节,那么两者都要按每千字节付费。</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>如果自定手续费设定为1000 phr，而交易信息只有250字节的话，那么选择"每千字节"就只会支付250 phr的手续费，&lt;br /&gt;而"至少"会支付1000 phr。但如果交易信息大于一千字节,那么两者都要按每千字节付费。</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -7384,7 +7384,7 @@ For more information on using this console, type %6.
         <translation>消息：</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>附加在Dash付款协议URI中的信息，会和交易内容一并存储，可供您参考。提示：此信息不会发送到Dash网络上。</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ For more information on using this console, type %6.
         <translation>复制</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>请将这一行添加到主节点服务器上的 dash.conf 中：</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>请将这一行添加到主节点服务器上的 phantomrider.conf 中：</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Unable to restore backup of wallet.</source>
         <translation>片段 [%s]无法被识别.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>设置窗口标题，该标题将附加在“Dash Core - ”之后</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>设置窗口标题，该标题将附加在“PhantomRider Core - ”之后</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

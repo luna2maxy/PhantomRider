@@ -1,5 +1,5 @@
 # Disable files from being included in completions by default
-complete --command dash-util --no-files
+complete --command phantomrider-util --no-files
 
 # Extract options
 function __fish_dash_util_get_options
@@ -26,13 +26,13 @@ end
 
 # Add options
 complete \
-    --command dash-util \
+    --command phantomrider-util \
     --condition "not __fish_seen_subcommand_from (__fish_dash_util_get_commands)" \
     --arguments "(__fish_dash_util_get_options)"
 
 # Add commands
 complete \
-    --command dash-util \
+    --command phantomrider-util \
     --condition "not __fish_seen_subcommand_from (__fish_dash_util_get_commands)" \
     --arguments "(__fish_dash_util_get_commands)"
 

@@ -112,7 +112,7 @@ int fork_daemon(bool nochdir, bool noclose, TokenPipeEnd& endpoint)
 
 static bool ParseArgs(ArgsManager& args, int argc, char* argv[])
 {
-    // If Qt is used, parameters/dash.conf are parsed in qt/bitcoin.cpp's main()
+    // If Qt is used, parameters/phantomrider.conf are parsed in qt/bitcoin.cpp's main()
     SetupServerArgs(args);
     std::string error;
     if (!args.ParseParameters(argc, argv, error)) {

@@ -14,7 +14,7 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Dash Core"
+            VALUE "CompanyName",        "PhantomRider Core"
             VALUE "FileDescription",    "dash-wallet (CLI tool for " PACKAGE_NAME " wallets)"
             VALUE "FileVersion",        PACKAGE_VERSION
             VALUE "InternalName",       "dash-wallet"

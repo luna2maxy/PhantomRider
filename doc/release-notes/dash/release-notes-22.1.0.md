@@ -1,4 +1,4 @@
-# Dash Core version v22.1.0
+# PhantomRider Core version v22.1.0
 
 This is a new minor version release, bringing new features, and various bugfixes.
 This release is **optional** for all nodes, although recommended.
@@ -15,7 +15,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -36,7 +36,7 @@ BIP324 / v2 P2P Protocol
 ------------------------
 
 Version 2 of the Dash P2P protocol / BIP324, which enables encryption of the P2P protocol,
-has been enabled by default in this version. This was initially introduced in Dash Core
+has been enabled by default in this version. This was initially introduced in PhantomRider Core
 v22.0.0 as an experimental feature and has now been enabled by default. This change is
 backward compatible, and connections to peers which do not support the v2 protocol will
 revert to using the v1 protocol.

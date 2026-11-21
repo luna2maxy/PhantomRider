@@ -256,13 +256,13 @@ bool OptionsModel::Init(bilingual_str& error)
 
     // Display
     if (!settings.contains("DisplayDashUnit")) {
-        settings.setValue("DisplayDashUnit", QVariant::fromValue(BitcoinUnit::DASH));
+        settings.setValue("DisplayDashUnit", QVariant::fromValue(BitcoinUnit::PHR));
     }
     QVariant unit = settings.value("DisplayDashUnit");
     if (unit.canConvert<BitcoinUnit>()) {
         m_display_bitcoin_unit = unit.value<BitcoinUnit>();
     } else {
-        m_display_bitcoin_unit = BitcoinUnit::DASH;
+        m_display_bitcoin_unit = BitcoinUnit::PHR;
         settings.setValue("DisplayDashUnit", QVariant::fromValue(m_display_bitcoin_unit));
     }
 

@@ -75,7 +75,7 @@ void WalletInit::AddWalletOptions(ArgsManager& argsman) const
 #endif
     argsman.AddArg("-spendzeroconfchange", strprintf("Spend unconfirmed change when sending transactions (default: %u)", DEFAULT_SPEND_ZEROCONF_CHANGE), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
     argsman.AddArg("-dustprotectionthreshold=<n>",
-        strprintf("Automatically lock UTXOs from incoming external transactions at or below <n> duffs "
+        strprintf("Automatically lock UTXOs from incoming external transactions at or below <n> phr "
                   "to protect against dust attacks. Locked UTXOs persist across restarts and are not "
                   "automatically unlocked when threshold changes; use lockunspent RPC to unlock manually "
                   "(0 = disabled, default: %d, max: %d)", DEFAULT_DUST_PROTECTION_THRESHOLD, MAX_DUST_PROTECTION_THRESHOLD),
@@ -108,7 +108,7 @@ void WalletInit::AddWalletOptions(ArgsManager& argsman) const
     argsman.AddArg("-allow-deprecated-long-mnemonics",
                    strprintf("Allow creating an HD wallet with a mnemonic passphrase of %d to %d bytes. Seed "
                              "derivation ignores the bytes past the %dth, so use this only to recover a wallet "
-                             "created with such a passphrase by Dash Core 19.2.0 or later. It can't recover one "
+                             "created with such a passphrase by PhantomRider Core 19.2.0 or later. It can't recover one "
                              "created by an earlier version (default: 0)",
                              CMnemonic::MAX_PASSPHRASE_BYTES + 1, CMnemonic::MAX_DEPRECATED_PASSPHRASE_BYTES,
                              CMnemonic::MAX_PASSPHRASE_BYTES),

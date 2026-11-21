@@ -1,5 +1,5 @@
 # Disable files from being included in completions by default
-complete --command dash-cli --no-files
+complete --command phantomrider-cli --no-files
 
 function __fish_dash_cli_get_commands_helper
     set --local cmd (commandline -oc)
@@ -79,27 +79,27 @@ end
 # Add options with file completion
 # Don't offer after a command is given
 complete \
-    --command dash-cli \
+    --command phantomrider-cli \
     --no-files \
     --condition "not __fish_seen_subcommand_from (__fish_dash_cli_get_commands --commandsonly)" \
     --arguments "(__fish_dash_cli_get_options)"
 # Enable file completions only if the commandline now contains a `*.=` style option
-complete --command dash-cli \
+complete --command phantomrider-cli \
     --condition 'string match --regex -- ".*=" (commandline -pt)' \
     --force-files
 
 # Add options without file completion
 # Don't offer after a command is given
 complete \
-    --command dash-cli \
+    --command phantomrider-cli \
     --no-files \
     --condition "not __fish_seen_subcommand_from (__fish_dash_cli_get_commands --commandsonly)" \
     --arguments "(__fish_dash_cli_get_options --nofiles)"
 
 # Add commands
-# Permit command completions after `dash-cli help` but not after other commands
+# Permit command completions after `phantomrider-cli help` but not after other commands
 complete \
-    --command dash-cli \
+    --command phantomrider-cli \
     --no-files \
     --condition "not __fish_seen_subcommand_from (__fish_dash_cli_get_commands --commandsonly --nohelp)" \
     --arguments "(__fish_dash_cli_get_commands)"

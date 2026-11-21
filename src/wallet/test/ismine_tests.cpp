@@ -248,7 +248,7 @@ BOOST_AUTO_TEST_CASE(ismine_standard)
     }
 
     // P2WPKH uncompressed (invalid) - Descriptor
-    // Not applicable for Dash Core because there is no segwit
+    // Not applicable for PhantomRider Core because there is no segwit
 
     // scriptPubKey multisig - Legacy
     {

@@ -2,7 +2,7 @@
 # Copyright (c) 2017-2022 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Class for dashd node under test"""
+"""Class for phantomriderd node under test"""
 
 import contextlib
 import decimal
@@ -57,7 +57,7 @@ class ErrorMatch(Enum):
 
 
 class TestNode():
-    """A class for representing a dashd node under test.
+    """A class for representing a phantomriderd node under test.
 
     This class contains:
 
@@ -81,7 +81,7 @@ class TestNode():
         self.p2p_conn_index = 1
         self.datadir_path = datadir_path
         self.chain = chain
-        self.bitcoinconf = self.datadir_path / "dash.conf"
+        self.bitcoinconf = self.datadir_path / "phantomrider.conf"
         self.stdout_dir = self.datadir_path / "stdout"
         self.stderr_dir = self.datadir_path / "stderr"
         self.rpchost = rpchost
@@ -216,7 +216,7 @@ class TestNode():
         raise AssertionError(self._node_msg(msg))
 
     def __del__(self):
-        # Ensure that we don't leave any dashd processes lying around after
+        # Ensure that we don't leave any phantomriderd processes lying around after
         # the test ends
         if self.process and self.cleanup_on_exit:
             # Should only happen on test failure
@@ -238,10 +238,10 @@ class TestNode():
         if extra_args is None:
             extra_args = self.extra_args
 
-        # If listening and no -bind is given, then dashd would bind P2P ports on
+        # If listening and no -bind is given, then phantomriderd would bind P2P ports on
         # 0.0.0.0:P and 127.0.0.1:<default onion-service target port> (for incoming Tor connections), where P is
         # a unique port chosen by the test framework and configured as port=P in
-        # dash.conf. To avoid collisions on default onion target port, change it to
+        # phantomrider.conf. To avoid collisions on default onion target port, change it to
         # 127.0.0.1:tor_port().
         will_listen = all(e != "-nolisten" and e != "-listen=0" for e in extra_args)
         has_explicit_bind = self.has_explicit_bind or any(e.startswith("-bind=") for e in extra_args)
@@ -251,7 +251,7 @@ class TestNode():
 
         self.use_v2transport = "-v2transport=1" in extra_args or (self.default_to_v2 and "-v2transport=0" not in extra_args)
 
-        # Add a new stdout and stderr file each time dashd is started
+        # Add a new stdout and stderr file each time phantomriderd is started
         if stderr is None:
             stderr = tempfile.NamedTemporaryFile(dir=self.stderr_dir, delete=False)
         if stdout is None:
@@ -267,7 +267,7 @@ class TestNode():
             all_args = all_args + [f"-mocktime={self.mocktime}"]
 
         # Delete any existing cookie file -- if such a file exists (eg due to
-        # unclean shutdown), it will get overwritten anyway by dashd, and
+        # unclean shutdown), it will get overwritten anyway by phantomriderd, and
         # potentially interfere with our attempt to authenticate
         delete_cookie_file(self.datadir_path, self.chain)
 
@@ -279,13 +279,13 @@ class TestNode():
         self.process = subprocess.Popen(all_args, env=subp_env, stdout=stdout, stderr=stderr, cwd=cwd, **kwargs)
 
         self.running = True
-        self.log.debug("dashd started, waiting for RPC to come up")
+        self.log.debug("phantomriderd started, waiting for RPC to come up")
 
         if self.start_perf:
             self._start_perf()
 
     def wait_for_rpc_connection(self):
-        """Sets up an RPC connection to the dashd process. Returns False if unable to connect."""
+        """Sets up an RPC connection to the phantomriderd process. Returns False if unable to connect."""
         # Poll at a rate of twenty times per second
         poll_per_s = 20
         stop_time = time.monotonic() + self.rpc_timeout
@@ -297,7 +297,7 @@ class TestNode():
                 str_error += "************************\n" if str_error else ''
 
                 raise FailedToStartError(self._node_msg(
-                    f'dashd exited with status {self.process.returncode} during initialization. {str_error}'))
+                    f'phantomriderd exited with status {self.process.returncode} during initialization. {str_error}'))
             try:
                 rpc = get_rpc_proxy(
                     rpc_url(self.datadir_path, self.index, self.chain, self.rpchost),
@@ -351,11 +351,11 @@ class TestNode():
                     pass  # Port not yet open?
                 else:
                     raise  # unknown OS error
-            except ValueError as e:  # cookie file not found and no rpcuser or rpcpassword; dashd is still starting
+            except ValueError as e:  # cookie file not found and no rpcuser or rpcpassword; phantomriderd is still starting
                 if "No RPC credentials" not in str(e):
                     raise
             time.sleep(1.0 / poll_per_s)
-        self._raise_assertion_error("Unable to connect to dashd after {}s".format(self.rpc_timeout))
+        self._raise_assertion_error("Unable to connect to phantomriderd after {}s".format(self.rpc_timeout))
 
     def wait_for_cookie_credentials(self):
         """Ensures auth cookie credentials can be read, e.g. for testing CLI with -rpcwait before RPC connection is up."""
@@ -665,18 +665,18 @@ class TestNode():
     def assert_start_raises_init_error(self, extra_args=None, expected_msg=None, match=ErrorMatch.FULL_TEXT, *args, **kwargs):
         """Attempt to start the node and expect it to raise an error.
 
-        extra_args: extra arguments to pass through to dashd
-        expected_msg: regex that stderr should match when dashd fails
+        extra_args: extra arguments to pass through to phantomriderd
+        expected_msg: regex that stderr should match when phantomriderd fails
 
-        Will throw if dashd starts without an error.
-        Will throw if an expected_msg is provided and it does not match dashd's stdout."""
+        Will throw if phantomriderd starts without an error.
+        Will throw if an expected_msg is provided and it does not match phantomriderd's stdout."""
         assert not self.running
         with tempfile.NamedTemporaryFile(dir=self.stderr_dir, delete=False) as log_stderr, \
              tempfile.NamedTemporaryFile(dir=self.stdout_dir, delete=False) as log_stdout:
             try:
                 self.start(extra_args, stdout=log_stdout, stderr=log_stderr, *args, **kwargs)
                 ret = self.process.wait(timeout=self.rpc_timeout)
-                self.log.debug(self._node_msg(f'dashd exited with status {ret} during initialization'))
+                self.log.debug(self._node_msg(f'phantomriderd exited with status {ret} during initialization'))
                 assert ret != 0  # Exit code must indicate failure
                 self.running = False
                 self.process = None
@@ -700,7 +700,7 @@ class TestNode():
                 self.process.kill()
                 self.running = False
                 self.process = None
-                assert_msg = f'dashd should have exited within {self.rpc_timeout}s '
+                assert_msg = f'phantomriderd should have exited within {self.rpc_timeout}s '
                 if expected_msg is None:
                     assert_msg += "with an error"
                 else:
@@ -882,7 +882,7 @@ def arg_to_cli(arg):
 
 
 class TestNodeCLI():
-    """Interface to dash-cli for an individual node"""
+    """Interface to phantomrider-cli for an individual node"""
     def __init__(self, binary, datadir):
         self.options = []
         self.binary = binary
@@ -891,7 +891,7 @@ class TestNodeCLI():
         self.log = logging.getLogger('TestFramework.dashcli')
 
     def __call__(self, *options, input=None):
-        # TestNodeCLI is callable with dash-cli command-line options
+        # TestNodeCLI is callable with phantomrider-cli command-line options
         cli = TestNodeCLI(self.binary, self.datadir)
         cli.options = [str(o) for o in options]
         cli.input = input
@@ -910,7 +910,7 @@ class TestNodeCLI():
         return results
 
     def send_cli(self, clicommand=None, *args, **kwargs):
-        """Run dash-cli command. Deserializes returned string as python object."""
+        """Run phantomrider-cli command. Deserializes returned string as python object."""
         pos_args = [arg_to_cli(arg) for arg in args]
         named_args = [str(key) + "=" + arg_to_cli(value) for (key, value) in kwargs.items()]
         p_args = [self.binary, f"-datadir={self.datadir}"] + self.options
@@ -919,7 +919,7 @@ class TestNodeCLI():
         if clicommand is not None:
             p_args += [clicommand]
         p_args += pos_args + named_args
-        self.log.debug("Running dash-cli {}".format(p_args[2:]))
+        self.log.debug("Running phantomrider-cli {}".format(p_args[2:]))
         process = subprocess.Popen(p_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         cli_stdout, cli_stderr = process.communicate(input=self.input)
         returncode = process.poll()

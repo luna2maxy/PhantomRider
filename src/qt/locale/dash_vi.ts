@@ -373,8 +373,8 @@
         <translation>&amp;Nhận</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
-        <translation>Yêu cầu thanh toán (sinh mã QR và dash: URIs)</translation>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
+        <translation>Yêu cầu thanh toán (sinh mã QR và phantomrider: URIs)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -643,8 +643,8 @@
         <translation>Mở tệp cấu hình &amp;ví</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>Mở một dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Mở một phantomrider: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,8 +2385,8 @@ Quá trình di chuyển sẽ tạo một bản sao lưu của ví trước khi d
         <translation>Tệp không phải là tệp phiên masternode chung.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>Tệp phiên dùng phiên bản định dạng không được hỗ trợ. Hãy cập nhật Dash Core để mở nó.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>Tệp phiên dùng phiên bản định dạng không được hỗ trợ. Hãy cập nhật PhantomRider Core để mở nó.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ Quá trình di chuyển sẽ tạo một bản sao lưu của ví trước khi d
         <translation>Tệp phiên không có giai đoạn.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>Tệp phiên đang ở giai đoạn không xác định "%1". Có thể nó được tạo bởi một bản Dash Core mới hơn.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>Tệp phiên đang ở giai đoạn không xác định "%1". Có thể nó được tạo bởi một bản PhantomRider Core mới hơn.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,8 +3316,8 @@ Quá trình di chuyển sẽ tạo một bản sao lưu của ví trước khi d
         <translation>Các giao dịch có đầu ra bằng hoặc thấp hơn số tiền này sẽ được coi là bụi khi nhận từ nguồn bên ngoài.</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,8 +3408,8 @@ Quá trình di chuyển sẽ tạo một bản sao lưu của ví trước khi d
         <translation>Tối đa</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Tự động mở cổng cho phần mềm Dash Core trên rounter. Điều này chỉ hoạt động được khi rounter của bạn hỗ trợ UpnP và tính năng đó được bật lên.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Tự động mở cổng cho phần mềm PhantomRider Core trên rounter. Điều này chỉ hoạt động được khi rounter của bạn hỗ trợ UpnP và tính năng đó được bật lên.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Ánh xạ cổng sử dụng &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Tự động mở cổng ứng dụng Dash Core trên router. Điều này chỉ hoạt động khi router của bạn hỗ trợ NAT-PMP và được bật. Cổng ngoài có thể là ngẫu nhiên.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Tự động mở cổng ứng dụng PhantomRider Core trên router. Điều này chỉ hoạt động khi router của bạn hỗ trợ NAT-PMP và được bật. Cổng ngoài có thể là ngẫu nhiên.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,16 +4008,16 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Yêu cầu thanh toán bị lỗi</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
-        <translation>Không thể khởi động dash: trình xử lý click-to-pay</translation>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
+        <translation>Không thể khởi động phantomrider: trình xử lý click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>xử lý URI</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' không phải là URI hợp lệ. Sử dụng 'dash:' thay thế.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' không phải là URI hợp lệ. Sử dụng 'phantomrider:' thay thế.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ Nhập %5 để xem tổng quan về các lệnh có sẵn.
         <translation>Hãy lưu ngay bây giờ — không thể bắt đầu đăng ký cho đến khi bạn xác nhận.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Thêm dòng này vào dash.conf trên máy chủ masternode của bạn:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Thêm dòng này vào phantomrider.conf trên máy chủ masternode của bạn:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,7 +6994,7 @@ Nhập %5 để xem tổng quan về các lệnh có sẵn.
         <translation>Thời gian xác nhận đối tượng:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Nếu mức phí tuỳ chỉnh được đặt là 1000 duff và giao dịch chỉ có 250 byte, thì "theo kilobyte" chỉ trả 250 duff cho phí,&lt;br /&gt;trong khi "ít nhất" phải trả 1000 duff. Cho các giao dịch lớn hơn 1 kilobyte thì cả hai đều trả theo kilobyte.</translation>
     </message>
     <message>
@@ -7384,8 +7384,8 @@ Nhập %5 để xem tổng quan về các lệnh có sẵn.
         <translation>Thông điệp:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
-        <translation>Một thông điệp được đính với dash: URI đó sẽ được lưu trữ với các giao dịch cho các bạn tham khảo. Lưu ý: Thông điệp này sẽ không được gửi qua mạng Dash. </translation>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <translation>Một thông điệp được đính với phantomrider: URI đó sẽ được lưu trữ với các giao dịch cho các bạn tham khảo. Lưu ý: Thông điệp này sẽ không được gửi qua mạng Dash. </translation>
     </message>
 </context>
 <context>
@@ -7722,8 +7722,8 @@ Nhập %5 để xem tổng quan về các lệnh có sẵn.
         <translation>Sao chép</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Thêm dòng này vào dash.conf trên máy chủ masternode:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Thêm dòng này vào phantomrider.conf trên máy chủ masternode:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Không thể khôi phục bản sao lưu của ví.</translation>
         <translation>Phần [%s] không được nhận diện.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Đặt tiêu đề cửa sổ được nối vào sau "Dash Core - "</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Đặt tiêu đề cửa sổ được nối vào sau "PhantomRider Core - "</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

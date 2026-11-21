@@ -2,9 +2,9 @@
 
 **Updated for NetBSD [10.0](https://netbsd.org/releases/formal-10/NetBSD-10.0.html)**
 
-This guide describes how to build dashd, command-line utilities, and GUI on NetBSD.
+This guide describes how to build phantomriderd, command-line utilities, and GUI on NetBSD.
 
-**This guide has not been tested for building Dash Core and may fail. Please report your results; contributions welcome.**
+**This guide has not been tested for building PhantomRider Core and may fail. Please report your results; contributions welcome.**
 
 ## Preparation
 
@@ -34,9 +34,9 @@ cmake -B build \
 
 See [dependencies.md](dependencies.md) for a complete overview.
 
-### 2. Clone Dash Core Repo
+### 2. Clone PhantomRider Core Repo
 
-Clone the Dash Core repository to a directory. All build scripts and commands will run from this directory.
+Clone the PhantomRider Core repository to a directory. All build scripts and commands will run from this directory.
 
 ```bash
 git clone https://github.com/dashpay/dash.git
@@ -46,7 +46,7 @@ git clone https://github.com/dashpay/dash.git
 
 #### Wallet Dependencies
 
-It is not necessary to build wallet functionality to run dashd or the GUI.
+It is not necessary to build wallet functionality to run phantomriderd or the GUI.
 
 ###### Descriptor Wallet Support
 
@@ -66,7 +66,7 @@ pkgin install db4
 
 #### GUI Dependencies
 
-Dash Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, Qt 5 is required. Pass `-DBUILD_GUI=ON` to CMake.
+PhantomRider Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, Qt 5 is required. Pass `-DBUILD_GUI=ON` to CMake.
 
 ```bash
 pkgin install qt5-qtbase qt5-qttools
@@ -88,12 +88,12 @@ To run the test suite (recommended), you will need to have Python 3.10+ installe
 pkgin install python312
 ```
 
-### Building Dash Core
+### Building PhantomRider Core
 
 
 ### 1. Configuration
 
-There are many ways to configure Dash Core. Here is an example that
+There are many ways to configure PhantomRider Core. Here is an example that
 explicitly disables the wallet and GUI:
 
 ```bash

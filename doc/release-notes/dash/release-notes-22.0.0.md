@@ -1,4 +1,4 @@
-# Dash Core version v22.0.0
+# PhantomRider Core version v22.0.0
 
 This is a new major version release, bringing new features, various bugfixes
 and other improvements.
@@ -17,7 +17,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -65,9 +65,9 @@ likely require a reindex.
     - **User Impact:** Users no longer need to perform active measures to ensure connections to multiple enabled networks.
 
 - **BIP324 Encrypted Communication (Experimental)**
-    - Dash Core now experimentally implements [BIP324](https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki), introducing encrypted communication for P2P network traffic.
+    - PhantomRider Core now experimentally implements [BIP324](https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki), introducing encrypted communication for P2P network traffic.
     - **Opt-In Adoption**
-        - **Enable Encryption:** Users can opt-in to use BIP324 by adding `v2transport=1` to their Dash Core configuration.
+        - **Enable Encryption:** Users can opt-in to use BIP324 by adding `v2transport=1` to their PhantomRider Core configuration.
         - **Default Behavior:** Encryption is **disabled by default** as this is currently experimental.
     - **Benefits**
         - **Enhanced Privacy:** Encrypts P2P messages for v2 connections, reducing the risk of traffic analysis and eavesdropping.
@@ -81,13 +81,13 @@ likely require a reindex.
 ## Compatibility
 
 - **Dark Mode Appearance**
-    - Dash Core changes appearance when macOS "dark mode" is activated.
+    - PhantomRider Core changes appearance when macOS "dark mode" is activated.
 
 - **glibc Requirement**
-    - The minimum required glibc to run Dash Core is now **2.31**. This means that **RHEL 8** and **Ubuntu 18.04 (Bionic)** are no longer supported.
+    - The minimum required glibc to run PhantomRider Core is now **2.31**. This means that **RHEL 8** and **Ubuntu 18.04 (Bionic)** are no longer supported.
 
 - **FreeBSD Improvements**
-    - Fixed issues with building Dash Core on FreeBSD.
+    - Fixed issues with building PhantomRider Core on FreeBSD.
 
 ## New RPCs
 
@@ -156,7 +156,7 @@ likely require a reindex.
     - `BRR` (`realloc`), `DIP0020`, `DIP0024`, `V19`, `V20`, and `MN_RR` hardforks are now activated at **block 2** instead of block **300** on devnets.
     - **Implications:**
         - Breaking change.
-        - Inability to sync on devnets created with earlier Dash Core versions and vice versa.
+        - Inability to sync on devnets created with earlier PhantomRider Core versions and vice versa.
 
 - **LLMQ Type Enhancement**
     - **LLMQ_50_60** is enabled for **Devnet** networks.
@@ -192,7 +192,7 @@ likely require a reindex.
 
 - **Deprecation of `-platform-user`**
     - `-platform-user` is deprecated in favor of the whitelist feature.
-    - In releases **22.x** of Dash Core, it has been renamed to `-deprecated-platform-user`.
+    - In releases **22.x** of PhantomRider Core, it has been renamed to `-deprecated-platform-user`.
     - It will be removed in version **23.x**.
 
 - **`-statsenabled` Deprecation**

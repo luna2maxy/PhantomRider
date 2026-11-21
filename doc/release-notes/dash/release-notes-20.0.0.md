@@ -1,4 +1,4 @@
-# Dash Core version v20.0.0
+# PhantomRider Core version v20.0.0
 
 Release is now available from:
 
@@ -21,7 +21,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux). If you upgrade after DIP0003 activation and you were
+phantomriderd/phantomrider-qt (on Linux). If you upgrade after DIP0003 activation and you were
 using version < 0.13 you will have to reindex (start with -reindex-chainstate
 or -reindex) to make sure your wallet has all the new data synced. Upgrading
 from version 0.13 should not require any additional actions.
@@ -120,13 +120,13 @@ masternodes to v20.0.0.
 
 ## P2P and network changes
 
-### Removal of reject network messages from Dash Core (BIP61)
+### Removal of reject network messages from PhantomRider Core (BIP61)
 
-This feature has been disabled by default since Dash Core version 19.0.0.
+This feature has been disabled by default since PhantomRider Core version 19.0.0.
 Nodes on the network can not generally be trusted to send valid ("reject")
 messages, so this should only ever be used when connected to a trusted node.
 
-Since Dash Core version 20.0.0 there are extra changes:
+Since PhantomRider Core version 20.0.0 there are extra changes:
 
 The removal of BIP61 `REJECT` message support also has the following minor RPC
 and logging implications:
@@ -178,7 +178,7 @@ the v20 activation.
 
 ### Other
 
-- It is possible to run Dash Core as an I2P service and connect to such
+- It is possible to run PhantomRider Core as an I2P service and connect to such
   services. Please read [docs][i2p] for more information.
 - Removed support for Tor v2, `LEGACYTXLOCKREQUEST` (`"ix"`) message and
 `NODE_GETUTXO` (bit 1) node service bit.
@@ -235,7 +235,7 @@ while mixing.
 
 - `testmempoolaccept` and `sendrawtransaction` no longer return the P2P
   `REJECT` code when a transaction is not accepted to the mempool. See the
-  Section [_Removal of reject network messages from Dash Core (BIP61)_](#removal-of-reject-network-messages-from-dash-core-bip61) above for
+  Section [_Removal of reject network messages from PhantomRider Core (BIP61)_](#removal-of-reject-network-messages-from-dash-core-bip61) above for
   details on the removal of BIP61 `REJECT` message support.
 
 - A new descriptor type, `sortedmulti(...)`, has been added to support multisig
@@ -388,7 +388,7 @@ Please check `help <command>` for more detailed information on specific RPCs.
   and regtest users will have to add fallbackfee=1000 to their configuration if
   they weren't setting it and they want it to keep working like before.
 
-- The `dash-cli -getinfo` command now displays the wallet name and balance for
+- The `phantomrider-cli -getinfo` command now displays the wallet name and balance for
   each of the loaded wallets when more than one is loaded (e.g. in multiwallet
   mode) and a wallet is not specified with `-rpcwallet`.
 
@@ -401,7 +401,7 @@ Please check `help <command>` for more detailed information on specific RPCs.
 
 - `-instantsendnotify=<cmd>` `%w` is replaced by wallet name.
 
-Please check `Help -> Command-line options` in Qt wallet or `dashd --help` for
+Please check `Help -> Command-line options` in Qt wallet or `phantomriderd --help` for
 more information.
 
 ## JSON-RPC
@@ -409,17 +409,17 @@ more information.
 All JSON-RPC methods accept a new [named parameter][json-rpc] called `args` that can
 contain positional parameter values. This is a convenience to allow some
 parameter values to be passed by name without having to name every value. The
-python test framework and `dash-cli` tool both take advantage of this, so
+python test framework and `phantomrider-cli` tool both take advantage of this, so
 for example:
 
 ```sh
-dash-cli -named createwallet wallet_name=mywallet load_on_startup=1
+phantomrider-cli -named createwallet wallet_name=mywallet load_on_startup=1
 ```
 
 Can now be shortened to:
 
 ```sh
-dash-cli -named createwallet mywallet load_on_startup=1
+phantomrider-cli -named createwallet mywallet load_on_startup=1
 ```
 
 ## Switch from Gitian to Guix
@@ -474,12 +474,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Dash Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+PhantomRider Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Dash.
 
-Dash Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+PhantomRider Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Dash Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+PhantomRider Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

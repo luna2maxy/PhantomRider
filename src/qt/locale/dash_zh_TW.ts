@@ -373,7 +373,7 @@
         <translation>接收(&amp;R)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>要求付款(產生 QR Code 和達世幣付款協議的 URI)</translation>
     </message>
     <message>
@@ -643,7 +643,7 @@
         <translation>開啟錢包設定檔(&amp;W)</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
+        <source>Open a phantomrider: URI</source>
         <translation>打開達世幣: URI</translation>
     </message>
     <message>
@@ -2385,7 +2385,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>此檔案不是共享主節點會話檔。</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
         <translation>此會話檔使用了不支援的格式版本。請更新達世幣核心後再開啟。</translation>
     </message>
     <message>
@@ -2409,7 +2409,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>會話檔沒有階段資訊。</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
         <translation>會話檔處於未知階段「%1」。它可能是由較新版本的達世幣核心建立的。</translation>
     </message>
     <message>
@@ -3316,8 +3316,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>從外部來源收到的輸出等於或低於此金額的交易將被視為粉塵。</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,7 +3408,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>最大</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>自動在路由器上開放達世幣核心客戶端的通訊埠。只有在你的路由器支援且開啓「通用即插即用」協定(UPnP)時才有作用。</translation>
     </message>
     <message>
@@ -3490,7 +3490,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>用 &amp;UPnP 設定通訊埠對應</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
         <translation>自動開啟路由器上的達世幣核心用戶端連接埠。只有當您的路由器支援 NAT-PMP 並且已啟用時，此功能才有效。外部連接埠可以是隨機的。</translation>
     </message>
     <message>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>要求付款時發生錯誤</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>無法啟動達世幣 : 點擊支付處理程序</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>URI 處理</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' 不是有效的URI。請用'dash:' 來代替。</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' 不是有效的URI。請用'phantomrider:' 來代替。</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ For more information on using this console, type %6.
         <translation>請立即儲存，確認之前無法開始註冊。</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>將下面這一行加入您主節點伺服器上的 dash.conf：</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>將下面這一行加入您主節點伺服器上的 phantomrider.conf：</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,8 +6994,8 @@ For more information on using this console, type %6.
         <translation>目標確認時間:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>如果自訂手續費設定為 1000 duffs ，而交易資料大小只有 250 個位元組的話，那麽選擇「每千位元組」就只會付 250 duffs 的手續費，&lt;br /&gt;而「至少」會支付 1000 duffs。但是如果交易資料大小超過一千個位元組，那麽兩者都是每千位元組的費用。</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>如果自訂手續費設定為 1000 phr ，而交易資料大小只有 250 個位元組的話，那麽選擇「每千位元組」就只會付 250 phr 的手續費，&lt;br /&gt;而「至少」會支付 1000 phr。但是如果交易資料大小超過一千個位元組，那麽兩者都是每千位元組的費用。</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -7384,7 +7384,7 @@ For more information on using this console, type %6.
         <translation>訊息:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>附加在達世幣付款協議 URI 中的訊息，會和交易內容一起存起來，給你自己做參考。注意: 這個訊息不會送到達世幣網路上。</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ For more information on using this console, type %6.
         <translation>複製</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>將下面這一行加入主節點伺服器上的 dash.conf：</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>將下面這一行加入主節點伺服器上的 phantomrider.conf：</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Unable to restore backup of wallet.</source>
         <translation>無法識別節 [%s] 。</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>設定附加在 "Dash Core - " 之後的視窗標題</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>設定附加在 "PhantomRider Core - " 之後的視窗標題</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

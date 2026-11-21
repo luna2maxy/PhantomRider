@@ -1,5 +1,5 @@
 # Disable files from being included in completions by default
-complete --command dash-qt --no-files
+complete --command phantomrider-qt --no-files
 
 # Extract options
 function __fish_dashqt_get_options
@@ -21,15 +21,15 @@ end
 
 # Add options with file completion
 complete \
-    --command dash-qt \
+    --command phantomrider-qt \
     --arguments "(__fish_dashqt_get_options)"
 # Enable file completions only if the commandline now contains a `*.=` style option
-complete -c dash-qt \
+complete -c phantomrider-qt \
     --condition 'string match --regex -- ".*=" (commandline -pt)' \
     --force-files
 
 # Add options without file completion
 complete \
-    --command dash-qt \
+    --command phantomrider-qt \
     --arguments "(__fish_dashqt_get_options --nofiles)"
 

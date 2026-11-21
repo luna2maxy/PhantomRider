@@ -1,3 +1,5 @@
 # Suppress warnings triggered in dependencies
 leak:test_dash-qt
+leak:test_phantomrider-qt
 leak:dash-qt
+leak:phantomrider-qt

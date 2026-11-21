@@ -1350,7 +1350,7 @@ static RPCHelpMan protx_shared_dissolve()
         {
             {"proTxHash", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The hash of the initial ProRegTx."},
             {"actorIndex", RPCArg::Type::NUM, RPCArg::Optional::NO, "Index into the share table of the dissolving participant."},
-            {"fee", RPCArg::Type::NUM, RPCArg::Default{100000}, "Transaction fee in duffs, paid from the actor's share. At most 1000000 duffs (consensus ceiling)."},
+            {"fee", RPCArg::Type::NUM, RPCArg::Default{100000}, "Transaction fee in phr, paid from the actor's share. At most 1000000 phr (consensus ceiling)."},
             {"submit", RPCArg::Type::BOOL, RPCArg::Default{true}, "Submit the transaction to the network.",
              RPCArgOptions{.skip_type_check = true}},
             {"payPenalty", RPCArg::Type::BOOL, RPCArg::DefaultHint{"determined by the current height"}, "Pay the early-period penalty. Pass true to build a standby valid at any height, false for one valid only after the early period ends.",
@@ -2190,7 +2190,7 @@ static RPCHelpMan protx_shared_register_prepare_wrapper(const MnType mn_type)
             {
                 {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
                 {
-                    {"amount", RPCArg::Type::NUM, RPCArg::Optional::NO, "Collateral contribution in duffs (at least 100 DASH)"},
+                    {"amount", RPCArg::Type::NUM, RPCArg::Optional::NO, "Collateral contribution in phr (at least 100 DASH)"},
                     {"refundAddress", RPCArg::Type::STR, RPCArg::Optional::NO, "Immutable address the principal is refunded to at dissolution"},
                     {"rewardAddress", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "Address this share's owner rewards are paid to (defaults to the refund address)"},
                     {"ownerAddress", RPCArg::Type::STR, RPCArg::Optional::NO, "P2PKH address of the immutable share owner key"},
@@ -2203,7 +2203,7 @@ static RPCHelpMan protx_shared_register_prepare_wrapper(const MnType mn_type)
             {"operatorReward", RPCArg::Type::STR, RPCArg::Optional::NO, "The fraction in % to share with the operator (0.00 to 100.00).",
              RPCArgOptions{.skip_type_check = true}},
             {"earlyPeriodBlocks", RPCArg::Type::NUM, RPCArg::Optional::NO, "Length in blocks of the early period during which unilateral dissolution is penalized (up to 420480)."},
-            {"earlyPenalty", RPCArg::Type::NUM, RPCArg::Optional::NO, "Penalty in duffs for unilateral dissolution during the early period (must be below the smallest share, and zero when earlyPeriodBlocks is zero)."},
+            {"earlyPenalty", RPCArg::Type::NUM, RPCArg::Optional::NO, "Penalty in phr for unilateral dissolution during the early period (must be below the smallest share, and zero when earlyPeriodBlocks is zero)."},
     };
     if (evo) {
         args.push_back(GetRpcArg("platformNodeID"));
@@ -2330,7 +2330,7 @@ static RPCHelpMan protx_shared_dissolve_prepare()
         {
             {"proTxHash", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The hash of the initial ProRegTx."},
             {"actorIndex", RPCArg::Type::NUM, RPCArg::Optional::NO, "Index into the share table of the participant paying the transaction fee."},
-            {"fee", RPCArg::Type::NUM, RPCArg::Default{100000}, "Transaction fee in duffs, paid from the actor's share. At most 1000000 duffs (consensus ceiling)."},
+            {"fee", RPCArg::Type::NUM, RPCArg::Default{100000}, "Transaction fee in phr, paid from the actor's share. At most 1000000 phr (consensus ceiling)."},
         },
         RPCResult{RPCResult::Type::OBJ, "", "",
         {

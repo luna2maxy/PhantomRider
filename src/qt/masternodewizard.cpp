@@ -75,7 +75,7 @@ QString FormatCollateralAmount(const WalletModel* wallet_model, CAmount amount)
 {
     const auto unit{wallet_model && wallet_model->getOptionsModel() ?
                         wallet_model->getOptionsModel()->getDisplayUnit() :
-                        BitcoinUnits::Unit::DASH};
+                        BitcoinUnits::Unit::PHR};
     QString str{BitcoinUnits::format(unit, amount, /*plussign=*/false, BitcoinUnits::SeparatorStyle::ALWAYS)};
     const int decimals{BitcoinUnits::decimals(unit)};
     if (decimals > 0 && amount % BitcoinUnits::factor(unit) == 0) {
@@ -609,7 +609,7 @@ QWidget* RegisterMasternodeWizard::createSecretPage()
     m_secret_edit->setReadOnly(true);
     m_secret_edit->setFont(GUIUtil::fixedPitchFont());
     box->addWidget(m_secret_edit);
-    box->addWidget(makeHint(tr("Add this line to dash.conf on your masternode server:"), secret_box));
+    box->addWidget(makeHint(tr("Add this line to phantomrider.conf on your masternode server:"), secret_box));
     auto* conf_row{new QHBoxLayout()};
     m_conf_line_edit = new QLineEdit(secret_box);
     m_conf_line_edit->setReadOnly(true);

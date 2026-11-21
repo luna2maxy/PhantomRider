@@ -1,28 +1,28 @@
-Dash Core staging tree
+PhantomRider Core staging tree
 ===========================
 
 | `master` | `develop` |
 | -------- | --------- |
-| [![Build Status](https://github.com/dashpay/dash/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/dashpay/dash/tree/master) | [![Build Status](https://github.com/dashpay/dash/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/dashpay/dash/tree/develop) |
+| [![Build Status](https://github.com/PhantomRider/PhantomRider/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/PhantomRider/PhantomRider/tree/master) | [![Build Status](https://github.com/PhantomRider/PhantomRider/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/PhantomRider/PhantomRider/tree/develop) |
 
-https://www.dash.org
+https://www.phantomrider.org
 
-For an immediately usable, binary version of the Dash Core software, see
-https://www.dash.org/downloads/.
+For an immediately usable, binary version of the PhantomRider Core software, see
+https://www.phantomrider.org/downloads/.
 
-Dash Core connects to the Dash peer-to-peer network to download and fully
+PhantomRider Core connects to the PhantomRider peer-to-peer network to download and fully
 validate blocks and transactions. It also includes a wallet and graphical user
 interface, which can be optionally built.
 
-Further information about Dash Core is available in the [doc folder](/doc).
+Further information about PhantomRider Core is available in the [doc folder](/doc).
 
-What is Dash?
+What is PhantomRider?
 -------------
 
-Dash is a digital currency that enables instant, private payments to anyone,
+PhantomRider is a digital currency that enables instant, private payments to anyone,
 anywhere in the world. Dash uses peer-to-peer technology to operate with
 no central authority: managing transactions and issuing money are carried out
-collectively by the network. Dash Core is the name of the open
+collectively by the network. PhantomRider Core is the name of the open
 source software which enables the use of this currency.
 
 
@@ -31,15 +31,15 @@ For more information read the original Dash whitepaper.
 License
 -------
 
-Dash Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+PhantomRider Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is meant to be stable. Development is normally done in separate branches.
-[Tags](https://github.com/dashpay/dash/tags) are created to indicate new official,
-stable release versions of Dash Core.
+[Tags](https://github.com/PhantomRider/PhantomRider/tags) are created to indicate new official,
+stable release versions of PhantomRider Core.
 
 The `develop` branch is regularly built (see doc/build-*.md for instructions) and tested, but is not guaranteed to be
 completely stable.
@@ -93,7 +93,7 @@ Translations
 ------------
 
 Changes to translations as well as new translations can be submitted to
-[Dash Core's Transifex page](https://explore.transifex.com/dash/dash/).
+[PhantomRider Core's Transifex page](https://explore.transifex.com/dash/dash/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.

@@ -373,8 +373,8 @@
         <translation>&amp;Получить</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
-        <translation>Запросить платежи (создать QR-коды и dash: URI)</translation>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
+        <translation>Запросить платежи (создать QR-коды и phantomrider: URI)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -643,8 +643,8 @@
         <translation>Открыть файл &amp;настроек кошелька</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>Открыть dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Открыть phantomrider: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,8 +2385,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>Файл не является файлом сессии совместной мастерноды.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>Файл сессии использует неподдерживаемую версию формата. Обновите Dash Core, чтобы открыть его.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>Файл сессии использует неподдерживаемую версию формата. Обновите PhantomRider Core, чтобы открыть его.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>В файле сессии не указан этап.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>Файл сессии находится на неизвестном этапе «%1». Вероятно, он создан в более новой версии Dash Core.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>Файл сессии находится на неизвестном этапе «%1». Вероятно, он создан в более новой версии PhantomRider Core.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,7 +3316,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>Транзакции с выходами на эту сумму или ниже будут считаться пылью при получении из внешних источников.</translation>
     </message>
     <message>
-        <source>duffs</source>
+        <source>phr</source>
         <translation>даффов</translation>
     </message>
     <message>
@@ -3408,8 +3408,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>Максимум</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматически открыть порт для Dash Core на роутере. Работает только в том случае, если Ваш роутер поддерживает UPnP и данная функция включена.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматически открыть порт для PhantomRider Core на роутере. Работает только в том случае, если Ваш роутер поддерживает UPnP и данная функция включена.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Пробросить порт через &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Автоматически открыть порт для Dash Core на роутере. Работает только в том случае, если Ваш роутер поддерживает NAT-PMP и данная функция включена. Внешний порт может быть любым.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Автоматически открыть порт для PhantomRider Core на роутере. Работает только в том случае, если Ваш роутер поддерживает NAT-PMP и данная функция включена. Внешний порт может быть любым.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,16 +4008,16 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Ошибка запроса платежа</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
-        <translation>Не удаётся запустить обработчик dash: click-to-pay</translation>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
+        <translation>Не удаётся запустить обработчик phantomrider: click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>Обработка URI</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' не является валидным URI. Используйте 'dash:'.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' не является валидным URI. Используйте 'phantomrider:'.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ For more information on using this console, type %6.
         <translation>Сохраните его сейчас: регистрация не начнётся, пока вы не подтвердите это.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Добавьте эту строку в dash.conf на сервере вашей мастерноды:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Добавьте эту строку в phantomrider.conf на сервере вашей мастерноды:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,7 +6994,7 @@ For more information on using this console, type %6.
         <translation>Желаемое время подтверждения:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Если ручная комиссия установлена в 1000 duff, а транзакция по размеру только 250 байт, то плата "за килобайт" составит лишь 250 duff,&lt;br&gt;в то время как "минимум" будет равна 1000 duff. Для транзакций больше килобайта в любом случае идет расчет "за килобайт".</translation>
     </message>
     <message>
@@ -7384,8 +7384,8 @@ For more information on using this console, type %6.
         <translation>Сообщение:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
-        <translation>К dash: URI было прикреплено сообщение, которое будет сохранено вместе с транзакцией для вашего сведения. Обратите внимание: сообщение не будет отправлено через сеть Dash.</translation>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <translation>К phantomrider: URI было прикреплено сообщение, которое будет сохранено вместе с транзакцией для вашего сведения. Обратите внимание: сообщение не будет отправлено через сеть Dash.</translation>
     </message>
 </context>
 <context>
@@ -7722,8 +7722,8 @@ For more information on using this console, type %6.
         <translation>Копировать</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Добавьте эту строку в dash.conf на сервере мастерноды:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Добавьте эту строку в phantomrider.conf на сервере мастерноды:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Unable to restore backup of wallet.</source>
         <translation>Секция [%s] не распознана.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Задаёт заголовок окна, который добавляется к «Dash Core - »</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Задаёт заголовок окна, который добавляется к «PhantomRider Core - »</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

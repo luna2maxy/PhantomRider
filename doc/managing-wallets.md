@@ -4,24 +4,24 @@
 
 ### 1.1 Creating the Wallet
 
-Since version 0.21, Dash Core no longer has a default wallet.
+Since version 0.21, PhantomRider Core no longer has a default wallet.
 Wallets can be created with the `createwallet` RPC or with the `Create wallet` GUI menu item.
 
 In the GUI, the `Create a new wallet` button is displayed on the main screen when there is no wallet loaded. Alternatively, there is the option `File` ->`Create wallet`.
 
-The following command, for example, creates a descriptor wallet. More information about this command may be found by running `dash-cli help createwallet`.
+The following command, for example, creates a descriptor wallet. More information about this command may be found by running `phantomrider-cli help createwallet`.
 
 ```
-$ dash-cli createwallet "wallet-01"
+$ phantomrider-cli createwallet "wallet-01"
 ```
 
 By default, wallets are created in the `wallets` folder of the data directory, which varies by operating system, as shown below. The user can change the default by using the `-datadir` or `-walletdir` initialization parameters.
 
 | Operating System | Default wallet directory                                    |
 | -----------------|:------------------------------------------------------------|
-| Linux            | `/home/<user>/.dashcore/wallets`                             |
-| Windows          | `C:\Users\<user>\AppData\Roaming\DashCore\wallets`           |
-| macOS            | `/Users/<user>/Library/Application Support/DashCore/wallets` |
+| Linux            | `/home/<user>/.phantomridercore/wallets`                             |
+| Windows          | `C:\Users\<user>\AppData\Roaming\PhantomRiderCore\wallets`           |
+| macOS            | `/Users/<user>/Library/Application Support/PhantomRiderCore/wallets` |
 
 ### 1.2 Encrypting the Wallet
 
@@ -36,13 +36,13 @@ After encrypting the wallet or changing the passphrase, a new backup needs to be
 The wallet's private key may be encrypted with the following command:
 
 ```
-$ dash-cli -rpcwallet="wallet-01" encryptwallet "passphrase"
+$ phantomrider-cli -rpcwallet="wallet-01" encryptwallet "passphrase"
 ```
 
 Once encrypted, the passphrase can be changed with the `walletpassphrasechange` command.
 
 ```
-$ dash-cli -rpcwallet="wallet-01" walletpassphrasechange "oldpassphrase" "newpassphrase"
+$ phantomrider-cli -rpcwallet="wallet-01" walletpassphrasechange "oldpassphrase" "newpassphrase"
 ```
 
 The argument passed to `-rpcwallet` is the name of the wallet to be encrypted.
@@ -52,7 +52,7 @@ Only the wallet's private key is encrypted. All other wallet information, such a
 The wallet's private key can also be encrypted in the `createwallet` command via the `passphrase` argument:
 
 ```
-$ dash-cli -named createwallet wallet_name="wallet-01" passphrase="passphrase"
+$ phantomrider-cli -named createwallet wallet_name="wallet-01" passphrase="passphrase"
 ```
 
 Note that if the passphrase is lost, all the coins in the wallet will also be lost forever.
@@ -62,7 +62,7 @@ Note that if the passphrase is lost, all the coins in the wallet will also be lo
 If the wallet is encrypted and the user tries any operation related to private keys, such as sending coins, an error message will be displayed.
 
 ```
-$ dash-cli -rpcwallet="wallet-01" sendtoaddress "tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx" 0.01
+$ phantomrider-cli -rpcwallet="wallet-01" sendtoaddress "tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx" 0.01
 error code: -13
 error message:
 Error: Please enter the wallet passphrase with walletpassphrase first.
@@ -73,7 +73,7 @@ To unlock the wallet and allow it to run these operations, the `walletpassphrase
 This command takes the passphrase and an argument called `timeout`, which specifies the time in seconds that the wallet decryption key is stored in memory. After this period expires, the user needs to execute this RPC again.
 
 ```
-$ dash-cli -rpcwallet="wallet-01" walletpassphrase "passphrase" 120
+$ phantomrider-cli -rpcwallet="wallet-01" walletpassphrase "passphrase" 120
 ```
 
 In the GUI, there is no specific menu item to unlock the wallet. When the user sends coins, the passphrase will be prompted automatically.
@@ -85,7 +85,7 @@ To backup the wallet, the `backupwallet` RPC or the `Backup Wallet` GUI menu ite
 In the RPC, the destination parameter must include the name of the file. Otherwise, the command will return an error message like "Error: Wallet backup failed!" for descriptor wallets. If it is a legacy wallet, it will be copied and a file will be created with the default file name `wallet.dat`.
 
 ```
-$ dash-cli -rpcwallet="wallet-01" backupwallet /home/node01/Backups/backup-01.dat
+$ phantomrider-cli -rpcwallet="wallet-01" backupwallet /home/node01/Backups/backup-01.dat
 ```
 
 In the GUI, the wallet is selected in the `Wallet` drop-down list in the upper right corner. If this list is not present, the wallet can be loaded in `File` ->`Open Wallet` if necessary. Then, the backup can be done in `File` -> `Backup Wallet…`.
@@ -98,9 +98,9 @@ If both the wallet and all backups are lost for any reason, the coins related to
 
 ### 1.5 Backup Frequency
 
-The Dash Core wallet is by default a collection of unrelated private keys. If a non-HD wallet had received funds to an address and then was restored from a backup made before the address was generated, then any funds sent to that address would have been lost because there was no deterministic mechanism to derive the address again.
+The PhantomRider Core wallet is by default a collection of unrelated private keys. If a non-HD wallet had received funds to an address and then was restored from a backup made before the address was generated, then any funds sent to that address would have been lost because there was no deterministic mechanism to derive the address again.
 
-Dash Core [version 0.12.2](https://github.com/dashpay/dash/blob/master/doc/release-notes/dash/release-notes-0.12.2.md) introduced HD wallets with deterministic key derivation. With HD wallets, users no longer lose funds when restoring old backups because all addresses are derived from the HD wallet seed.
+PhantomRider Core [version 0.12.2](https://github.com/dashpay/dash/blob/master/doc/release-notes/dash/release-notes-0.12.2.md) introduced HD wallets with deterministic key derivation. With HD wallets, users no longer lose funds when restoring old backups because all addresses are derived from the HD wallet seed.
 
 This means that a single backup is enough to recover the coins at any time. It is still recommended to make regular backups (once a week) or after a significant number of new transactions to maintain the metadata, such as labels. Metadata cannot be retrieved from a blockchain rescan, so if the backup is too old, the metadata will be lost forever.
 
@@ -108,7 +108,7 @@ Non-HD wallets must be backed up every 1000 keys used since the previous backup,
 
 ### 1.6 Automatic Backups
 
-For legacy wallets, Dash Core automatically creates a backup in the `backups` directory inside the data directory on every startup and whenever the keypool is replenished. Each file is named after the wallet with the backup time appended, e.g. `wallet.dat.2026-08-02-14-30`.
+For legacy wallets, PhantomRider Core automatically creates a backup in the `backups` directory inside the data directory on every startup and whenever the keypool is replenished. Each file is named after the wallet with the backup time appended, e.g. `wallet.dat.2026-08-02-14-30`.
 
 Older backups are pruned as new ones are made. The most recent `-createwalletbackups` backups (default: 10, max: 20) are always kept. Beyond those, at most one backup is kept from each widening age range — 1-2 hours old, 2-4 hours, 4-8 hours, and so on, each range twice as long as the one before (512-1024 hours is about 3-6 weeks) — up to `-maxwalletbackups` files in total (default: 30); if that cap is reached, the most recent ranges are the ones kept. This preserves restore points going back months, even for a wallet that writes many backups a day while mixing, while keeping the size of the `backups` directory predictable. Several backups made within the same hour do not each get their own range: beyond the most recent `-createwalletbackups`, only the oldest backup in each range is kept. The backup just written is never pruned, and if the system clock has been set back, backups dated later than it are left untouched until the clock catches up with them. A clock set far forward makes all existing backups look old at once, so those beyond the most recent `-createwalletbackups` can collapse into one or two ranges.
 
@@ -119,13 +119,13 @@ Setting either option to `0` disables automatic backups, in which case existing 
 To restore a wallet, the `restorewallet` RPC or the `Restore Wallet` GUI menu item (`File` -> `Restore Wallet…`) must be used.
 
 ```
-$ dash-cli restorewallet "restored-wallet" /home/node01/Backups/backup-01.dat
+$ phantomrider-cli restorewallet "restored-wallet" /home/node01/Backups/backup-01.dat
 ```
 
 After that, `getwalletinfo` can be used to check if the wallet has been fully restored.
 
 ```
-$ dash-cli -rpcwallet="restored-wallet" getwalletinfo
+$ phantomrider-cli -rpcwallet="restored-wallet" getwalletinfo
 ```
 
 The restored wallet can also be loaded in the GUI via `File` ->`Open wallet`.

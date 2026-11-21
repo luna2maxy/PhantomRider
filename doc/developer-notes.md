@@ -26,7 +26,7 @@ Developer Notes
     - [Threads](#threads)
     - [Ignoring IDE/editor files](#ignoring-ideeditor-files)
 - [Development guidelines](#development-guidelines)
-    - [General Dash Core](#general-dash-core)
+    - [General PhantomRider Core](#general-dash-core)
     - [Wallet](#wallet)
     - [General C++](#general-c)
     - [C++ data structures](#c-data-structures)
@@ -249,7 +249,7 @@ Refer to [/test/functional/README.md#style-guidelines](/test/functional/README.m
 Coding Style (Doxygen-compatible comments)
 ------------------------------------------
 
-Dash Core uses [Doxygen](https://www.doxygen.nl/) to generate its official documentation.
+PhantomRider Core uses [Doxygen](https://www.doxygen.nl/) to generate its official documentation.
 
 Use Doxygen-compatible comment blocks for functions, methods, and fields.
 
@@ -364,8 +364,8 @@ If the code is behaving strangely, take a look in the `debug.log` file in the da
 error and debugging messages are written there.
 
 Debug logging can be enabled on startup with the `-debug` and `-loglevel`
-configuration options and toggled while dashd is running with the `logging`
-RPC.  For instance, launching dashd with `-debug` or `-debug=1` will turn on
+configuration options and toggled while phantomriderd is running with the `logging`
+RPC.  For instance, launching phantomriderd with `-debug` or `-debug=1` will turn on
 all log categories and `-loglevel=trace` will turn on all log severity levels.
 
 The Qt code routes `qDebug()` output to `debug.log` under category "qt": run with `-debug=qt`
@@ -383,7 +383,7 @@ see [test/functional/](/test/functional) for tests that run in `-regtest` mode.
 
 ### DEBUG_LOCKORDER
 
-Dash Core is a multi-threaded application, and deadlocks or other
+PhantomRider Core is a multi-threaded application, and deadlocks or other
 multi-threading bugs can be very difficult to track down. The `-DCMAKE_BUILD_TYPE=Debug`
 configuration option adds `-DDEBUG_LOCKORDER` to the compiler flags. This inserts
 run-time checks to keep track of which locks are held and adds warnings to the
@@ -397,11 +397,11 @@ to the `debug.log` file.
 
 The `-DCMAKE_BUILD_TYPE=Debug` configuration option adds `-DDEBUG_LOCKCONTENTION` to the
 compiler flags. You may also enable it manually for a non-debug build by running
-CMake with `-DAPPEND_CPPFLAGS="-DDEBUG_LOCKCONTENTION"`, then build and run dashd.
+CMake with `-DAPPEND_CPPFLAGS="-DDEBUG_LOCKCONTENTION"`, then build and run phantomriderd.
 
-You can then use the `-debug=lock` configuration option at dashd startup or
-`dash-cli logging '["lock"]'` at runtime to turn on lock contention logging.
-It can be toggled off again with `dash-cli logging [] '["lock"]'`.
+You can then use the `-debug=lock` configuration option at phantomriderd startup or
+`phantomrider-cli logging '["lock"]'` at runtime to turn on lock contention logging.
+It can be toggled off again with `phantomrider-cli logging [] '["lock"]'`.
 
 ### Assertions and Checks
 
@@ -523,7 +523,7 @@ in-tree. Example use:
 $ valgrind --suppressions=contrib/valgrind.supp build/src/test/test_dash
 $ valgrind --suppressions=contrib/valgrind.supp --leak-check=full \
       --show-leak-kinds=all build/src/test/test_dash --log_level=test_suite
-$ valgrind -v --leak-check=full build/src/dashd -printtoconsole
+$ valgrind -v --leak-check=full build/src/phantomriderd -printtoconsole
 $ ./build/test/functional/test_runner.py --valgrind
 ```
 
@@ -577,13 +577,13 @@ Make sure you [understand the security
 trade-offs](https://lwn.net/Articles/420403/) of setting these kernel
 parameters.
 
-To profile a running dashd process for 60 seconds, you could use an
+To profile a running phantomriderd process for 60 seconds, you could use an
 invocation of `perf record` like this:
 
 ```sh
 $ perf record \
     -g --call-graph dwarf --per-thread -F 140 \
-    -p `pgrep dashd` -- sleep 60
+    -p `pgrep phantomriderd` -- sleep 60
 ```
 
 You could then analyze the results by running:
@@ -599,7 +599,7 @@ See the functional test documentation for how to invoke perf within tests.
 
 ### Sanitizers
 
-Dash Core can be compiled with various "sanitizers" enabled, which add
+PhantomRider Core can be compiled with various "sanitizers" enabled, which add
 instrumentation for issues regarding things like memory safety, thread race
 conditions, or undefined behavior. This is controlled with the
 `-DSANITIZERS` CMake option, which should be a comma separated list of
@@ -672,7 +672,7 @@ and its `cs_KeyStore` lock for example).
 Threads
 -------
 
-- [Main thread (`dashd`)](https://doxygen.bitcoincore.org/bitcoind_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97)
+- [Main thread (`phantomriderd`)](https://doxygen.bitcoincore.org/bitcoind_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97)
   : Started from `main()` in `bitcoind.cpp`. Responsible for starting up and
   shutting down the application.
 
@@ -744,7 +744,7 @@ Ignoring IDE/editor files
 In closed-source environments in which everyone uses the same IDE, it is common
 to add temporary files it produces to the project-wide `.gitignore` file.
 
-However, in open source software such as Dash Core, where everyone uses
+However, in open source software such as PhantomRider Core, where everyone uses
 their own editors/IDE/tools, it is less common. Only you know what files your
 editor produces and this may change from version to version. The canonical way
 to do this is thus to create your local gitignore. Add this to `~/.gitconfig`:
@@ -774,9 +774,9 @@ Development guidelines
 ============================
 
 A few non-style-related recommendations for developers, as well as points to
-pay attention to for reviewers of Dash Core code.
+pay attention to for reviewers of PhantomRider Core code.
 
-General Dash Core
+General PhantomRider Core
 ----------------------
 
 - New features should be exposed on RPC first, then can be made available in the GUI.
@@ -1005,7 +1005,7 @@ Strings and formatting
 
 - For `strprintf`, `LogInfo`, `LogDebug`, etc formatting characters don't need size specifiers.
 
-  - *Rationale*: Dash Core uses tinyformat, which is type safe. Leave them out to avoid confusion.
+  - *Rationale*: PhantomRider Core uses tinyformat, which is type safe. Leave them out to avoid confusion.
 
 - Use `.c_str()` sparingly. Its only valid use is to pass C++ strings to C functions that take NULL-terminated
   strings.
@@ -1261,13 +1261,13 @@ Subtrees
 
 Several parts of the repository are subtrees of software maintained elsewhere.
 
-Some of these are maintained by active developers of Dash Core, in which case
+Some of these are maintained by active developers of PhantomRider Core, in which case
 changes should go directly upstream without being PRed directly against the project.
 They will be merged back in the next subtree merge.
 
 Others are external projects without a tight relationship with our project. Changes
 to these should also be sent upstream, but bugfixes may also be prudent to PR against
-a Dash Core subtree, so that they can be integrated quickly. Cosmetic changes
+a PhantomRider Core subtree, so that they can be integrated quickly. Cosmetic changes
 should be taken upstream.
 
 There is a tool in `test/lint/git-subtree-check.sh` ([instructions](../test/lint#git-subtree-checksh))
@@ -1297,11 +1297,11 @@ Current subtrees include:
   - Upstream at https://github.com/sipa/minisketch ; maintained by Core contributors.
 
 - src/dashbls
-  - Upstream at https://github.com/dashpay/bls-signatures ; maintained by Dash Core contributors.
+  - Upstream at https://github.com/dashpay/bls-signatures ; maintained by PhantomRider Core contributors.
 
 - src/blst
   - Upstream at https://github.com/dashpay/blst (branch `dash-subtree`) ; a fork of https://github.com/supranational/blst
-    maintained by Dash Core contributors. The BLS12-381 backend of src/dashbls. The fork branch drops the language
+    maintained by PhantomRider Core contributors. The BLS12-381 backend of src/dashbls. The fork branch drops the language
     bindings and unused assembly, and lets the C implementation (`-DENABLE_BLST_ASM=OFF`, as in the MSan build) build on
     64-bit targets; `src/blst/README.md` describes how to update it.
 
@@ -1329,7 +1329,7 @@ In addition to reviewing the upstream changes in `env_posix.cc`, you can use `ls
 check this. For example, on Linux this command will show open `.ldb` file counts:
 
 ```bash
-$ lsof -p $(pidof dashd) |\
+$ lsof -p $(pidof phantomriderd) |\
     awk 'BEGIN { fd=0; mem=0; } /ldb$/ { if ($4 == "mem") mem++; else fd++ } END { printf "mem = %s, fd = %s\n", mem, fd}'
 mem = 119, fd = 0
 ```
@@ -1470,7 +1470,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 - Try not to overload methods on argument type. E.g. don't make `getblock(true)` and `getblock("hash")`
   do different things.
 
-  - *Rationale*: This is impossible to use with `dash-cli`, and can be surprising to users.
+  - *Rationale*: This is impossible to use with `phantomrider-cli`, and can be surprising to users.
 
   - *Exception*: Some RPC calls can take both an `int` and `bool`, most notably when a bool was switched
     to a multi-value, or due to other historical reasons. **Always** have false map to 0 and
@@ -1482,7 +1482,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 
 - Add every non-string RPC argument `(method, idx, name)` to the table `vRPCConvertParams` in `rpc/client.cpp`.
 
-  - *Rationale*: `dash-cli` and the GUI debug console use this table to determine how to
+  - *Rationale*: `phantomrider-cli` and the GUI debug console use this table to determine how to
     convert a plaintext command line to JSON. If the types don't match, the method can be unusable
     from there.
 
@@ -1503,7 +1503,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
   RPCs whose behavior does *not* depend on the current chainstate may omit this
   call.
 
-  - *Rationale*: In previous versions of Dash Core, the wallet was always
+  - *Rationale*: In previous versions of PhantomRider Core, the wallet was always
     in-sync with the chainstate (by virtue of them all being updated in the
     same cs_main lock). In order to maintain the behavior that wallet RPCs
     return results as of at least the highest best-known block an RPC

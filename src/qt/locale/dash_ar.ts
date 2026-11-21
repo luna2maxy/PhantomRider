@@ -373,7 +373,7 @@
         <translation>استقبل</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>أطلب دفعات (يولد كودات الرمز المربع وبيت كوين: العناوين المعطاة)</translation>
     </message>
     <message>
@@ -643,8 +643,8 @@
         <translation>فتح &amp;ملف تكوين المحفظة</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>فتح dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>فتح phantomrider: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,7 +2385,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>الملف ليس ملف جلسة ماسترنود مشترك.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
         <translation>ملف الجلسة يستخدم إصدار صيغة غير مدعوم. حدّث داش كور لفتحه.</translation>
     </message>
     <message>
@@ -2409,7 +2409,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>ملف الجلسة لا يحتوي على مرحلة.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
         <translation>ملف الجلسة في مرحلة غير معروفة "%1". من المرجح أنه أُنشئ بإصدار أحدث من داش كور.</translation>
     </message>
     <message>
@@ -3316,7 +3316,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>المعاملات ذات المخرجات المساوية أو الأقل من هذا المبلغ ستُعتبر غباراً عند استلامها من مصادر خارجية.</translation>
     </message>
     <message>
-        <source>duffs</source>
+        <source>phr</source>
         <translation>دافز</translation>
     </message>
     <message>
@@ -3408,7 +3408,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation>الحد الأقصى</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>فتح منفذ عميل داش كور تلقائيًا على جهاز التوجيه. هذا يعمل فقط عندما يدعم جهاز التوجيه الخاص بك UPnP وتمكينه.</translation>
     </message>
     <message>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>ميناء الخريطة باستخدام UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>فتح منفذ عميل Dash Core تلقائيًا على جهاز التوجيه. هذا يعمل فقط عندما يدعم جهاز التوجيه الخاص بك NAT-PMP وتمكينه. قد يكون المنفذ الخارجي عشوائيًا.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>فتح منفذ عميل PhantomRider Core تلقائيًا على جهاز التوجيه. هذا يعمل فقط عندما يدعم جهاز التوجيه الخاص بك NAT-PMP وتمكينه. قد يكون المنفذ الخارجي عشوائيًا.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>خطأ في طلب الدفع</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>لا يمكن بدء داش: معالج الدفع مقابل الدفع</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>التعامل مع العنوان</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash: //' ليس URI صالحًا. استخدم "شرطة:" بدلاً من ذلك.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider: //' ليس URI صالحًا. استخدم "شرطة:" بدلاً من ذلك.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ For more information on using this console, type %6.
         <translation>احفظه الآن، فلا يمكن بدء التسجيل حتى تؤكد ذلك.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>أضف هذا السطر إلى dash.conf على خادم الماسترنود لديك:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>أضف هذا السطر إلى phantomrider.conf على خادم الماسترنود لديك:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,7 +6994,7 @@ For more information on using this console, type %6.
         <translation>هدف وقت التأكيد:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>إذا تم تعيين الرسوم الجمركية على 1000 دافع وكانت المعاملة 250 بايتًا فقط ، فإن "كل كيلوبايت" يدفع 250 جنيهًا فقط رسومًا ،&lt;br /&gt; بينما "على الأقل" يدفع 1000 دفين. لمعاملات أكبر من كيلوبايت تدفع كل من كيلوبايت.</translation>
     </message>
     <message>
@@ -7384,7 +7384,7 @@ For more information on using this console, type %6.
         <translation>الرسائل</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>رسالة تم إرفاقها بخط العطف: عنوان الذي سيتم تخزينه مع المعاملة كمرجع لك. ملاحظة: لن يتم إرسال هذه الرسالة عبر شبكة داش.</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ For more information on using this console, type %6.
         <translation>نسخ</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>أضف هذا السطر إلى dash.conf على خادم الماسترنود:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>أضف هذا السطر إلى phantomrider.conf على خادم الماسترنود:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Unable to restore backup of wallet.</source>
         <translation>المقطع [%s] غير معروف.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>يضبط عنوان نافذة يُلحق بعد "Dash Core - "</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>يضبط عنوان نافذة يُلحق بعد "PhantomRider Core - "</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

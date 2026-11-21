@@ -277,7 +277,7 @@ if(ENABLE_WALLET)
       dashbls
       Boost::headers
     )
-    set_target_properties(bitcoin-wallet PROPERTIES OUTPUT_NAME dash-wallet)
+    set_target_properties(bitcoin-wallet PROPERTIES OUTPUT_NAME phantomrider-wallet)
     list(APPEND installable_targets bitcoin-wallet)
   endif()
 endif()
@@ -487,7 +487,7 @@ if(BUILD_DAEMON)
     dashbls
     $<TARGET_NAME_IF_EXISTS:bitcoin_wallet>
   )
-  set_target_properties(bitcoind PROPERTIES OUTPUT_NAME dashd)
+  set_target_properties(bitcoind PROPERTIES OUTPUT_NAME phantomriderd)
   list(APPEND installable_targets bitcoind)
 endif()
 if(WITH_MULTIPROCESS)
@@ -502,7 +502,7 @@ if(WITH_MULTIPROCESS)
     dashbls
     $<TARGET_NAME_IF_EXISTS:bitcoin_wallet>
   )
-  set_target_properties(bitcoin-node PROPERTIES OUTPUT_NAME dash-node)
+  set_target_properties(bitcoin-node PROPERTIES OUTPUT_NAME phantomrider-node)
   list(APPEND installable_targets bitcoin-node)
 endif()
 
@@ -530,7 +530,7 @@ if(BUILD_CLI)
     libevent::core
     libevent::extra
   )
-  set_target_properties(bitcoin-cli PROPERTIES OUTPUT_NAME dash-cli)
+  set_target_properties(bitcoin-cli PROPERTIES OUTPUT_NAME phantomrider-cli)
   list(APPEND installable_targets bitcoin-cli)
 endif()
 
@@ -544,7 +544,7 @@ if(BUILD_TX)
     bitcoin_util
     univalue
   )
-  set_target_properties(bitcoin-tx PROPERTIES OUTPUT_NAME dash-tx)
+  set_target_properties(bitcoin-tx PROPERTIES OUTPUT_NAME phantomrider-tx)
   list(APPEND installable_targets bitcoin-tx)
 endif()
 
@@ -557,7 +557,7 @@ if(BUILD_UTIL)
     bitcoin_common
     bitcoin_util
   )
-  set_target_properties(bitcoin-util PROPERTIES OUTPUT_NAME dash-util)
+  set_target_properties(bitcoin-util PROPERTIES OUTPUT_NAME phantomrider-util)
   list(APPEND installable_targets bitcoin-util)
 endif()
 
@@ -586,7 +586,7 @@ if(BUILD_UTIL_CHAINSTATE)
       core_interface
       bitcoinkernel
   )
-  set_target_properties(bitcoin-chainstate PROPERTIES OUTPUT_NAME dash-chainstate)
+  set_target_properties(bitcoin-chainstate PROPERTIES OUTPUT_NAME phantomrider-chainstate)
   list(APPEND installable_targets bitcoin-chainstate)
 endif()
 

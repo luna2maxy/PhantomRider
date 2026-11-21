@@ -3903,7 +3903,7 @@ MessageProcessingResult PeerManagerImpl::ProcessPlatformBanMessage(NodeId node, 
 
     // NOTE: deliberately no solicitation gate here, unlike the other GETDATA-only object types.
     // PLATFORMBAN has no local ingress (no RPC, no internal producer): the originating Dash
-    // Platform node injects the ban by pushing the message straight to a Dash Core peer, so the
+    // Platform node injects the ban by pushing the message straight to a PhantomRider Core peer, so the
     // first hop is always unsolicited by design. See p2p_platform_ban.py.
     MessageProcessingResult ret{};
     ret.m_to_erase = CInv{MSG_PLATFORM_BAN, hash};

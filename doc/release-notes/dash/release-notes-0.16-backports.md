@@ -4,7 +4,7 @@
 - [`505542663d`](https://github.com/dashpay/dash/commit/505542663d) Merge #12384: [Docs] Add version footnote to tor.md (#3473)
 - [`124824da41`](https://github.com/dashpay/dash/commit/124824da41) Backport bitcoin#14123 and bitcoin#16720 (#3463)
 - [`ed7d8c883c`](https://github.com/dashpay/dash/commit/ed7d8c883c) Fix autobackup
-- [`cd42171a4f`](https://github.com/dashpay/dash/commit/cd42171a4f) bitcoind -> dashd
+- [`cd42171a4f`](https://github.com/dashpay/dash/commit/cd42171a4f) bitcoind -> phantomriderd
 - [`b1c26d4aae`](https://github.com/dashpay/dash/commit/b1c26d4aae) qt: Disconnect CClientUIInterface from SplashScreen::ConnectWallet
 - [`b0c1406bee`](https://github.com/dashpay/dash/commit/b0c1406bee) End Merge #11851: Add m_ prefix to WalletBatch::m_batch
 - [`1cf961182f`](https://github.com/dashpay/dash/commit/1cf961182f) Update walletdb comment after renaming.
@@ -17,7 +17,7 @@
 - [`8700f460e3`](https://github.com/dashpay/dash/commit/8700f460e3) Merge #12305: [docs] [refactor] Add help messages for datadir path mangling
 - [`28a8db3ca7`](https://github.com/dashpay/dash/commit/28a8db3ca7) Fix sourceFile
 - [`97907b051f`](https://github.com/dashpay/dash/commit/97907b051f) Fix autobackup functionality
-- [`6f4260f860`](https://github.com/dashpay/dash/commit/6f4260f860) bitcoin -> Dash Core
+- [`6f4260f860`](https://github.com/dashpay/dash/commit/6f4260f860) bitcoin -> PhantomRider Core
 - [`02dfb89b02`](https://github.com/dashpay/dash/commit/02dfb89b02) fix test 50 -> 500
 - [`4aa8a9a206`](https://github.com/dashpay/dash/commit/4aa8a9a206) resolve DEFAULT_WALLET_DAT being removed
 - [`7999080c04`](https://github.com/dashpay/dash/commit/7999080c04) Merge #11687: External wallet files
@@ -373,7 +373,7 @@
 - [`e7c27f3b77`](https://github.com/dashpay/dash/commit/e7c27f3b77) Merge #10898: Fix invalid checks (NULL checks after dereference, redundant checks, etc.)
 - [`78c06fa838`](https://github.com/dashpay/dash/commit/78c06fa838) More of bitcoin#10888
 - [`cdf68a9eb8`](https://github.com/dashpay/dash/commit/cdf68a9eb8) Have to prepare the chain manually in blockchain.py
-- [`e031cf4572`](https://github.com/dashpay/dash/commit/e031cf4572) bitcoind->dashd
+- [`e031cf4572`](https://github.com/dashpay/dash/commit/e031cf4572) bitcoind->phantomriderd
 - [`8d2cf6b82e`](https://github.com/dashpay/dash/commit/8d2cf6b82e) assert_raises_jsonrpc -> assert_raises_rpc_error
 - [`fb2cd99f94`](https://github.com/dashpay/dash/commit/fb2cd99f94) Merge #10672: Avoid division by zero in the case of a corrupt estimates file
 - [`df109ec118`](https://github.com/dashpay/dash/commit/df109ec118) Merge #11073: Remove dead store in ecdsa_signature_parse_der_lax.

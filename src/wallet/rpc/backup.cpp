@@ -936,7 +936,7 @@ RPCHelpMan dumpwallet()
                 RPCResult{
                     RPCResult::Type::OBJ, "", "",
                     {
-                        {RPCResult::Type::STR, "dashcoreversion", "The Dash Core version that created the wallet dump"},
+                        {RPCResult::Type::STR, "coreversion", "The PhantomRider Core version that created the wallet dump"},
                         {RPCResult::Type::NUM, "lastblockheight", "The height of the last block processed by the wallet"},
                         {RPCResult::Type::STR_HEX, "lastblockhash", "The hash of the last block processed by the wallet"},
                         {RPCResult::Type::NUM_TIME, "lastblocktime", "The time of the last block processed by the wallet, expressed in " + UNIX_EPOCH_TIME},
@@ -1013,7 +1013,7 @@ RPCHelpMan dumpwallet()
     file << "\n";
 
     UniValue obj(UniValue::VOBJ);
-    obj.pushKV("dashcoreversion", FormatFullVersion());
+    obj.pushKV("coreversion", FormatFullVersion());
     obj.pushKV("lastblockheight", wallet.GetLastBlockHeight());
     obj.pushKV("lastblockhash", wallet.GetLastBlockHash().ToString());
     obj.pushKV("lastblocktime", block_time);

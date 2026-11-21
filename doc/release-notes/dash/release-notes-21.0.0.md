@@ -1,4 +1,4 @@
-# Dash Core version v21.0.0
+# PhantomRider Core version v21.0.0
 
 This is a new major version release, bringing new features, various bugfixes
 and other improvements.
@@ -18,7 +18,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -37,7 +37,7 @@ reindex or re-sync the whole chain.
 
 Masternode Reward Location Reallocation (MN_RR) Hard Fork
 ---------------------------------------------------------
-The MN_RR hard fork, first included in Dash Core v20, will be activated after v21 is adopted by masternodes. This
+The MN_RR hard fork, first included in PhantomRider Core v20, will be activated after v21 is adopted by masternodes. This
 hard fork enables the major feature included in this release: Masternode Reward Location Reallocation. The activation
 will also initiate the launch of the Dash Platform Genesis Chain.
 
@@ -74,9 +74,9 @@ active values historically used on mainnet, so there is no change in the network
 Default Branch Changed
 ----------------------
 
-The Dash Core repository (`github.com/dashpay/dash`) will now use `develop` as the default branch. New clones
+The PhantomRider Core repository (`github.com/dashpay/dash`) will now use `develop` as the default branch. New clones
 of the repository will no longer default to the `master` branch. If you want to continue using a stable version of
-Dash Core, you should manually checkout the `master` branch.
+PhantomRider Core, you should manually checkout the `master` branch.
 
 # Additional Changes
 
@@ -104,9 +104,9 @@ of "mine" for scripts which is simpler and more intuitive than that used by Lega
 Descriptor Wallets also uses different semantics for watch-only things and imports.
 
 As Descriptor Wallets are a new type of wallet, their introduction does not affect existing wallets.
-Users who already have a Dash Core wallet can continue to use it as they did before without
+Users who already have a PhantomRider Core wallet can continue to use it as they did before without
 any change in behavior. Newly created Legacy Wallets (which is the default type of wallet) will
-behave as they did in previous versions of Dash Core.
+behave as they did in previous versions of PhantomRider Core.
 
 The differences between Descriptor Wallets and Legacy Wallets are largely limited to non user facing
 things. They are intended to behave similarly except for the import/export and watchonly functionality
@@ -309,7 +309,7 @@ Remote Procedure Calls (RPCs)
 
 ### Improved support of composite commands
 
-Dash Core's composite commands such as `quorum list` or `bls generate` now are compatible with a whitelist feature.
+PhantomRider Core's composite commands such as `quorum list` or `bls generate` now are compatible with a whitelist feature.
 
 For example, the whitelist `getblockcount,quorumlist` will allow calling commands `getblockcount` and `quorum list`, but not `quorum sign`.
 
@@ -329,24 +329,24 @@ P2P and network changes
   to help easily differentiate between v20 and v21 peers.
 - With I2P connections, a new, transient address is used for each outbound
   connection if `-i2pacceptincoming=0`.
-- A dashd node will no longer broadcast addresses to inbound peers by default.
+- A phantomriderd node will no longer broadcast addresses to inbound peers by default.
   They will become eligible for address gossip after sending an `ADDR`, `ADDRV2`,
   or `GETADDR` message.
 
 
-dash-tx Changes
+phantomrider-tx Changes
 ---------------
-- When creating a hex-encoded Dash transaction using the `dash-tx` utility
+- When creating a hex-encoded Dash transaction using the `phantomrider-tx` utility
   with the `-json` option set, the following fields: `addresses`, `reqSigs` are no longer
   returned in the tx output of the response.
 
-dash-cli Changes
+phantomrider-cli Changes
 ----------------
 
-- A new `-rpcwaittimeout` argument to `dash-cli` sets the timeout
+- A new `-rpcwaittimeout` argument to `phantomrider-cli` sets the timeout
   in seconds to use with `-rpcwait`. If the timeout expires,
-  `dash-cli` will report a failure. (dash#5923)
-- The `connections` field of `dash-cli -getinfo` is expanded to return a JSON
+  `phantomrider-cli` will report a failure. (dash#5923)
+- The `connections` field of `phantomrider-cli -getinfo` is expanded to return a JSON
   object with `in`, `out` and `total` numbers of peer connections and `mn_in`,
   `mn_out` and `mn_total` numbers of verified mn connections. It previously
   returned a single integer value for the total number of peer connections. (dash#5823)
@@ -358,14 +358,14 @@ dash-cli Changes
   that support Tor v3 addresses only.  (#5904)
 - CLI `-addrinfo` now returns a single field for the number of `onion` addresses
   known to the node instead of separate `torv2` and `torv3` fields, as support
-  for Tor V2 addresses was removed from Dash Core in 18.0.
+  for Tor V2 addresses was removed from PhantomRider Core in 18.0.
 
-dash-wallet changes
+phantomrider-wallet changes
 -------------------
-This release introduces several improvements and new features to the `dash-wallet` tool, making it more versatile and
+This release introduces several improvements and new features to the `phantomrider-wallet` tool, making it more versatile and
 user-friendly for managing Dash wallets.
 
-- Wallets created with the `dash-wallet` tool will now utilize the `FEATURE_LATEST` version of wallet which is the HD
+- Wallets created with the `phantomrider-wallet` tool will now utilize the `FEATURE_LATEST` version of wallet which is the HD
   (Hierarchical Deterministic) wallets with HD chain inside.
 - new command line argument `-usehd` allows creation of non-Hierarchical Deterministic (non-HD) wallets with the
   `wallettool` for compatibility reasons since default version is bumped to HD version

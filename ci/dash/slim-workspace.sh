@@ -21,8 +21,8 @@ TARGETS=(
   # Bundle restored from artifact
   "${BUNDLE_KEY}.tar.zst"
   # Binaries not needed by functional tests
-  "build-ci/dashcore-${BUILD_TARGET}/src/dash-tx"
-  "build-ci/dashcore-${BUILD_TARGET}/src/qt/dash-qt"
+  "build-ci/dashcore-${BUILD_TARGET}/src/phantomrider-tx"
+  "build-ci/dashcore-${BUILD_TARGET}/src/qt/phantomrider-qt"
 )
 
 # Delete what we don't need

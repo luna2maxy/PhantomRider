@@ -1,4 +1,4 @@
-Dash Core version v18.1.0
+PhantomRider Core version v18.1.0
 =========================
 
 Release is now available from:
@@ -24,13 +24,13 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux). If you upgrade after DIP0003 activation and you were
+phantomriderd/phantomrider-qt (on Linux). If you upgrade after DIP0003 activation and you were
 using version < 0.13 you will have to reindex (start with -reindex-chainstate
 or -reindex) to make sure your wallet has all the new data synced. Upgrading
 from version 0.13 should not require any additional actions.
 
 When upgrading from a version prior to 18.0.1, the
-first startup of Dash Core will run a migration process which can take anywhere
+first startup of PhantomRider Core will run a migration process which can take anywhere
 from a few minutes to thirty minutes to finish. After the migration, a
 downgrade to an older version is only possible with a reindex
 (or reindex-chainstate).
@@ -58,7 +58,7 @@ is not recommended.
 Versioning
 ----------
 
-Dash Core imperfectly follows semantic versioning. Breaking changes should be
+PhantomRider Core imperfectly follows semantic versioning. Breaking changes should be
 expected in a major release. The number and severity of breaking changes in minor
 releases are minimized, however we do not guarantee there are no breaking changes.
 Bitcoin backports often introduce breaking changes, and are a likely source of
@@ -80,9 +80,9 @@ launch arguments are no longer valid.
 systemd init file
 -----------------
 
-The systemd init file (`contrib/init/dashd.service`) has been changed to use
-`/var/lib/dashd` as the data directory instead of `~dash/.dash`. This
-change makes Dash Core more consistent with other services, and makes the
+The systemd init file (`contrib/init/phantomriderd.service`) has been changed to use
+`/var/lib/phantomriderd` as the data directory instead of `~dash/.dash`. This
+change makes PhantomRider Core more consistent with other services, and makes the
 systemd init config more consistent with existing Upstart and OpenRC configs.
 
 The configuration, PID, and data directories are now completely managed by
@@ -91,9 +91,9 @@ systemd, which will take care of their creation, permissions, etc. See
 for more details.
 
 When using the provided init files under `contrib/init`, overriding the
-`datadir` option in `/etc/dash/dash.conf` will have no effect. This is
+`datadir` option in `/etc/phantomridercore/phantomrider.conf` will have no effect. This is
 because the command line arguments specified in the init files take precedence
-over the options specified in `/etc/dash/dash.conf`.
+over the options specified in `/etc/phantomridercore/phantomrider.conf`.
 
 Account API removed
 -------------------
@@ -171,7 +171,7 @@ Remote Procedure Call (RPC) Changes
 -----------------------------------
 
 Most changes here were introduced through Bitcoin backports mostly related to
-the deprecation of wallet accounts in DashCore v0.17 and introduction of PSBT
+the deprecation of wallet accounts in PhantomRiderCore v0.17 and introduction of PSBT
 format.
 
 ### The new RPCs are:
@@ -265,10 +265,10 @@ Removed cmd-line options:
   signal RBF. This functionality has been superseded with the abandon transaction feature.
 
 Changes in existing cmd-line options:
-- The `testnet` field in `dash-cli -getinfo` has been renamed to `chain` and now returns the current network name as defined in BIP70 (main, test, regtest).
+- The `testnet` field in `phantomrider-cli -getinfo` has been renamed to `chain` and now returns the current network name as defined in BIP70 (main, test, regtest).
 - Importing blocks upon startup via the `bootstrap.dat` file no longer occurs by default. The file must now be specified with `-loadblock=<file>`.
 
-Please check `Help -> Command-line options` in Qt wallet or `dashd --help` for
+Please check `Help -> Command-line options` in Qt wallet or `phantomriderd --help` for
 more information.
 
 Backports from Bitcoin Core
@@ -314,12 +314,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Dash Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+PhantomRider Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Dash.
 
-Dash Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+PhantomRider Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Dash Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+PhantomRider Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

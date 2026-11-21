@@ -62,7 +62,7 @@ class P2PPermissionsTests(BitcoinTestFramework):
         ip_port = "127.0.0.1:{}".format(p2p_port(1))
         self.nodes[1].replace_in_config([("bind=127.0.0.1", "whitebind=bloomfilter,forcerelay@" + ip_port)])
         self.checkpermission(
-            # Without a plain -bind, dashd would also bind the fixed default onion target port
+            # Without a plain -bind, phantomriderd would also bind the fixed default onion target port
             ["-whitelist=noban@127.0.0.1", f"-bind=127.0.0.1:{tor_port(1)}=onion"],
             # Check parameter interaction forcerelay should activate relay
             ["noban", "bloomfilter", "forcerelay", "relay", "download"])

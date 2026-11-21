@@ -40,7 +40,7 @@ constexpr const char* FINGERPRINT_KEY{"fingerprint"};
 //! rendered and re-checked on the GUI thread
 constexpr size_t MAX_CONTRIBUTION_INPUTS{64};
 //! The engine has no options model, so its own messages quote plain DASH
-constexpr BitcoinUnits::Unit kEngineUnit{BitcoinUnits::Unit::DASH};
+constexpr BitcoinUnits::Unit kEngineUnit{BitcoinUnits::Unit::PHR};
 
 //! Copy of `json` with any "fingerprint" key removed, preserving key order
 UniValue WithoutFingerprint(const UniValue& json)
@@ -199,10 +199,10 @@ constexpr char16_t NARROW_NO_BREAK_SPACE{0x202F};
 
 QString SharedMnFormatAmount(BitcoinUnits::Unit unit, CAmount amount)
 {
-    // Eight fixed decimals on a 1000 DASH collateral are noise the reader has
+    // Eight fixed decimals on a 1000 PHR collateral are noise the reader has
     // to count through to compare two rows, so a whole-coin amount is shown as
     // one. Both separators are made non-breaking: a collateral that wraps as
-    // "1" / "000.00000000" / "tDASH" across three lines is unreadable, and one
+    // "1" / "000.00000000" / "tPHR" across three lines is unreadable, and one
     // confirmation dialog did exactly that.
     QString number{BitcoinUnits::format(unit, amount, /*plussign=*/false, BitcoinUnits::SeparatorStyle::ALWAYS)};
     if (const int point{number.indexOf(QLatin1Char('.'))}; point >= 0) {
@@ -383,7 +383,7 @@ bool MnShareSession::fromJson(const UniValue& json, QString& error)
         const UniValue& version{json.find_value("version")};
         if (!version.isNum() || version.getInt<int>() != ENVELOPE_VERSION) {
             error = QCoreApplication::translate("MnShareSession", "The session file uses an unsupported format "
-                                                                  "version. Update Dash Core to open it.");
+                                                                  "version. Update PhantomRider Core to open it.");
             return false;
         }
         const UniValue& network{json.find_value("network")};
@@ -414,7 +414,7 @@ bool MnShareSession::fromJson(const UniValue& json, QString& error)
         const auto stage{StageFromKey(stage_value.get_str())};
         if (!stage) {
             error = QCoreApplication::translate("MnShareSession", "The session file is at the unknown stage \"%1\". It "
-                                                                  "was probably created by a newer Dash Core.")
+                                                                  "was probably created by a newer PhantomRider Core.")
                         .arg(QString::fromStdString(stage_value.get_str()));
             return false;
         }

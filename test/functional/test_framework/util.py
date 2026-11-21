@@ -332,7 +332,7 @@ MAX_NODES = 20
 PORT_MIN = int(os.getenv('TEST_RUNNER_PORT_MIN', default=11000))
 # The number of ports to "reserve" for p2p, rpc and tor, each
 PORT_RANGE = 10000
-# Port of dashd's default onion service target on regtest (127.0.0.1:19896)
+# Port of phantomriderd's default onion service target on regtest (127.0.0.1:19896)
 REGTEST_ONION_TARGET_PORT = 19896
 
 
@@ -370,7 +370,7 @@ def _port(n, range_index):
     assert n <= MAX_NODES
     range_start = PORT_MIN + range_index * PORT_RANGE
     port = range_start + n + (MAX_NODES * PortSeed.n) % (PORT_RANGE - 1 - MAX_NODES)
-    # dashd may bind the regtest default onion service target, so never hand it out.
+    # phantomriderd may bind the regtest default onion service target, so never hand it out.
     # No port seed and node index reach the last port of a range, so it can't collide.
     if port == REGTEST_ONION_TARGET_PORT:
         port = range_start + PORT_RANGE - 1
@@ -411,7 +411,7 @@ def initialize_datadir(dirname, n, chain, disable_autoconnect=True):
     datadir = get_datadir_path(dirname, n)
     if not os.path.isdir(datadir):
         os.makedirs(datadir)
-    write_config(os.path.join(datadir, "dash.conf"), n=n, chain=chain, disable_autoconnect=disable_autoconnect)
+    write_config(os.path.join(datadir, "phantomrider.conf"), n=n, chain=chain, disable_autoconnect=disable_autoconnect)
     os.makedirs(os.path.join(datadir, 'stderr'), exist_ok=True)
     os.makedirs(os.path.join(datadir, 'stdout'), exist_ok=True)
     return datadir
@@ -463,18 +463,18 @@ def get_temp_default_datadir(temp_dir: pathlib.Path) -> Tuple[dict, pathlib.Path
     temp_dir, as well as the complete path it would return."""
     if sys.platform == "win32":
         env = dict(APPDATA=str(temp_dir))
-        datadir = temp_dir / "DashCore"
+        datadir = temp_dir / "PhantomRiderCore"
     else:
         env = dict(HOME=str(temp_dir))
         if sys.platform == "darwin":
-            datadir = temp_dir / "Library/Application Support/DashCore"
+            datadir = temp_dir / "Library/Application Support/PhantomRiderCore"
         else:
-            datadir = temp_dir / ".dashcore"
+            datadir = temp_dir / ".phantomridercore"
     return env, datadir
 
 
 def append_config(datadir, options):
-    with open(os.path.join(datadir, "dash.conf"), 'a', encoding='utf8') as f:
+    with open(os.path.join(datadir, "phantomrider.conf"), 'a', encoding='utf8') as f:
         for option in options:
             f.write(option + "\n")
 
@@ -482,8 +482,8 @@ def append_config(datadir, options):
 def get_auth_cookie(datadir, chain):
     user = None
     password = None
-    if os.path.isfile(os.path.join(datadir, "dash.conf")):
-        with open(os.path.join(datadir, "dash.conf"), 'r', encoding='utf8') as f:
+    if os.path.isfile(os.path.join(datadir, "phantomrider.conf")):
+        with open(os.path.join(datadir, "phantomrider.conf"), 'r', encoding='utf8') as f:
             for line in f:
                 if line.startswith("rpcuser="):
                     assert user is None  # Ensure that there is only one rpcuser line

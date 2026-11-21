@@ -535,7 +535,7 @@ BOOST_AUTO_TEST_CASE(split_amount_by_shares)
     BOOST_CHECK_EQUAL(amounts[1], total * 3 / 10);
     BOOST_CHECK_EQUAL(amounts[2], total - amounts[0] - amounts[1]);
 
-    // No 64-bit overflow for realistic values: reward in duffs times a 1000 DASH share
+    // No 64-bit overflow for realistic values: reward in phr times a 1000 DASH share
     const auto big = SplitAmountByShares(566 * COIN, shares);
     BOOST_CHECK_EQUAL(big[0] + big[1] + big[2], 566 * COIN);
     BOOST_CHECK_EQUAL(big[0], 566 * COIN * 6 / 10);

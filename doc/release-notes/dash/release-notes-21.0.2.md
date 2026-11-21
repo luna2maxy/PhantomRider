@@ -1,4 +1,4 @@
-# Dash Core version v21.0.2
+# PhantomRider Core version v21.0.2
 
 This is a new patch release, bringing an important bugfix, as well as docker build improvements.
 
@@ -17,7 +17,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -44,7 +44,7 @@ investigating this issue.
 Docker Images now include SBOM
 ------------------------------
 
-The [docker images](https://hub.docker.com/r/dashpay/dashd) should now provide SBOM and provenance.
+The [docker images](https://hub.docker.com/r/dashpay/phantomriderd) should now provide SBOM and provenance.
 SBOM and provenenance provide additional information about the build process and exact dependencies included.
 See this [blog post](https://www.docker.com/blog/generate-sboms-with-buildkit/) by Docker for more information.
 

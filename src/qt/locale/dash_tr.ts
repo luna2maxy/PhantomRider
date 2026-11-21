@@ -373,7 +373,7 @@
         <translation>&amp;Al</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>Ödeme talep et (QR kodu ve Dash URI'si oluşturur)</translation>
     </message>
     <message>
@@ -643,8 +643,8 @@
         <translation>&amp;Cüzdan yapılandırma dosyasını aç</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>Bir dash: URI aç</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Bir phantomrider: URI aç</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,8 +2385,8 @@ Taşıma işlemi, taşımadan önce cüzdanın bir yedeğini oluşturur. Bu yede
         <translation>Dosya, bir paylaşımlı masternode oturum dosyası değil.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>Oturum dosyası desteklenmeyen bir biçim sürümü kullanıyor. Açmak için Dash Core'u güncelleyin.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>Oturum dosyası desteklenmeyen bir biçim sürümü kullanıyor. Açmak için PhantomRider Core'u güncelleyin.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ Taşıma işlemi, taşımadan önce cüzdanın bir yedeğini oluşturur. Bu yede
         <translation>Oturum dosyasında aşama bilgisi yok.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>Oturum dosyası bilinmeyen "%1" aşamasında. Muhtemelen daha yeni bir Dash Core tarafından oluşturulmuş.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>Oturum dosyası bilinmeyen "%1" aşamasında. Muhtemelen daha yeni bir PhantomRider Core tarafından oluşturulmuş.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,7 +3316,7 @@ Taşıma işlemi, taşımadan önce cüzdanın bir yedeğini oluşturur. Bu yede
         <translation>Harici kaynaklardan alındığında bu tutara eşit veya altındaki çıktılara sahip işlemler toz olarak kabul edilecektir.</translation>
     </message>
     <message>
-        <source>duffs</source>
+        <source>phr</source>
         <translation>duff</translation>
     </message>
     <message>
@@ -3408,8 +3408,8 @@ Taşıma işlemi, taşımadan önce cüzdanın bir yedeğini oluşturur. Bu yede
         <translation>Maksimum</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Router'da otomatik olarak Dash Core istemcisi portu aç. Bu sadece router'ınız UPnP destekliyorsa ve etkinse çalışır.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Router'da otomatik olarak PhantomRider Core istemcisi portu aç. Bu sadece router'ınız UPnP destekliyorsa ve etkinse çalışır.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Portları &amp;UPnP kullanarak haritala</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Yönlendiricide Dash Core istemci portunu otomatik olarak açın. Bu yalnızca yönlendiriciniz NAT-PMP'yi desteklediğinde ve etkinleştirildiğinde çalışır. Harici port rastgele olabilir.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Yönlendiricide PhantomRider Core istemci portunu otomatik olarak açın. Bu yalnızca yönlendiriciniz NAT-PMP'yi desteklediğinde ve etkinleştirildiğinde çalışır. Harici port rastgele olabilir.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Ödeme talebi hatası</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>Dash başlatılamadı: tıkla-ve-öde yöneticisi</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>URI yönetimi</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' geçerli bir URI değil. Bunun yerine 'dash:' kullanın.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' geçerli bir URI değil. Bunun yerine 'phantomrider:' kullanın.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ Bu konsolu kullanma hakkında daha fazla bilgi için %6 yazın.
         <translation>Şimdi kaydedin — onaylamadan kayıt başlayamaz.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Bu satırı masternode sunucunuzdaki dash.conf dosyasına ekleyin:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Bu satırı masternode sunucunuzdaki phantomrider.conf dosyasına ekleyin:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,7 +6994,7 @@ Bu konsolu kullanma hakkında daha fazla bilgi için %6 yazın.
         <translation>Doğrulama süresi hedefi:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Eğer özel ücret 1000 duff olarak belirlendiyse ve işlem sadece 250 bayt ise "kilobayt başına" ücret olarak sadece 250 duff ödersiniz,&lt;br /&gt;bu da "en az" 1000 duff öder. Bir kilobayttan büyük işlemler için ikisi de kilobayt başına ödeme yapar.</translation>
     </message>
     <message>
@@ -7384,7 +7384,7 @@ Bu konsolu kullanma hakkında daha fazla bilgi için %6 yazın.
         <translation>Mesaj:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>Referans için Dash: URI'siyle iliştirilmiş işlemle birlikte depolanacak bir ileti. Not: Bu mesaj Dash ağı üzerinden gönderilmeyecektir.</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ Bu konsolu kullanma hakkında daha fazla bilgi için %6 yazın.
         <translation>Kopyala</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Bu satırı masternode sunucusundaki dash.conf dosyasına ekleyin:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Bu satırı masternode sunucusundaki phantomrider.conf dosyasına ekleyin:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Cüzdan yedeği geri yüklenemiyor.</translation>
         <translation>[%s] bölümü tanınmadı.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Pencere başlığını ayarlar; "Dash Core - " ifadesinin sonuna eklenir</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Pencere başlığını ayarlar; "PhantomRider Core - " ifadesinin sonuna eklenir</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

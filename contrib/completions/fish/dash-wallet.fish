@@ -1,5 +1,5 @@
 # Disable files from being included in completions by default
-complete --command dash-wallet --no-files
+complete --command phantomrider-wallet --no-files
 
 # Extract options
 function __fish_dash_wallet_get_options
@@ -19,17 +19,17 @@ end
 
 # Add options
 complete \
-    --command dash-wallet \
+    --command phantomrider-wallet \
     --condition "not __fish_seen_subcommand_from (__fish_dash_wallet_get_commands)" \
     --arguments "(__fish_dash_wallet_get_options)"
 
 # Add commands
 complete \
-    --command dash-wallet \
+    --command phantomrider-wallet \
     --condition "not __fish_seen_subcommand_from (__fish_dash_wallet_get_commands)" \
     --arguments "(__fish_dash_wallet_get_commands)"
 
 # Add file completions for load and set commands
-complete --command dash-wallet \
+complete --command phantomrider-wallet \
     --condition "string match -r -- '(dumpfile|datadir)*=' (commandline -pt)" \
     --force-files

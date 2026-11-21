@@ -5,7 +5,7 @@ Construct a linear, no-fork, best version of the Dash blockchain.
 
 https://github.com/dashpay/dash_hash
 
-Block files written by recent Dash Core versions hold zstd-compressed records; reading
+Block files written by recent PhantomRider Core versions hold zstd-compressed records; reading
 them with `linearize-data.py` needs the `zstandard` module (`pip install zstandard`)
 or Python 3.14+.
 
@@ -28,7 +28,7 @@ standalone hash lists but safe to use with linearize-data.py, which will output
 the same data no matter which byte format is chosen.
 
 The `linearize-hashes` script requires a connection, local or remote, to a
-JSON-RPC server. Running `dashd` or `dash-qt -server` will be sufficient.
+JSON-RPC server. Running `phantomriderd` or `phantomrider-qt -server` will be sufficient.
 
 ## Step 2: Copy local block data
 
@@ -45,8 +45,8 @@ will be printed.
 * `file_timestamp`: Set each file's last-accessed and last-modified times,
 respectively, to the current time and to the timestamp of the most recent block
 written to the script's blockchain.
-* `genesis`: The hash of the genesis block in the blockchain. (default is '67215764b843ce5cbb30a6166c083fe4808019e844c3b57d4cc117d9186ad2fc', mainnet)
-* `input`: dashd blocks/ directory containing blkNNNNN.dat
+* `genesis`: The hash of the genesis block in the blockchain. (default is '5ac6f70a6cad661ed30f552c289a8e9ec9cec5e411aa943a7fd26ef8d5485f47', mainnet)
+* `input`: phantomriderd blocks/ directory containing blkNNNNN.dat
 * `hashlist`: text file containing list of block hashes created by
 linearize-hashes.py.
 * `max_out_sz`: Maximum size for files created by the `output_file` option.

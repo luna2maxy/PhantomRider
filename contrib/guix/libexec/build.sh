@@ -264,7 +264,7 @@ mkdir -p "$DISTSRC"
           "-DAPPEND_LDFLAGS=${HOST_LDFLAGS}" \
           ${CONFIGFLAGS}
 
-    # Build Dash Core
+    # Build PhantomRider Core
     cmake --build build -j "$JOBS" ${V:+--verbose}
 
     # Make macos-specific debug symbols
@@ -291,12 +291,12 @@ mkdir -p "$DISTSRC"
             ;;
     esac
 
-    # Setup the directory where our Dash Core build for HOST will be
+    # Setup the directory where our PhantomRider Core build for HOST will be
     # installed. This directory will also later serve as the input for our
     # binary tarballs.
     INSTALLPATH="${PWD}/installed/${DISTNAME}"
     mkdir -p "${INSTALLPATH}"
-    # Install built Dash Core to $INSTALLPATH
+    # Install built PhantomRider Core to $INSTALLPATH
     cmake --install build --prefix "${INSTALLPATH}" ${V:+--verbose}
 
     case "$HOST" in
@@ -415,9 +415,9 @@ mkdir -p "$DISTSRC"
                 ;;
         esac
 
-        # copy over the example dash.conf file. if contrib/devtools/gen-dash-conf.sh
+        # copy over the example phantomrider.conf file. if contrib/devtools/gen-dash-conf.sh
         # has not been run before buildling, this file will be a stub
-        cp "${DISTSRC}/contrib/debian/examples/dash.conf" "${DISTNAME}/"
+        cp "${DISTSRC}/contrib/debian/examples/phantomrider.conf" "${DISTNAME}/"
 
         cp -r "${DISTSRC}/share/rpcauth" "${DISTNAME}/share/"
 

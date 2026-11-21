@@ -259,7 +259,7 @@ public:
         int& change_pos,
         CAmount& fee) = 0;
 
-    //! Create a signed, uncommitted asset lock converting credit_amount duffs
+    //! Create a signed, uncommitted asset lock converting credit_amount phr
     //! into Platform credits. Its single P2PKH credit output pays the key the
     //! wallet derives for funding_key, so the credits stay recoverable from
     //! the wallet's seed.

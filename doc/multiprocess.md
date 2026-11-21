@@ -4,7 +4,7 @@ _This document describes usage of the multiprocess feature. For design informati
 
 ## Build Option
 
-On unix systems, the `-DWITH_MULTIPROCESS=ON` option can be passed to CMake to build `dash-node` alongside `dashd`, and `dash-gui` alongside `dash-qt` when the GUI is enabled.
+On unix systems, the `-DWITH_MULTIPROCESS=ON` option can be passed to CMake to build `dash-node` alongside `phantomriderd`, and `phantomrider-gui` alongside `phantomrider-qt` when the GUI is enabled.
 
 ## Debugging
 
@@ -31,6 +31,6 @@ Alternately, you can install [Cap'n Proto](https://capnproto.org/) and [libmulti
 
 ## Usage
 
-`dash-node` is a drop-in replacement for `dashd`, and `dash-gui` is a drop-in replacement for `dash-qt`, and there are no differences in use or external behavior between the new and old executables. But internally after backporting [bitcoin#10102](https://github.com/bitcoin/bitcoin/pull/10102), `dash-gui` will spawn a `dash-node` process to run P2P and RPC code, communicating with it across a socket pair, and `dash-node` will spawn `dash-wallet` to run wallet code, also communicating over a socket pair. This will let node, wallet, and GUI code run in separate address spaces for better isolation, and allow future improvements like being able to start and stop components independently on different machines and environments.
-[bitcoin#19460](https://github.com/bitcoin/bitcoin/pull/19460) also adds a new `dash-node` `-ipcbind` option and a `dash-wallet` `-ipcconnect` option to allow new wallet processes to connect to an existing node process.
-And [bitcoin#19461](https://github.com/bitcoin/bitcoin/pull/19461) adds a new `dash-gui` `-ipcconnect` option to allow new GUI processes to connect to an existing node process.
+`dash-node` is a drop-in replacement for `phantomriderd`, and `phantomrider-gui` is a drop-in replacement for `phantomrider-qt`, and there are no differences in use or external behavior between the new and old executables. But internally after backporting [bitcoin#10102](https://github.com/bitcoin/bitcoin/pull/10102), `phantomrider-gui` will spawn a `dash-node` process to run P2P and RPC code, communicating with it across a socket pair, and `dash-node` will spawn `phantomrider-wallet` to run wallet code, also communicating over a socket pair. This will let node, wallet, and GUI code run in separate address spaces for better isolation, and allow future improvements like being able to start and stop components independently on different machines and environments.
+[bitcoin#19460](https://github.com/bitcoin/bitcoin/pull/19460) also adds a new `dash-node` `-ipcbind` option and a `phantomrider-wallet` `-ipcconnect` option to allow new wallet processes to connect to an existing node process.
+And [bitcoin#19461](https://github.com/bitcoin/bitcoin/pull/19461) adds a new `phantomrider-gui` `-ipcconnect` option to allow new GUI processes to connect to an existing node process.

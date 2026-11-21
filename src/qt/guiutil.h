@@ -148,7 +148,7 @@ namespace GUIUtil
      */
     void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut);
 
-    // Parse "dash:" URI into recipient object, return true on successful parsing
+    // Parse "phantomrider:" URI into recipient object, return true on successful parsing
     bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
     bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
     bool validateBitcoinURI(const QString& uri);
@@ -321,7 +321,7 @@ namespace GUIUtil
     // Open debug.log
     void openDebugLogfile();
 
-    // Open dash.conf
+    // Open phantomrider.conf
     void openConfigfile();
 
     // Browse backup folder

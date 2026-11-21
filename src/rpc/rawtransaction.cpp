@@ -196,7 +196,7 @@ static std::vector<RPCResult> DecodeTxDoc(const std::string& txid_field_doc)
                     {RPCResult::Type::STR_HEX, "hex", "The raw signature script bytes, hex-encoded"},
                 }},
                 {RPCResult::Type::STR_AMOUNT, "value", /*optional=*/true, "The value of the spent output in " + CURRENCY_UNIT + " (only if spentindex is enabled)"},
-                {RPCResult::Type::NUM, "valueSat", /*optional=*/true, "The value of the spent output in duffs (only if spentindex is enabled)"},
+                {RPCResult::Type::NUM, "valueSat", /*optional=*/true, "The value of the spent output in phr (only if spentindex is enabled)"},
                 {RPCResult::Type::STR, "address", /*optional=*/true, "The Dash address of the spent output (only if spentindex is enabled and a well-defined address exists)"},
                 {RPCResult::Type::NUM, "sequence", "The script sequence number"},
             }},
@@ -206,7 +206,7 @@ static std::vector<RPCResult> DecodeTxDoc(const std::string& txid_field_doc)
             {RPCResult::Type::OBJ, "", "",
             {
                 {RPCResult::Type::STR_AMOUNT, "value", "The value in " + CURRENCY_UNIT},
-                {RPCResult::Type::NUM, "valueSat", "The value in duffs"},
+                {RPCResult::Type::NUM, "valueSat", "The value in phr"},
                 {RPCResult::Type::NUM, "n", "index"},
                 {RPCResult::Type::OBJ, "scriptPubKey", "", ScriptPubKeyDoc()},
                 {RPCResult::Type::STR_HEX, "spentTxId", /*optional=*/true, "The transaction id that spent this output (only if spentindex is enabled)"},

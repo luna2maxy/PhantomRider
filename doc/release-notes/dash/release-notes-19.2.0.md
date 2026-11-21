@@ -1,4 +1,4 @@
-# Dash Core version v19.2.0
+# PhantomRider Core version v19.2.0
 
 Release is now available from:
 
@@ -22,12 +22,12 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux). If you upgrade after DIP0003 activation and you were
+phantomriderd/phantomrider-qt (on Linux). If you upgrade after DIP0003 activation and you were
 using version < 0.13 you will have to reindex (start with -reindex-chainstate
 or -reindex) to make sure your wallet has all the new data synced. Upgrading
 from version 0.13 should not require any additional actions.
 
-At the first startup Dash Core will run a migration process which can take
+At the first startup PhantomRider Core will run a migration process which can take
 anywhere from a few minutes to thirty minutes to finish. After the migration,
 a downgrade to an older version is only possible with a reindex.
 
@@ -58,7 +58,7 @@ delayed the start of the signaling for the v19 Hard Fork until June 14th.
 
 To resolve these issues we had to rework the way BLS public keys are handled
 including the way they are serialized in the internal database. This made it
-incompatible with older versions of Dash Core, so a db migration path was
+incompatible with older versions of PhantomRider Core, so a db migration path was
 implemented for all recent versions.
 
 ## Improve migration and historical data support on light clients
@@ -139,12 +139,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Dash Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+PhantomRider Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Dash.
 
-Dash Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+PhantomRider Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Dash Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+PhantomRider Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

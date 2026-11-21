@@ -1,6 +1,6 @@
 UNIX BUILD NOTES
 ====================
-Some notes on how to build Dash Core in Unix.
+Some notes on how to build PhantomRider Core in Unix.
 
 (For BSD specific instructions, see `build-*bsd.md` in this directory.)
 
@@ -20,7 +20,7 @@ distributions](#linux-distribution-specific-instructions), or the
 ## Memory Requirements
 
 C++ compilers are memory-hungry. It is recommended to have at least 1.5 GB of
-memory available when compiling Dash Core. On systems with less, gcc can be
+memory available when compiling PhantomRider Core. On systems with less, gcc can be
 tuned to conserve memory with additional `CMAKE_CXX_FLAGS`:
 
 
@@ -61,7 +61,7 @@ but these will install Berkeley DB 5.3 or later. This will break binary wallet c
 executables, which are based on BerkeleyDB 4.8. If you do not care about wallet compatibility, pass
 `-DWITH_BDB=ON -DWARN_INCOMPATIBLE_BDB=OFF` to CMake. Otherwise, you can build Berkeley DB [yourself](#berkeley-db).
 
-To build Dash Core without wallet, see [*Disable-wallet mode*](#disable-wallet-mode)
+To build PhantomRider Core without wallet, see [*Disable-wallet mode*](#disable-wallet-mode)
 
 zstd compresses block and undo files on disk (see: `-DWITH_ZSTD=ON`, package `libzstd-dev`
 on Debian and Ubuntu, `libzstd-devel` on Fedora); a build without it cannot read block files that
@@ -81,7 +81,7 @@ sudo apt install systemtap-sdt-dev
 
 GUI dependencies:
 
-To build dash-qt, install the required Qt 5 development packages and pass
+To build phantomrider-qt, install the required Qt 5 development packages and pass
 `-DBUILD_GUI=ON` to CMake. The GUI is disabled by default.
 
 To build with Qt 5 you need the following:
@@ -122,7 +122,7 @@ Now, you can either build from self-compiled [depends](#dependencies) or install
 sudo dnf install libevent-devel boost-devel
 ```
 
-Note: Fedora repositories do not include libbacktrace. To build Dash Core without stack trace support, configure with `-DENABLE_STACKTRACES=OFF`.
+Note: Fedora repositories do not include libbacktrace. To build PhantomRider Core without stack trace support, configure with `-DENABLE_STACKTRACES=OFF`.
 
 SQLite is required for the descriptor wallet:
 
@@ -135,7 +135,7 @@ Berkeley DB 5.3 or later. This will break binary wallet compatibility with the d
 are based on Berkeley DB 4.8. If you do not care about wallet compatibility,
 pass `-DWITH_BDB=ON -DWARN_INCOMPATIBLE_BDB=OFF` to CMake. Otherwise, you can build Berkeley DB [yourself](#berkeley-db).
 
-To build Dash Core without wallet, see [*Disable-wallet mode*](#disable-wallet-mode)
+To build PhantomRider Core without wallet, see [*Disable-wallet mode*](#disable-wallet-mode)
 
 zstd compresses block and undo files on disk (see: `-DWITH_ZSTD=ON`, package `libzstd-dev`
 on Debian and Ubuntu, `libzstd-devel` on Fedora); a build without it cannot read block files that
@@ -155,7 +155,7 @@ sudo dnf install systemtap-sdt-devel
 
 GUI dependencies:
 
-To build dash-qt, install the required Qt 5 development packages and pass
+To build phantomrider-qt, install the required Qt 5 development packages and pass
 `-DBUILD_GUI=ON` to CMake. The GUI is disabled by default.
 
 To build with Qt 5 you need the following:
@@ -209,7 +209,7 @@ cmake -B build -DWITH_BDB=ON \
 
 Disable-wallet mode
 --------------------
-When the intention is to only run a P2P node, without a wallet, Dash Core can
+When the intention is to only run a P2P node, without a wallet, PhantomRider Core can
 be compiled in disable-wallet mode with:
 
     cmake -B build -DENABLE_WALLET=OFF
@@ -238,7 +238,7 @@ cd dash/
 cmake -B build
 cmake --build build
 ctest --test-dir build
-./build/src/dashd
+./build/src/phantomriderd
 ```
 
 If you intend to work with legacy Berkeley DB wallets, see [Berkeley DB](#berkeley-db) section.

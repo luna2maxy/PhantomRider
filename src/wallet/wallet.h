@@ -964,7 +964,7 @@ public:
     /** Absolute maximum transaction fee (in satoshis) used by default for the wallet */
     CAmount m_default_max_tx_fee{DEFAULT_TRANSACTION_MAXFEE};
 
-    /** Dust protection threshold in duffs. UTXOs from external transactions at or below this value
+    /** Dust protection threshold in phr. UTXOs from external transactions at or below this value
      *  are automatically locked to prevent dust attacks. 0 = disabled. Override with -dustprotectionthreshold. */
     CAmount m_dust_protection_threshold{DEFAULT_DUST_PROTECTION_THRESHOLD};
 

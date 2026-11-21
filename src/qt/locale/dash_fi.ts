@@ -373,7 +373,7 @@
         <translation>&amp;Vastaanota</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>Pyydä maksuja (Luo QR koodit ja Dash: URIt)</translation>
     </message>
     <message>
@@ -643,8 +643,8 @@
         <translation>Avaa &amp;lompakon asetustiedosto</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>Avaa dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Avaa phantomrider: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -1120,7 +1120,7 @@
     </message>
     <message>
         <source>Can vary +/- %1 duff(s) per input.</source>
-        <translation>Voi vaihdella +/- %1 duffs per syöte.</translation>
+        <translation>Voi vaihdella +/- %1 phr per syöte.</translation>
     </message>
     <message>
         <source>Some coins were unselected because they were spent.</source>
@@ -2385,8 +2385,8 @@ Siirtoprosessi luo lompakosta varmuuskopion ennen siirtämistä. Varmuuskopiotie
         <translation>Tiedosto ei ole jaetun masternoden istuntotiedosto.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>Istuntotiedosto käyttää tukematonta formaattiversiota. Päivitä Dash Core avataksesi sen.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>Istuntotiedosto käyttää tukematonta formaattiversiota. Päivitä PhantomRider Core avataksesi sen.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ Siirtoprosessi luo lompakosta varmuuskopion ennen siirtämistä. Varmuuskopiotie
         <translation>Istuntotiedostossa ei ole vaihetta.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>Istuntotiedosto on tuntemattomassa vaiheessa "%1". Sen on luultavasti luonut uudempi Dash Core.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>Istuntotiedosto on tuntemattomassa vaiheessa "%1". Sen on luultavasti luonut uudempi PhantomRider Core.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,7 +3316,7 @@ Siirtoprosessi luo lompakosta varmuuskopion ennen siirtämistä. Varmuuskopiotie
         <translation>Tapahtumat, joiden tulosteet ovat tämän summan suuruisia tai pienempiä, katsotaan pölyksi ulkoisista lähteistä vastaanotettaessa.</translation>
     </message>
     <message>
-        <source>duffs</source>
+        <source>phr</source>
         <translation>duffia</translation>
     </message>
     <message>
@@ -3408,8 +3408,8 @@ Siirtoprosessi luo lompakosta varmuuskopion ennen siirtämistä. Varmuuskopiotie
         <translation>Maksimi</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Avaa automaattisesti Dash Core asiakasohjelmalle portti reitittimeen. Tämä toimii vain jos reitittimesi tukee UPnP:tä ja se on käytössä.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Avaa automaattisesti PhantomRider Core asiakasohjelmalle portti reitittimeen. Tämä toimii vain jos reitittimesi tukee UPnP:tä ja se on käytössä.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Kartoita portti käyttäen &amp;UPnP:tä</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Avaa Dash Core -asiakasportti reitittimessä automaattisesti. Tämä toimii vain jos reitittimesi tukee NAT-PMP:tä ja se on käytössä. Ulkoinen portti voi olla satunnainen.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Avaa PhantomRider Core -asiakasportti reitittimessä automaattisesti. Tämä toimii vain jos reitittimesi tukee NAT-PMP:tä ja se on käytössä. Ulkoinen portti voi olla satunnainen.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Maksupyyntövirhe</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>Ei voi käynnistää Dashia: click-to-pay handler</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>URI käsittely</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' ei ole validi URI. Käytä sen sijaan 'dash:'.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' ei ole validi URI. Käytä sen sijaan 'phantomrider:'.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ Lisätietoja tämän konsolin käytöstä saat kirjoittamalla %6.
         <translation>Tallenna se nyt: rekisteröintiä ei voi aloittaa, ennen kuin vahvistat sen.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Lisää tämä rivi masternode-palvelimesi dash.conf-tiedostoon:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Lisää tämä rivi masternode-palvelimesi phantomrider.conf-tiedostoon:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,8 +6994,8 @@ Lisätietoja tämän konsolin käytöstä saat kirjoittamalla %6.
         <translation>Vahvistusajan tavoite:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Jos mukautettu siirtomaksu on asetettu 1000 duff ja siirtotapahtuma on vain 250 tavua,&lt;br /&gt;tällöin "per kilotavu" maksaa vain 250 duffs siirtomaksun, kun taas "vähintään" maksaa 1000 duffs.&lt;br /&gt;Siirtotapahtumat jotka ovat isompia kuin kilotavu, molemmat maksaa "per kilotavu".</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Jos mukautettu siirtomaksu on asetettu 1000 duff ja siirtotapahtuma on vain 250 tavua,&lt;br /&gt;tällöin "per kilotavu" maksaa vain 250 phr siirtomaksun, kun taas "vähintään" maksaa 1000 phr.&lt;br /&gt;Siirtotapahtumat jotka ovat isompia kuin kilotavu, molemmat maksaa "per kilotavu".</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -7384,7 +7384,7 @@ Lisätietoja tämän konsolin käytöstä saat kirjoittamalla %6.
         <translation>Viesti:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>Viesti joka liitettiin Dash: URI joka tallenetaan siirtotapahtuman kanssa viitteeksi sinulle. Huomio: Tätä viestiä ei lähetetä Dash verkkoon.</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ Lisätietoja tämän konsolin käytöstä saat kirjoittamalla %6.
         <translation>Kopioi</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Lisää tämä rivi masternode-palvelimen dash.conf-tiedostoon:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Lisää tämä rivi masternode-palvelimen phantomrider.conf-tiedostoon:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10546,8 +10546,8 @@ Vähennä uakommenttien määrää tai kokoa.</translation>
         <translation>Osio [%s] ei ole tunnistettavissa.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Asettaa ikkunan otsikon, joka lisätään merkkijonon "Dash Core - " perään</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Asettaa ikkunan otsikon, joka lisätään merkkijonon "PhantomRider Core - " perään</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

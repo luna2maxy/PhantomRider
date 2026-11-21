@@ -1,4 +1,4 @@
-# Dash Core version v21.1.0
+# PhantomRider Core version v21.1.0
 
 This is a new minor version release, bringing important bugfixes.
 
@@ -17,7 +17,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 

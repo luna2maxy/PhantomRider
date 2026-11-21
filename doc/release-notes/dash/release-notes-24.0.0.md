@@ -1,4 +1,4 @@
-# Dash Core version v24.0.0
+# PhantomRider Core version v24.0.0
 
 This is a new major version release, bringing new features, various bugfixes and other improvements.
 
@@ -17,7 +17,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 On the first start after upgrading, a node that has `-addressindex`,
 `-spentindex` or `-timestampindex` enabled migrates that index to its own
@@ -104,7 +104,7 @@ caveats:
   v24.0.0 that older versions do not know about (such as the new CoinJoin
   pending-observation record) are ignored by them.
 - Dash-Qt moves the dust attack protection setting into the settings it shares
-  with `dashd` (see `-dustprotectionthreshold` under
+  with `phantomriderd` (see `-dustprotectionthreshold` under
   [New options](#new-options)). Older versions don't read it there, so after a
   downgrade dust protection is disabled and has to be enabled again in the
   options dialog.
@@ -116,7 +116,7 @@ require a reindex.
 
 ## Compatibility
 
-- Dash Core binaries now require macOS 14 (Sonoma) or later. Dash Core v23.1.x
+- PhantomRider Core binaries now require macOS 14 (Sonoma) or later. PhantomRider Core v23.1.x
   binaries supported macOS 11 (Big Sur) or later. Because v24.0.0 is mandatory,
   users on macOS 13 or older must upgrade macOS, or move their node or wallet
   to a supported system, before the `v24` hard fork activates. Windows 10 or
@@ -354,7 +354,7 @@ ProUpRevTx may use version 3. Version 3 carries both
 [multi-party payouts and shared masternodes](#decentralized-masternode-shares-and-multi-party-payouts).
 (#7302)
 
-- Dash Core v23 defined version 3 for ProRegTx and ProUpServTx only, behind the
+- PhantomRider Core v23 defined version 3 for ProRegTx and ProUpServTx only, behind the
   same `v24` deployment, and its wire format has changed since. In version 3
   ProRegTx and ProUpRegTx payloads, `scriptPayout` is replaced by a
   length-prefixed payout list. A version 3 ProRegTx also carries a share table
@@ -363,14 +363,14 @@ ProUpRevTx may use version 3. Version 3 carries both
   ordinary registration.
 - ProUpRegTx and ProUpRevTx may now use version 3 as well.
 - Development builds briefly used a separate version 4 for multi-party payouts.
-  It has been folded into version 3, and no released version of Dash Core uses
+  It has been folded into version 3, and no released version of PhantomRider Core uses
   version 4.
 - Software that parses or builds provider transactions (explorers, SPV
   libraries, external wallets) must be updated.
 
 ## Extended addresses
 
-Dash Core v23 introduced extended masternode addresses (`netInfo`, which lists
+PhantomRider Core v23 introduced extended masternode addresses (`netInfo`, which lists
 the core P2P, Platform P2P and Platform HTTPS endpoints explicitly) behind the
 `v24` deployment. They become usable once `v24` activates, for regular
 masternodes and EvoNodes alike, and do not depend on `evo_shares`. A masternode
@@ -504,7 +504,7 @@ does not accept that option. (#7294, #7285, #7577)
 
 ## Masternode operator keys and BLS schemes
 
-- Dash Core will no longer permit the registration of new legacy BLS scheme
+- PhantomRider Core will no longer permit the registration of new legacy BLS scheme
   masternodes after the `v24` hard fork activates. Existing basic scheme
   masternodes will also be prohibited from downgrading to the legacy scheme
   after activation. (#6729)
@@ -581,8 +581,8 @@ proofs. (#7107, #7727)
     in `masternode list` (and its alias, `masternodelist`).
   - The same gate applies to `getcoinjoininfo`, `protx info`,
     `protx list detailed` and `quorum info`.
-  - `dash-tx -json` output omits these keys as well and offers no way to restore
-    them, since `dash-tx` does not accept `-deprecatedrpc`.
+  - `phantomrider-tx -json` output omits these keys as well and offers no way to restore
+    them, since `phantomrider-tx` does not accept `-deprecatedrpc`.
 - Information on soft fork status has been moved from `getblockchaininfo` to the
   new `getdeploymentinfo` RPC, which allows querying soft fork status at any
   block, rather than just at the chain tip. Inclusion of soft fork status in
@@ -594,15 +594,15 @@ proofs. (#7107, #7727)
 
 ### Note for masternode operators running Dash Platform
 
-Dash Platform reads the `service` field from Dash Core, and Platform versions
+Dash Platform reads the `service` field from PhantomRider Core, and Platform versions
 before v5.0.0 also read the `getblockchaininfo` `softforks` field. EvoNode
 operators should upgrade Dash Platform to v5.0.0 or later together with Dash
 Core:
 
-- dashmate v5.0.0 and later start Dash Core with `-deprecatedrpc=service`, and
+- dashmate v5.0.0 and later start PhantomRider Core with `-deprecatedrpc=service`, and
   Platform v5.0.0 and later read deployment status from `getdeploymentinfo`, so
   no extra configuration is needed.
-- Setups not managed by dashmate v5.0.0 or later must start Dash Core with
+- Setups not managed by dashmate v5.0.0 or later must start PhantomRider Core with
   `-deprecatedrpc=service`, and Platform versions before v5.0.0 also need
   `-deprecatedrpc=softforks`. Without these options Platform cannot operate
   correctly.
@@ -623,10 +623,10 @@ since v21 this applied only to `descriptors=true`. To create a legacy wallet,
 pass both, for example:
 
 ```
-dash-cli -named createwallet wallet_name=mywallet descriptors=false load_on_startup=true
+phantomrider-cli -named createwallet wallet_name=mywallet descriptors=false load_on_startup=true
 ```
 
-`dash-wallet create` also creates a descriptor wallet by default. Pass the new
+`phantomrider-wallet create` also creates a descriptor wallet by default. Pass the new
 `-legacy` option to create a legacy wallet instead. (#7204)
 
 An experimental RPC `migratewallet` has been added to migrate legacy
@@ -636,7 +636,7 @@ migration process is available in the
 (#7275)
 
 Failure handling in `migratewallet`, `restorewallet` and
-`dash-wallet createfromdump` was fixed with backports from Bitcoin Core 28.x. A
+`phantomrider-wallet createfromdump` was fixed with backports from Bitcoin Core 28.x. A
 failed migration restores the original wallet and leaves the rest of the
 wallet directory as it was. After a migration, the migrated wallet and the
 watch-only and solvables wallets it created are reloaded from disk, and if one
@@ -748,7 +748,7 @@ failing. Both receive the usual PoSe penalty for failed DKG participation.
 ## Bitcoin Core backports
 
 This release continues the backporting of Bitcoin Core, adding well over 200
-pull requests from the v25 and v26 release cycles alone. Dash Core now
+pull requests from the v25 and v26 release cycles alone. PhantomRider Core now
 includes essentially all of Bitcoin Core v0.17 through v24, about 90% of v25,
 about 70% of v26, over half of v27 and about a third of v28, along with
 selected fixes from later releases. User-visible changes from these backports
@@ -765,7 +765,7 @@ and RPC parameters.
   after v20 activation while ChainLocks are enabled. (#6236)
 - `SPORK_3_INSTANTSEND_BLOCK_FILTERING` and `SPORK_9_SUPERBLOCKS_ENABLED` have
   been removed. On mainnet both have been hardcoded on, and could not be changed
-  by spork messages, since Dash Core v21.0.0 hardened all mainnet spork values
+  by spork messages, since PhantomRider Core v21.0.0 hardened all mainnet spork values
   (#6140). Only the test networks (testnet, devnets and regtest) still honored
   them. This release removes the two spork definitions and the remaining
   test-network gating, so the associated functionality (InstantSend
@@ -816,14 +816,14 @@ and RPC parameters.
 - Version 2 Asset Unlock transactions are relayed by instance hash using the new
   inventory type `MSG_ASSET_UNLOCK` (protocol version 70242). (#7639)
 - Startup now fails if any configured `-bind` (including `-bind=...=onion`) or
-  `-whitebind` cannot be set up. Dash Core v23 and earlier started as long as
+  `-whitebind` cannot be set up. PhantomRider Core v23 and earlier started as long as
   at least one bind succeeded. The implicit Tor onion-service bind
   (`127.0.0.1:9996` by default) is still best effort, as in v23, unless
   `-listenonion=1` is set explicitly. (#7300, #8003)
 - The automatic Tor onion service (`-listenonion`) only forwards to a
   dedicated, non-wildcard onion listener that the node actually bound, so peers
   arriving through Tor are always recognized as onion peers. Without a
-  `-bind=<addr:port>=onion`, Dash Core adds the default onion bind as v23 did,
+  `-bind=<addr:port>=onion`, PhantomRider Core adds the default onion bind as v23 did,
   also when `-bind` is given; with `-bind` and `-listenonion=0` it no longer
   does. If the default onion bind fails, for example because another instance
   on the same host holds it, the node logs a warning and creates no onion
@@ -836,7 +836,7 @@ and RPC parameters.
 - A wildcard onion bind such as `-bind=0.0.0.0:<port>=onion` is a startup error
   unless `-listenonion=0` is set, also with the default `-listenonion`. The node
   can't tell which connections to a wildcard listener came through Tor, so Tor
-  peers would be treated as clearnet peers. Dash Core v23 accepted it. Use a
+  peers would be treated as clearnet peers. PhantomRider Core v23 accepted it. Use a
   specific address such as `-bind=127.0.0.1:<port>=onion` instead. (#7786,
   #8003)
 - `getqrinfo` requests now carry at most 4096 `baseBlockHashes`. A request with
@@ -913,7 +913,7 @@ and RPC parameters.
     `protx update_service_evo`, `quorum info`, `quorum platformsign`,
     `quorum rotationinfo`, `quorum sign`.
   - This restriction can be relaxed by setting `-deprecatedrpc=permissive_bool`
-    at runtime but is liable to be removed in future versions of Dash Core.
+    at runtime but is liable to be removed in future versions of PhantomRider Core.
     (#7099)
 - Numeric arguments of the Dash-specific RPCs (`quorum`, `protx`, `gobject`,
   `masternode` and their sub-commands) must now be passed as JSON numbers.
@@ -1046,13 +1046,13 @@ and RPC parameters.
 
 - If the `-checkblocks` or `-checklevel` options are explicitly provided by the
   user, but the verification checks cannot be completed due to an insufficient
-  dbcache, Dash Core will now return an error at startup. (#7710)
-- `dashd` and `dash-qt` will now raise an error on startup if a datadir that is
-  being used contains a dash.conf file that will be ignored, which can happen
-  when a datadir= line is used in a dash.conf file. The error message is just a
+  dbcache, PhantomRider Core will now return an error at startup. (#7710)
+- `phantomriderd` and `phantomrider-qt` will now raise an error on startup if a datadir that is
+  being used contains a phantomrider.conf file that will be ignored, which can happen
+  when a datadir= line is used in a phantomrider.conf file. The error message is just a
   diagnostic intended to prevent accidental misconfiguration, and it can be
   disabled (`-allowignoredconf`) to restore the previous behavior of using the
-  datadir while ignoring the dash.conf contained in it. (#7710)
+  datadir while ignoring the phantomrider.conf contained in it. (#7710)
 - Passing an invalid `-debug`, `-debugexclude`, or `-loglevel` logging
   configuration option now raises an error, rather than logging an easily missed
   warning. (#7710)
@@ -1074,8 +1074,8 @@ and RPC parameters.
 - Fee estimates are now saved hourly, and `fee_estimates.dat` is ignored at
   startup if it is more than 60 hours old, so a node that was offline for longer
   than that rebuilds its estimates. (#7711)
-- `dashd` no longer creates an empty `dash.conf` when none exists, matching
-  Bitcoin Core. `dash-qt`'s "Open Configuration File" still creates it on
+- `phantomriderd` no longer creates an empty `phantomrider.conf` when none exists, matching
+  Bitcoin Core. `phantomrider-qt`'s "Open Configuration File" still creates it on
   demand. (#8029)
 
 ## Pruning
@@ -1095,7 +1095,7 @@ and RPC parameters.
 ### New options
 
 - The dust attack protection introduced in v23.1.0 as a GUI option is now
-  available to `dashd` as well through `-dustprotectionthreshold=<n>`: UTXOs
+  available to `phantomriderd` as well through `-dustprotectionthreshold=<n>`: UTXOs
   received from external transactions whose value is at or below `<n>` duffs
   are locked automatically by the wallet, so they are not spent together with
   other coins. It is disabled by default (`0`). The GUI option and the
@@ -1132,7 +1132,7 @@ and RPC parameters.
   wallets are not affected. (#7842)
 
   Seed derivation uses the BIP39 salt `"mnemonic"` followed by the passphrase.
-  Dash Core 19.2.0 started cutting that salt at 256 bytes to stop a crash, so
+  PhantomRider Core 19.2.0 started cutting that salt at 256 bytes to stop a crash, so
   every passphrase byte after the 248th has been ignored since then. Two
   passphrases that differ only after that point derive the same seed. Before
   23.0.0 the salt was also cut at the first NUL byte.
@@ -1230,7 +1230,7 @@ and RPC parameters.
   returns a JSON array of strings to better handle multiple warning messages and
   for consistency with other wallet RPCs. The "warning" field will be fully
   removed from these RPCs in v25. It can be temporarily re-enabled during the
-  deprecation period by launching dashd with the configuration option
+  deprecation period by launching phantomriderd with the configuration option
   `-deprecatedrpc=walletwarningfield`. (#7711)
 - Some wallet RPC error messages changed with upstream backports, which
   matters for software that matches on them:

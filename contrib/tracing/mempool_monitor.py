@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-""" Example logging Dash Core mempool events using the mempool:added,
+""" Example logging PhantomRider Core mempool events using the mempool:added,
     mempool:removed, and mempool:rejected tracepoints. """
 
 import curses
@@ -321,7 +321,7 @@ class Dashboard:
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("USAGE: ", sys.argv[0], "path/to/dashd")
+        print("USAGE: ", sys.argv[0], "path/to/phantomriderd")
         exit(1)
 
     path = sys.argv[1]

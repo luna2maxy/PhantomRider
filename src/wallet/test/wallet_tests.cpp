@@ -1552,7 +1552,7 @@ BOOST_FIXTURE_TEST_CASE(CreateTransactionTest, CreateTransactionTestSetup)
         }
     };
 
-    // First run the tests with only one input containing 100k duffs
+    // First run the tests with only one input containing 100k phr
     {
         coinControl = CCoinControl();
         coinControl.m_allow_other_inputs = false;

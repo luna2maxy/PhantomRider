@@ -1,8 +1,8 @@
-# Fuzzing Dash Core using libFuzzer
+# Fuzzing PhantomRider Core using libFuzzer
 
 ## Quickstart guide
 
-To quickly get started fuzzing Dash Core using [libFuzzer](https://llvm.org/docs/LibFuzzer.html):
+To quickly get started fuzzing PhantomRider Core using [libFuzzer](https://llvm.org/docs/LibFuzzer.html):
 
 ```sh
 $ git clone https://github.com/dashpay/dash
@@ -71,7 +71,7 @@ block^@M-^?M-^?M-^?M-^?M-^?nM-^?M-^?
 
 In this case the fuzzer managed to create a `block` message which when passed to `ProcessMessage(...)` increased coverage.
 
-It is possible to specify `dashd` arguments to the `fuzz` executable.
+It is possible to specify `phantomriderd` arguments to the `fuzz` executable.
 Depending on the test, they may be ignored or consumed and alter the behavior
 of the test. Just make sure to use double-dash to distinguish them from the
 fuzzer's own arguments:
@@ -119,7 +119,7 @@ Fuzzing on a harness compiled with `-DSANITIZERS=address,fuzzer,undefined` is go
 
 If you find coverage increasing inputs when fuzzing you are highly encouraged to submit them for inclusion in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo.
 
-Every single pull request submitted against the Dash Core repo is automatically tested against all inputs in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Dash Core more robust.
+Every single pull request submitted against the PhantomRider Core repo is automatically tested against all inputs in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make PhantomRider Core more robust.
 
 ## macOS hints for libFuzzer
 
@@ -141,11 +141,11 @@ cmake -B build_fuzz -DBUILD_FOR_FUZZING=ON -DSANITIZERS=fuzzer,address,undefined
 
 Read the [libFuzzer documentation](https://llvm.org/docs/LibFuzzer.html) for more information. This [libFuzzer tutorial](https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md) might also be of interest.
 
-# Fuzzing Dash Core using afl++
+# Fuzzing PhantomRider Core using afl++
 
 ## Quickstart guide
 
-To quickly get started fuzzing Dash Core using [afl++](https://github.com/AFLplusplus/AFLplusplus):
+To quickly get started fuzzing PhantomRider Core using [afl++](https://github.com/AFLplusplus/AFLplusplus):
 
 ```sh
 $ git clone https://github.com/dashpay/dash
@@ -169,11 +169,11 @@ $ FUZZ=bech32 AFLplusplus/afl-fuzz -i inputs/ -o outputs/ -- build_fuzz/src/test
 
 Read the [afl++ documentation](https://github.com/AFLplusplus/AFLplusplus) for more information.
 
-# Fuzzing Dash Core using Honggfuzz
+# Fuzzing PhantomRider Core using Honggfuzz
 
 ## Quickstart guide
 
-To quickly get started fuzzing Dash Core using [Honggfuzz](https://github.com/google/honggfuzz):
+To quickly get started fuzzing PhantomRider Core using [Honggfuzz](https://github.com/google/honggfuzz):
 
 ```sh
 $ git clone https://github.com/dashpay/dash
@@ -192,10 +192,10 @@ $ FUZZ=process_message honggfuzz/honggfuzz -i inputs/ -- build_fuzz/src/test/fuz
 
 Read the [Honggfuzz documentation](https://github.com/google/honggfuzz/blob/master/docs/USAGE.md) for more information.
 
-## Fuzzing the Dash Core P2P layer using Honggfuzz NetDriver
+## Fuzzing the PhantomRider Core P2P layer using Honggfuzz NetDriver
 
 Honggfuzz NetDriver allows for very easy fuzzing of TCP servers such as Dash
-Core without having to write any custom fuzzing harness. The `dashd` server
+Core without having to write any custom fuzzing harness. The `phantomriderd` server
 process is largely fuzzed without modification.
 
 This makes the fuzzing highly realistic: a bug reachable by the fuzzer is likely
@@ -260,7 +260,7 @@ $ cmake --build build --target bitcoind
 $ mkdir -p inputs/
 $ honggfuzz/honggfuzz --exit_upon_crash --quiet --timeout 4 -n 1 -Q \
       -E HFND_TCP_PORT=18444 -f inputs/ -- \
-          build/src/dashd -regtest -discover=0 -dns=0 -dnsseed=0 -listenonion=0 \
+          build/src/phantomriderd -regtest -discover=0 -dns=0 -dnsseed=0 -listenonion=0 \
                        -nodebuglogfile -bind=127.0.0.1:18444 -logthreadnames \
                        -debug
 ```

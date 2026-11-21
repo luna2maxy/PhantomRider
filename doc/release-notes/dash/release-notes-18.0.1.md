@@ -1,4 +1,4 @@
-Dash Core version v18.0.1
+PhantomRider Core version v18.0.1
 =========================
 
 Release is now available from:
@@ -24,13 +24,13 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux). If you upgrade after DIP0003 activation and you were
+phantomriderd/phantomrider-qt (on Linux). If you upgrade after DIP0003 activation and you were
 using version < 0.13 you will have to reindex (start with -reindex-chainstate
 or -reindex) to make sure your wallet has all the new data synced. Upgrading
 from version 0.13 should not require any additional actions.
 
 When upgrading from a version prior to 18.0.1, the
-first startup of Dash Core will run a migration process which can take anywhere
+first startup of PhantomRider Core will run a migration process which can take anywhere
 from a few minutes to thirty minutes to finish. After the migration, a
 downgrade to an older version is only possible with a reindex
 (or reindex-chainstate).
@@ -116,7 +116,7 @@ are:
 - Added support for empty, encrypted-on-creation and watch-only wallets.
 - Wallets can now be created, opened and closed via a GUI menu.
 - No more `salvagewallet` option in cmd-line and Repair tab in GUI. Check the
-`salvage` command in the `dash-wallet` tool.
+`salvage` command in the `phantomrider-wallet` tool.
 
 Indexes
 -------
@@ -129,7 +129,7 @@ downgrade to a pre-v18.0.1 version.
 Remote Procedure Call (RPC) Changes
 -----------------------------------
 Most changes here were introduced through Bitcoin backports mostly related to
-the deprecation of wallet accounts in DashCore v0.17 and introduction of PSBT
+the deprecation of wallet accounts in PhantomRiderCore v0.17 and introduction of PSBT
 format.
 
 The new RPCs are:
@@ -166,7 +166,7 @@ The removed RPCs are:
 - `signrawtransaction`
 
 Changes in existing RPCs introduced through bitcoin backports:
-- The `testnet` field in `dash-cli -getinfo` has been renamed to `chain` and
+- The `testnet` field in `phantomrider-cli -getinfo` has been renamed to `chain` and
 now returns the current network name as defined in BIP70 (main, test, regtest).
 - Added `window_final_block_height` in `getchaintxstats`
 - Added `feerate_percentiles` object with feerates at the 10th, 25th, 50th,
@@ -175,7 +175,7 @@ now returns the current network name as defined in BIP70 (main, test, regtest).
 - In `getmempoolancestors`, `getmempooldescendants`, `getmempoolentry` and
 `getrawmempool` RPCs, to be consistent with the returned value and other RPCs
 such as `getrawtransaction`, `vsize` has been added and `size` is now
-deprecated. `size` will only be returned if `dashd` is started with
+deprecated. `size` will only be returned if `phantomriderd` is started with
 `-deprecatedrpc=size`.
 - Added `loaded` in mempool related RPCs indicates whether the mempool is fully
 loaded or not
@@ -244,7 +244,7 @@ Removed cmd-line options:
 
 Changes in existing cmd-line options:
 
-Please check `Help -> Command-line options` in Qt wallet or `dashd --help` for
+Please check `Help -> Command-line options` in Qt wallet or `phantomriderd --help` for
 more information.
 
 Backports from Bitcoin Core
@@ -309,12 +309,12 @@ the 0.8.x tree and was first released on Mar/13/2014.
 Darkcoin tree 0.10.x used to be the closed source implementation of Darksend
 which was released open source on Sep/25/2014.
 
-Dash Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
+PhantomRider Core tree 0.11.x was a fork of Bitcoin Core tree 0.9,
 Darkcoin was rebranded to Dash.
 
-Dash Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
+PhantomRider Core tree 0.12.0.x was a fork of Bitcoin Core tree 0.10.
 
-Dash Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
+PhantomRider Core tree 0.12.1.x was a fork of Bitcoin Core tree 0.12.
 
 These release are considered obsolete. Old release notes can be found here:
 

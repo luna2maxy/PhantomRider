@@ -1,4 +1,4 @@
-# Dash Core version v23.1.2
+# PhantomRider Core version v23.1.2
 
 This is a new patch version release, bringing GUI improvements, new features, bugfixes, and performance optimizations.
 This release is **optional** for all nodes, although recommended.
@@ -14,7 +14,7 @@ Please report bugs using the issue tracker at GitHub:
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Dash-Qt (on Mac) or
-dashd/dash-qt (on Linux).
+phantomriderd/phantomrider-qt (on Linux).
 
 ## Downgrade warning
 
@@ -48,7 +48,7 @@ require a reindex.
 
 ## Miscellaneous
 
-- Renamed `bitcoin-util` manpage and test references to `dash-util` (dash#7221).
+- Renamed `bitcoin-util` manpage and test references to `phantomrider-util` (dash#7221).
 
 ## Interfaces
 

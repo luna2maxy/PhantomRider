@@ -138,7 +138,7 @@ public:
                         m_platform_node_id, m_platform_p2p_addresses, m_platform_https_addresses, m_shares_fingerprint);
     }
     QString toHtml(int current_height = 0, const QSet<int>& my_share_indexes = {},
-                   BitcoinUnits::Unit unit = BitcoinUnits::Unit::DASH) const;
+                   BitcoinUnits::Unit unit = BitcoinUnits::Unit::PHR) const;
 };
 
 using MasternodeEntryList = std::vector<std::shared_ptr<MasternodeEntry>>;

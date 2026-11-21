@@ -123,8 +123,8 @@ def check_ELF_CONTROL_FLOW(binary) -> bool:
     return False
 
 def check_ELF_FORTIFY(binary) -> bool:
-    # dash-util does not currently contain any fortified functions
-    if 'Dash Core dash-util utility version ' in binary.strings:
+    # phantomrider-util does not currently contain any fortified functions
+    if 'PhantomRider Core phantomrider-util utility version ' in binary.strings:
         return True
 
     chk_funcs = set()

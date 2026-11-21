@@ -10,17 +10,17 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"/../..
 
-DOCKER_IMAGE=${DOCKER_IMAGE:-dashpay/dashd-develop}
+DOCKER_IMAGE=${DOCKER_IMAGE:-phantomrider/phantomriderd-develop}
 DOCKER_TAG=${DOCKER_TAG:-latest}
 DOCKER_RELATIVE_PATH=contrib/containers/deploy
 
 rm -rf "${DOCKER_RELATIVE_PATH:?}/bin"
 mkdir -p "$DOCKER_RELATIVE_PATH/bin"
-cp build/src/dashd    "$DOCKER_RELATIVE_PATH/bin/"
-cp build/src/dash-cli "$DOCKER_RELATIVE_PATH/bin/"
+cp build/src/phantomriderd    "$DOCKER_RELATIVE_PATH/bin/"
+cp build/src/phantomrider-cli "$DOCKER_RELATIVE_PATH/bin/"
 cp build/src/dash-tx  "$DOCKER_RELATIVE_PATH/bin/"
-strip "$DOCKER_RELATIVE_PATH/bin/dashd"
-strip "$DOCKER_RELATIVE_PATH/bin/dash-cli"
+strip "$DOCKER_RELATIVE_PATH/bin/phantomriderd"
+strip "$DOCKER_RELATIVE_PATH/bin/phantomrider-cli"
 strip "$DOCKER_RELATIVE_PATH/bin/dash-tx"
 
 docker build --pull -t "$DOCKER_IMAGE":"$DOCKER_TAG" -f "$DOCKER_RELATIVE_PATH/Dockerfile" "$DOCKER_RELATIVE_PATH"

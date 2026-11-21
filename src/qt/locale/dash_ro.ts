@@ -373,7 +373,7 @@
         <translation>P&amp;rimeşte</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>Cereţi plăţi (generează coduri QR şi Dash-uri: URls)</translation>
     </message>
     <message>
@@ -643,8 +643,8 @@
         <translation>Deschide fișierul de configurare al &amp;portofelului</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>Deschide un URI dash:</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Deschide un URI phantomrider:</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,8 +2385,8 @@ Procesul de migrare va crea o copie de rezervă a portofelului înainte de migra
         <translation>Fișierul nu este un fișier de sesiune de masternode partajat.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>Fișierul de sesiune folosește o versiune de format neacceptată. Actualizați Dash Core pentru a-l deschide.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>Fișierul de sesiune folosește o versiune de format neacceptată. Actualizați PhantomRider Core pentru a-l deschide.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ Procesul de migrare va crea o copie de rezervă a portofelului înainte de migra
         <translation>Fișierul de sesiune nu are etapă.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>Fișierul de sesiune se află într-o etapă necunoscută „%1”. Probabil a fost creat de o versiune mai nouă de Dash Core.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>Fișierul de sesiune se află într-o etapă necunoscută „%1”. Probabil a fost creat de o versiune mai nouă de PhantomRider Core.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,8 +3316,8 @@ Procesul de migrare va crea o copie de rezervă a portofelului înainte de migra
         <translation>Tranzacțiile cu ieșiri egale sau sub această sumă vor fi considerate praf când sunt primite din surse externe.</translation>
     </message>
     <message>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -3408,8 +3408,8 @@ Procesul de migrare va crea o copie de rezervă a portofelului înainte de migra
         <translation>Maxim</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Deschide automat portul client Dash Core de pe router. Asta funcționează numai atunci când routerul dvs. acceptă UPnP și este activat.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Deschide automat portul client PhantomRider Core de pe router. Asta funcționează numai atunci când routerul dvs. acceptă UPnP și este activat.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Mapare port folosind &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Deschide automat portul clientului Dash Core pe router. Aceasta funcționează doar când routerul dvs. suportă NAT-PMP și este activat. Portul extern poate fi aleatoriu.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Deschide automat portul clientului PhantomRider Core pe router. Aceasta funcționează doar când routerul dvs. suportă NAT-PMP și este activat. Portul extern poate fi aleatoriu.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Eroare la cererea de plată</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>Dash nu poate porni: click-to-pay handler</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Gestionare URI</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>'dash://' nu este un URI valid. Folosiți 'dash:' în schimb.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>'phantomrider://' nu este un URI valid. Folosiți 'phantomrider:' în schimb.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ Pentru mai multe informații despre utilizarea acestei console, tastați %6.
         <translation>Salvați-o acum — înregistrarea nu poate începe până nu o confirmați.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Adăugați această linie în dash.conf pe serverul masternode-ului dvs.:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Adăugați această linie în phantomrider.conf pe serverul masternode-ului dvs.:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,7 +6994,7 @@ Pentru mai multe informații despre utilizarea acestei console, tastați %6.
         <translation>Timp confirmare tinta:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Dacă taxa vamală este stabilită la 1000 de duffi și tranzacția are doar 250 de octeți, atunci "per kilobyte" plătește doar 250 de duffi în taxă,&lt;br /&gt;în timp ce "cel puțin" plătește 1000 de duffi. Pentru tranzacțiile mai mari decât un kilobyte, ambele plătesc cu kilobyte.</translation>
     </message>
     <message>
@@ -7384,7 +7384,7 @@ Pentru mai multe informații despre utilizarea acestei console, tastați %6.
         <translation>Mesaj:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
         <translation>un mesaj a fost ataşat la Dash: URI care va fi stocat cu tranzacţia pentru referinţa dvs. Notă: Acest mesaj nu va fi trimis către reţeaua Dash.</translation>
     </message>
 </context>
@@ -7722,8 +7722,8 @@ Pentru mai multe informații despre utilizarea acestei console, tastați %6.
         <translation>Copiază</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Adăugați această linie în dash.conf pe serverul masternode-ului:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Adăugați această linie în phantomrider.conf pe serverul masternode-ului:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Nu s-a putut restaura copia de rezervă a portofelului.</translation>
         <translation>Secțiunea [%s] nu este recunoscută.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Setează un titlu de fereastră care este adăugat după „Dash Core - ”</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Setează un titlu de fereastră care este adăugat după „PhantomRider Core - ”</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

@@ -20,7 +20,7 @@ git diff -U0 HEAD~1.. | ./contrib/devtools/clang-format-diff.py -p1 -i -v
 copyright\_header.py
 ====================
 
-Provides utilities for managing copyright headers of `The Dash Core
+Provides utilities for managing copyright headers of `The PhantomRider Core
 developers` in repository source files. It has three subcommands:
 
 ```
@@ -93,8 +93,8 @@ BUILDDIR=$PWD/build contrib/devtools/gen-manpages.py
 gen-dash-conf.sh
 ===================
 
-Generates a dash.conf file in `contrib/debian/examples/` by parsing the output from `dashd --help`. This script is run during the
-release process to include a dash.conf with the release binaries and can also be run by users to generate a file locally.
+Generates a phantomrider.conf file in `contrib/debian/examples/` by parsing the output from `phantomriderd --help`. This script is run during the
+release process to include a phantomrider.conf with the release binaries and can also be run by users to generate a file locally.
 When generating a file as part of the release process, make sure to commit the changes after running the script.
 
 This tool can be run from any directory within the repository. It looks for
@@ -133,7 +133,7 @@ couldn't mess with the sources.
 
 Setup
 ---------
-Configuring the github-merge tool for the Dash Core repository is done in the following way:
+Configuring the github-merge tool for the PhantomRider Core repository is done in the following way:
 
     git config githubmerge.repository dashpay/dash
     git config githubmerge.testcmd "cmake --build build -j4 && ctest --test-dir build -j4 --no-tests=error" (adapt to whatever you want to use for testing)
@@ -235,5 +235,5 @@ check-no-rust.py
 
 Fails if any of the given executables contain Rust code. Run by the
 `linux64` CI job, which builds against depends with `PLATFORM_GUI=1`, on
-`dashd`, the command-line tools, `bench_dash` and the fuzz binary, which must
+`phantomriderd`, the command-line tools, `bench_dash` and the fuzz binary, which must
 never link `dash-sdk-cxx`.

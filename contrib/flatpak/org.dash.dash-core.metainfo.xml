@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>org.dash.dash-core</id>
-  <name>Dash Core</name>
+  <name>PhantomRider Core</name>
   <project_license>MIT</project_license>
   <metadata_license>CC0-1.0</metadata_license>
   <summary>Fully validating Dash peer-to-peer network node, wallet and GUI</summary>
@@ -10,7 +10,7 @@
   <launchable type="desktop-id">org.dash.dash-core.desktop</launchable>
   <description>
     <p>
-    Dash Core connects to the Dash peer-to-peer network to download and
+    PhantomRider Core connects to the Dash peer-to-peer network to download and
     fully validate blocks and transactions. It also includes a wallet and
     graphical user interface.
     </p>
@@ -41,6 +41,6 @@
     <content_attribute id="money-purchasing">intense</content_attribute>
   </content_rating>
   <developer id="org.dash">
-    <name>Dash Core Group</name>
+    <name>PhantomRider Core Group</name>
   </developer>
 </component>

@@ -919,7 +919,7 @@ static DBErrors LoadDescriptorWalletRecords(CWallet* pwallet, DatabaseBatch& bat
             SecureString mnemonic;
             SecureString mnemonic_passphrase;
             // it's okay if wallet doesn't have mnemonic.
-            // The wallet may be created in an older version of Dash Core or by importing descriptor
+            // The wallet may be created in an older version of PhantomRider Core or by importing descriptor
             try
             {
                 value >> mnemonic;
@@ -959,7 +959,7 @@ static DBErrors LoadDescriptorWalletRecords(CWallet* pwallet, DatabaseBatch& bat
             std::vector<unsigned char> mnemonic;
             std::vector<unsigned char> mnemonic_passphrase;
             // it's okay if wallet doesn't have mnemonic.
-            // The wallet may be created in an older version of Dash Core or by importing descriptor
+            // The wallet may be created in an older version of PhantomRider Core or by importing descriptor
             try
             {
                 value >> mnemonic;

@@ -92,7 +92,7 @@ static void ReadRegTestActivationArgs(const ArgsManager& args, CChainParams::Reg
         bool found = false;
         for (int j=0; j < (int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++j) {
             if (vDeploymentParams[0] == VersionBitsDeploymentInfo[j].name) {
-                // Optional Dash fields left at -1 keep any value set by an earlier -vbparams
+                // Optional PhantomRider fields left at -1 keep any value set by an earlier -vbparams
                 // for the same deployment, as UpdateVersionBitsParameters() did before.
                 auto& entry = options.version_bits_parameters[Consensus::DeploymentPos(j)];
                 if (vbparams.window_size == -1) vbparams.window_size = entry.window_size;

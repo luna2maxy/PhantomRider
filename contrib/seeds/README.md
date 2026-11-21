@@ -7,7 +7,7 @@ The seeds compiled into the release are created from the current protx list and 
 data. Run the following commands from the `/contrib/seeds` directory:
 
 ```bash
-dash-cli protx list valid true 2563000 > protx_list.json
+phantomrider-cli protx list valid true 2563000 > protx_list.json
 curl https://bitcoin.sipa.be/asmap-filled.dat > asmap-filled.dat
 
 # Make sure the onion seeds still work!

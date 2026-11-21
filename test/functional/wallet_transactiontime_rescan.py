@@ -207,7 +207,7 @@ class TransactionTimeRescanTest(BitcoinTestFramework):
             encrypted_wallet.sethdseed(seed=hd_seed)
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=1) as thread:
-                with minernode.assert_debug_log(expected_msgs=["Rescan started from block 403ac5ae6a06f8d677cce9fd5cf2bfef5dde8378f4126154be1d30f830e51077... (slow variant inspecting all blocks)"], timeout=5):
+                with minernode.assert_debug_log(expected_msgs=["Rescan started from block 6d9b7b133a86603a69e4beb8c140f33741bbec14dc3f50ba0264e983b3a7bbb6... (slow variant inspecting all blocks)"], timeout=5):
                     rescanning = thread.submit(encrypted_wallet.rescanblockchain)
 
                 # set the passphrase timeout to 1 to test that the wallet remains unlocked during the rescan

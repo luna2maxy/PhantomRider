@@ -24,10 +24,10 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnit> unitlist;
-    unitlist.append(Unit::DASH);
-    unitlist.append(Unit::mDASH);
-    unitlist.append(Unit::uDASH);
-    unitlist.append(Unit::duffs);
+    unitlist.append(Unit::PHR);
+    unitlist.append(Unit::mPHR);
+    unitlist.append(Unit::uPHR);
+    unitlist.append(Unit::phr);
     return unitlist;
 }
 
@@ -35,10 +35,10 @@ QString BitcoinUnits::name(Unit unit)
 {
     const bool is_mainnet{Params().GetChainType() == ChainType::MAIN};
     switch (unit) {
-    case Unit::DASH:  return is_mainnet ? QString("DASH") : QString("tDASH");
-    case Unit::mDASH: return is_mainnet ? QString("mDASH") : QString("mtDASH");
-    case Unit::uDASH: return is_mainnet ? QString::fromUtf8("μDASH") : QString::fromUtf8("μtDASH");
-    case Unit::duffs: return is_mainnet ? QString("duffs") : QString("tduffs");
+    case Unit::PHR:  return is_mainnet ? QString("PHR") : QString("tPHR");
+    case Unit::mPHR: return is_mainnet ? QString("mPHR") : QString("mtPHR");
+    case Unit::uPHR: return is_mainnet ? QString::fromUtf8("μPHR") : QString::fromUtf8("μtPHR");
+    case Unit::phr:  return is_mainnet ? QString("phr") : QString("tphr");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
@@ -47,10 +47,10 @@ QString BitcoinUnits::description(Unit unit)
 {
     const QString maybe_prefix{Params().GetChainType() == ChainType::MAIN ? "" : "Test"};
     switch(unit) {
-    case Unit::DASH:  return QString("%1Dash").arg(maybe_prefix);
-    case Unit::mDASH: return QString("Milli-%1Dash (1 / 1" THIN_SP_UTF8 "000)").arg(maybe_prefix);
-    case Unit::uDASH: return QString("Micro-%1Dash (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
-    case Unit::duffs: return QString("Ten Nano-%1Dash (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
+    case Unit::PHR:  return QString("%1PhantomRider").arg(maybe_prefix);
+    case Unit::mPHR: return QString("Milli-%1PhantomRider (1 / 1" THIN_SP_UTF8 "000)").arg(maybe_prefix);
+    case Unit::uPHR: return QString("Micro-%1PhantomRider (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
+    case Unit::phr: return QString("Ten Nano-%1PhantomRider (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
@@ -58,10 +58,10 @@ QString BitcoinUnits::description(Unit unit)
 qint64 BitcoinUnits::factor(Unit unit)
 {
     switch (unit) {
-    case Unit::DASH:  return 100'000'000;
-    case Unit::mDASH: return 100'000;
-    case Unit::uDASH: return 100;
-    case Unit::duffs: return 1;
+    case Unit::PHR:  return 100'000'000;
+    case Unit::mPHR: return 100'000;
+    case Unit::uPHR: return 100;
+    case Unit::phr: return 1;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
@@ -69,10 +69,10 @@ qint64 BitcoinUnits::factor(Unit unit)
 int BitcoinUnits::decimals(Unit unit)
 {
     switch (unit) {
-    case Unit::DASH:  return 8;
-    case Unit::mDASH: return 5;
-    case Unit::uDASH: return 2;
-    case Unit::duffs: return 0;
+    case Unit::PHR:  return 8;
+    case Unit::mPHR: return 5;
+    case Unit::uPHR: return 2;
+    case Unit::phr: return 0;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
@@ -252,10 +252,10 @@ namespace {
 qint8 ToQint8(BitcoinUnit unit)
 {
     switch (unit) {
-    case BitcoinUnit::DASH: return 0;
-    case BitcoinUnit::mDASH: return 1;
-    case BitcoinUnit::uDASH: return 2;
-    case BitcoinUnit::duffs: return 3;
+    case BitcoinUnit::PHR: return 0;
+    case BitcoinUnit::mPHR: return 1;
+    case BitcoinUnit::uPHR: return 2;
+    case BitcoinUnit::phr: return 3;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
@@ -263,10 +263,10 @@ qint8 ToQint8(BitcoinUnit unit)
 BitcoinUnit FromQint8(qint8 num)
 {
     switch (num) {
-    case 0: return BitcoinUnit::DASH;
-    case 1: return BitcoinUnit::mDASH;
-    case 2: return BitcoinUnit::uDASH;
-    case 3: return BitcoinUnit::duffs;
+    case 0: return BitcoinUnit::PHR;
+    case 1: return BitcoinUnit::mPHR;
+    case 2: return BitcoinUnit::uPHR;
+    case 3: return BitcoinUnit::phr;
     }
     assert(false);
 }

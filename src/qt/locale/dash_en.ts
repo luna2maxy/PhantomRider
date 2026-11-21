@@ -478,8 +478,8 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
-        <translation>Request payments (generates QR codes and dash: URIs)</translation>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
+        <translation>Request payments (generates QR codes and phantomrider: URIs)</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -815,8 +815,8 @@
     </message>
     <message>
         <location line="+20"/>
-        <source>Open a dash: URI</source>
-        <translation>Open a dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Open a phantomrider: URI</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -3008,7 +3008,7 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <location line="+5"/>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3038,7 +3038,7 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <location line="+5"/>
-        <source>The session file is at the unknown stage &quot;%1&quot;. It was probably created by a newer Dash Core.</source>
+        <source>The session file is at the unknown stage &quot;%1&quot;. It was probably created by a newer PhantomRider Core.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4195,8 +4195,8 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <location line="+16"/>
-        <source>duffs</source>
-        <translation>duffs</translation>
+        <source>phr</source>
+        <translation>phr</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -4310,8 +4310,8 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <location line="+46"/>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -4415,8 +4415,8 @@ https://explore.transifex.com/dash/dash/</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</translation>
     </message>
     <message>
         <location line="+32"/>
@@ -5083,8 +5083,8 @@ https://explore.transifex.com/dash/dash/</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot start dash: click-to-pay handler</source>
-        <translation>Cannot start dash: click-to-pay handler</translation>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
+        <translation>Cannot start phantomrider: click-to-pay handler</translation>
     </message>
     <message>
         <location line="+48"/>
@@ -5096,8 +5096,8 @@ https://explore.transifex.com/dash/dash/</translation>
     </message>
     <message>
         <location line="-29"/>
-        <source>&apos;dash://&apos; is not a valid URI. Use &apos;dash:&apos; instead.</source>
-        <translation>&apos;dash://&apos; is not a valid URI. Use &apos;dash:&apos; instead.</translation>
+        <source>&apos;phantomrider://&apos; is not a valid URI. Use &apos;phantomrider:&apos; instead.</source>
+        <translation>&apos;phantomrider://&apos; is not a valid URI. Use &apos;phantomrider:&apos; instead.</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -8047,7 +8047,7 @@ For more information on using this console, type %6.
     </message>
     <message>
         <location line="+7"/>
-        <source>Add this line to dash.conf on your masternode server:</source>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8956,8 +8956,8 @@ For more information on using this console, type %6.
     </message>
     <message>
         <location line="-179"/>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 duffs in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 duffs in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</translation>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 phr in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 phr in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -9452,8 +9452,8 @@ For more information on using this console, type %6.
     </message>
     <message>
         <location line="+10"/>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
-        <translation>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</translation>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <translation>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</translation>
     </message>
 </context>
 <context>
@@ -9899,7 +9899,7 @@ For more information on using this console, type %6.
     </message>
     <message>
         <location line="-200"/>
-        <source>Add this line to dash.conf on the masternode server:</source>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -13499,7 +13499,7 @@ Unable to restore backup of wallet.</source>
     </message>
     <message>
         <location line="+2"/>
-        <source>Sets a window title which is appended to &quot;Dash Core - &quot;</source>
+        <source>Sets a window title which is appended to &quot;PhantomRider Core - &quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

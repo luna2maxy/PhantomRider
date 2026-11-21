@@ -43,7 +43,7 @@ if [ "${RUN_STDLIB_PATH_CHECK}" = "true" ]; then
 fi
 
 if [ "${RUN_CHECK_NO_RUST}" = "true" ]; then
-  ( cd "${BUILD_DIR}" && "${BASE_ROOT_DIR}/contrib/devtools/check-no-rust.py" src/dashd src/dash-cli src/dash-tx src/dash-util src/dash-wallet src/bench/bench_dash src/test/fuzz/fuzz )
+  ( cd "${BUILD_DIR}" && "${BASE_ROOT_DIR}/contrib/devtools/check-no-rust.py" src/phantomriderd src/phantomrider-cli src/phantomrider-tx src/phantomrider-util src/phantomrider-wallet src/bench/bench_dash src/test/fuzz/fuzz )
 fi
 
 if [ -n "$USE_VALGRIND" ]; then

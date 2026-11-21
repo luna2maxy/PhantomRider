@@ -373,7 +373,7 @@
         <translation>&amp;Prijať</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and dash: URIs)</source>
+        <source>Request payments (generates QR codes and phantomrider: URIs)</source>
         <translation>Vyžiadať platby (vygeneruje QR kódy a Dash: URI)</translation>
     </message>
     <message>
@@ -643,8 +643,8 @@
         <translation>Otvoriť konfiguračný súbor &amp;peňaženky</translation>
     </message>
     <message>
-        <source>Open a dash: URI</source>
-        <translation>Otvoriť dash: URI</translation>
+        <source>Open a phantomrider: URI</source>
+        <translation>Otvoriť phantomrider: URI</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -2385,8 +2385,8 @@ Počas migrácie sa pred jej začiatkom vytvorí záloha peňaženky. Tento zál
         <translation>Súbor nie je súborom relácie zdieľaného masternódu.</translation>
     </message>
     <message>
-        <source>The session file uses an unsupported format version. Update Dash Core to open it.</source>
-        <translation>Súbor relácie používa nepodporovanú verziu formátu. Na jeho otvorenie aktualizujte Dash Core.</translation>
+        <source>The session file uses an unsupported format version. Update PhantomRider Core to open it.</source>
+        <translation>Súbor relácie používa nepodporovanú verziu formátu. Na jeho otvorenie aktualizujte PhantomRider Core.</translation>
     </message>
     <message>
         <source>The session file is for the "%1" network but this node runs "%2". It cannot be used here.</source>
@@ -2409,8 +2409,8 @@ Počas migrácie sa pred jej začiatkom vytvorí záloha peňaženky. Tento zál
         <translation>Súbor relácie neobsahuje fázu.</translation>
     </message>
     <message>
-        <source>The session file is at the unknown stage "%1". It was probably created by a newer Dash Core.</source>
-        <translation>Súbor relácie je v neznámej fáze „%1“. Pravdepodobne ho vytvoril novší Dash Core.</translation>
+        <source>The session file is at the unknown stage "%1". It was probably created by a newer PhantomRider Core.</source>
+        <translation>Súbor relácie je v neznámej fáze „%1“. Pravdepodobne ho vytvoril novší PhantomRider Core.</translation>
     </message>
     <message>
         <source>The session file lists %1 shares; a shared masternode can have at most %2.</source>
@@ -3316,7 +3316,7 @@ Počas migrácie sa pred jej začiatkom vytvorí záloha peňaženky. Tento zál
         <translation>Transakcie s výstupmi rovnými alebo nižšími ako táto suma budú považované za prach pri prijatí z externých zdrojov.</translation>
     </message>
     <message>
-        <source>duffs</source>
+        <source>phr</source>
         <translation>duffov</translation>
     </message>
     <message>
@@ -3408,8 +3408,8 @@ Počas migrácie sa pred jej začiatkom vytvorí záloha peňaženky. Tento zál
         <translation>Maximum</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automaticky otvoriť na smerovači port pre Dash Core klient. Toto funguje iba ak váš smerovač  podporuje UPnP a je povolené</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automaticky otvoriť na smerovači port pre PhantomRider Core klient. Toto funguje iba ak váš smerovač  podporuje UPnP a je povolené</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -3490,8 +3490,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Mapovať port pomocou &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the Dash Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation>Automaticky otvoriť na smerovači port pre Dash Core klient. Toto funguje iba ak váš smerovač podporuje NAT-PMP a je povolené. Externý port môže byť náhodný.</translation>
+        <source>Automatically open the PhantomRider Core client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation>Automaticky otvoriť na smerovači port pre PhantomRider Core klient. Toto funguje iba ak váš smerovač podporuje NAT-PMP a je povolené. Externý port môže byť náhodný.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -4008,7 +4008,7 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Chyba pri vyžiadaní platby</translation>
     </message>
     <message>
-        <source>Cannot start dash: click-to-pay handler</source>
+        <source>Cannot start phantomrider: click-to-pay handler</source>
         <translation>Dash sa nedá spustiť: click-to-pay handler</translation>
     </message>
     <message>
@@ -4016,8 +4016,8 @@ https://explore.transifex.com/dash/dash/</translation>
         <translation>Spracovanie URI</translation>
     </message>
     <message>
-        <source>'dash://' is not a valid URI. Use 'dash:' instead.</source>
-        <translation>„dash://“ nie je platný URI. Namiesto toho použite „dash:“.</translation>
+        <source>'phantomrider://' is not a valid URI. Use 'phantomrider:' instead.</source>
+        <translation>„phantomrider://“ nie je platný URI. Namiesto toho použite „phantomrider:“.</translation>
     </message>
     <message>
         <source>Cannot process payment request as BIP70 is no longer supported.
@@ -6282,8 +6282,8 @@ Pre viac informácií o používaní tejto konzoly zadajte %6.
         <translation>Uložte si ho teraz — registrácia sa nemôže začať, kým ho nepotvrdíte.</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on your masternode server:</source>
-        <translation>Pridajte tento riadok do dash.conf na serveri vášho masternódu:</translation>
+        <source>Add this line to phantomrider.conf on your masternode server:</source>
+        <translation>Pridajte tento riadok do phantomrider.conf na serveri vášho masternódu:</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6994,7 +6994,7 @@ Pre viac informácií o používaní tejto konzoly zadajte %6.
         <translation>Cieľový čas potvrdenia:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 duffs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 duffs in fee,&lt;br /&gt;while "at least" pays 1000 duffs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 phr and the transaction is only 250 bytes, then "per kilobyte" only pays 250 phr in fee,&lt;br /&gt;while "at least" pays 1000 phr. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Ak je vlastný poplatok nastavený na 1000 duffov a transakcia je len 250 bytov, v tom prípade sa "za kilobajt" zaplatí  na poplatkoch iba 250 duffov, &lt;br /&gt;zatiaľ čo "pri najmenšom" zaplatí 1000 duffov. Pre transakcie väčšie ako jeden kilobajt, obe zaplatia rovnako za kilobajt. </translation>
     </message>
     <message>
@@ -7384,8 +7384,8 @@ Pre viac informácií o používaní tejto konzoly zadajte %6.
         <translation>Správa:</translation>
     </message>
     <message>
-        <source>A message that was attached to the dash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
-        <translation>Správa ktorá bola pripojená ku dash: URI ktorá sa uchová spolu s transakciou pre vašu referenciu. Poznámka: Táto správa nebude poslaná cez sieť Dash.</translation>
+        <source>A message that was attached to the phantomrider: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dash network.</source>
+        <translation>Správa ktorá bola pripojená ku phantomrider: URI ktorá sa uchová spolu s transakciou pre vašu referenciu. Poznámka: Táto správa nebude poslaná cez sieť Dash.</translation>
     </message>
 </context>
 <context>
@@ -7722,8 +7722,8 @@ Pre viac informácií o používaní tejto konzoly zadajte %6.
         <translation>Kopírovať</translation>
     </message>
     <message>
-        <source>Add this line to dash.conf on the masternode server:</source>
-        <translation>Pridajte tento riadok do dash.conf na serveri masternódu:</translation>
+        <source>Add this line to phantomrider.conf on the masternode server:</source>
+        <translation>Pridajte tento riadok do phantomrider.conf na serveri masternódu:</translation>
     </message>
     <message>
         <source>The invitation you are about to send contains only the public key.</source>
@@ -10545,8 +10545,8 @@ Nepodarilo sa obnoviť zálohu peňaženky.</translation>
         <translation>Sekcia [%s] nie je rozpoznaná.</translation>
     </message>
     <message>
-        <source>Sets a window title which is appended to "Dash Core - "</source>
-        <translation>Nastaví titulok okna, ktorý sa pripojí za „Dash Core - “</translation>
+        <source>Sets a window title which is appended to "PhantomRider Core - "</source>
+        <translation>Nastaví titulok okna, ktorý sa pripojí za „PhantomRider Core - “</translation>
     </message>
     <message>
         <source>Signer did not echo address</source>

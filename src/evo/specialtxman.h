@@ -234,7 +234,7 @@ bool CheckSharedCollateralTemplateOutputs(const CTransaction& tx, TxValidationSt
 
 /**
  * Asset lock transactions with more than 100 inputs (and so over ~20 kB) can not
- * be processed by Platform, so Dash Core nodes should not relay them: they are
+ * be processed by Platform, so PhantomRider Core nodes should not relay them: they are
  * marked non-standard, which keeps the network from propagating them over p2p.
  *
  * Asset lock v2 is enabled by the v24 fork, but Platform can not process it yet.

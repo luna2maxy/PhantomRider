@@ -6,7 +6,7 @@
 Check that executables do not link Rust code.
 
 dash-sdk-cxx, the Dash Platform SDK binding (-DENABLE_PLATFORM_GUI=ON), is for
-dash-qt, test_dash and test_dash-qt only; dashd, the command-line tools,
+phantomrider-qt, test_dash and test_phantomrider-qt only; phantomriderd, the command-line tools,
 bench_dash and the fuzz binary must not contain any of it.
 A binary fails if its symbol table has cxx bridge, Rust runtime or Rust
 standard library symbols, or has no symbols at all (a stripped binary cannot
@@ -14,7 +14,7 @@ be checked).
 
 Example usage:
 
-    contrib/devtools/check-no-rust.py build/src/dashd build/src/dash-cli build/src/dash-tx build/src/dash-util build/src/dash-wallet build/src/bench/bench_dash build/src/test/fuzz/fuzz
+    contrib/devtools/check-no-rust.py build/src/phantomriderd build/src/phantomrider-cli build/src/phantomrider-tx build/src/phantomrider-util build/src/phantomrider-wallet build/src/bench/bench_dash build/src/test/fuzz/fuzz
 '''
 import re
 import subprocess

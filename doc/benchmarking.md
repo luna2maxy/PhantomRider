@@ -1,7 +1,7 @@
 Benchmarking
 ============
 
-Dash Core has an internal benchmarking framework, with benchmarks
+PhantomRider Core has an internal benchmarking framework, with benchmarks
 for cryptographic algorithms (e.g. SHA1, SHA256, SHA512, RIPEMD160, Poly1305, ChaCha20), rolling bloom filter, coins selection,
 thread queue, wallet balance.
 
@@ -17,7 +17,7 @@ and lock analysis.
     cmake -B build -DBUILD_BENCH=ON
     cmake --build build --target bench_bitcoin
 
-After compiling Dash Core, the benchmarks can be run with:
+After compiling PhantomRider Core, the benchmarks can be run with:
 
     build/src/bench/bench_dash
 
@@ -69,6 +69,6 @@ additionally enable expensive container and lock-order checks.
 Going Further
 --------------------
 
-To monitor Dash Core performance more in depth (like reindex or IBD): https://github.com/chaincodelabs/bitcoinperf
+To monitor PhantomRider Core performance more in depth (like reindex or IBD): https://github.com/chaincodelabs/bitcoinperf
 
-To generate Flame Graphs for Dash Core: https://github.com/eklitzke/bitcoin/blob/flamegraphs/doc/flamegraphs.md
+To generate Flame Graphs for PhantomRider Core: https://github.com/eklitzke/bitcoin/blob/flamegraphs/doc/flamegraphs.md

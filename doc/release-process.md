@@ -3,7 +3,7 @@ Release Process
 
 * [ ] Update translations, see [translation_process.md](https://github.com/dashpay/dash/blob/develop/doc/translation_process.md#synchronising-translations).
 * [ ] Update manpages (after rebuilding the binaries), see [gen-manpages.py](https://github.com/dashpay/dash/blob/develop/contrib/devtools/README.md#gen-manpagespy).
-* [ ] Update dash.conf and commit, see [gen-dash-conf.sh](https://github.com/dashpay/dash/blob/develop/contrib/devtools/README.md#gen-dash-confsh).
+* [ ] Update phantomrider.conf and commit, see [gen-dash-conf.sh](https://github.com/dashpay/dash/blob/develop/contrib/devtools/README.md#gen-dash-confsh).
 
 Before every minor and major release:
 
@@ -53,7 +53,7 @@ git clone https://github.com/dashpay/dash-detached-sigs.git
 git clone https://github.com/dashpay/dash.git
 ```
 
-### Dash Core maintainers/release engineers, suggestion for writing release notes
+### PhantomRider Core maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -75,7 +75,7 @@ git tag -s v(new version, e.g. 20.0.0)
 
 ### Setup and perform Guix builds
 
-Checkout the Dash Core version you'd like to build:
+Checkout the PhantomRider Core version you'd like to build:
 
 ```sh
 pushd ./dash

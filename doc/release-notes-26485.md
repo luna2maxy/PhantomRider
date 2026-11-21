@@ -6,11 +6,11 @@ For RPC methods which accept `options` parameters ((`importmulti`, `listunspent`
 This means it is possible make calls like:
 
 ```sh
-src/dash-cli -named listunspent coinType=1
+src/phantomrider-cli -named listunspent coinType=1
 ```
 
 instead of
 
 ```sh
-src/dash-cli -named listunspent query_options='{"coinType": 1}'
+src/phantomrider-cli -named listunspent query_options='{"coinType": 1}'
 ```

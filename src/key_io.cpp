@@ -48,18 +48,19 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     // Note this will be false if it is a valid Bech32 address for a different network
     bool is_bech32 = (ToLower(str.substr(0, params.Bech32PlatformHRP().size())) == params.Bech32PlatformHRP());
 
-    if (!is_bech32 && DecodeBase58Check(str, data, 21)) {
-        // base58-encoded Dash addresses.
-        // Public-key-hash-addresses have version 76 (or 140 testnet).
-        // The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
-        const std::vector<unsigned char>& pubkey_prefix = params.Base58Prefix(CChainParams::PUBKEY_ADDRESS);
+    const std::vector<unsigned char>& pubkey_prefix = params.Base58Prefix(CChainParams::PUBKEY_ADDRESS);
+    const std::vector<unsigned char>& script_prefix = params.Base58Prefix(CChainParams::SCRIPT_ADDRESS);
+    const size_t max_prefix = std::max(pubkey_prefix.size(), script_prefix.size());
+    if (!is_bech32 && DecodeBase58Check(str, data, 20 + max_prefix)) {
+        // base58-encoded PhantomRider addresses.
+        // Public-key-hash-addresses have a chain-specific prefix.
+        // The data vector contains prefix + RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
         if (data.size() == hash.size() + pubkey_prefix.size() && std::equal(pubkey_prefix.begin(), pubkey_prefix.end(), data.begin())) {
             std::copy(data.begin() + pubkey_prefix.size(), data.end(), hash.begin());
             return PKHash(hash);
         }
-        // Script-hash-addresses have version 16 (or 19 testnet).
-        // The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
-        const std::vector<unsigned char>& script_prefix = params.Base58Prefix(CChainParams::SCRIPT_ADDRESS);
+        // Script-hash-addresses have a chain-specific prefix.
+        // The data vector contains prefix + RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
         if (data.size() == hash.size() + script_prefix.size() && std::equal(script_prefix.begin(), script_prefix.end(), data.begin())) {
             std::copy(data.begin() + script_prefix.size(), data.end(), hash.begin());
             return ScriptHash(hash);
@@ -96,7 +97,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     error_str = res.first;
     if (error_locations) *error_locations = std::move(res.second);
     if (error_str.empty()) {
-        error_str = is_platform ? "This is a Dash Platform address, not a Dash Core address" : platform_error_str;
+        error_str = is_platform ? "This is a PhantomRider Platform address, not a PhantomRider Core address" : platform_error_str;
     }
     return CNoDestination();
 }
@@ -106,8 +107,8 @@ CKey DecodeSecret(const std::string& str)
 {
     CKey key;
     std::vector<unsigned char> data;
-    if (DecodeBase58Check(str, data, 34)) {
-        const std::vector<unsigned char>& privkey_prefix = Params().Base58Prefix(CChainParams::SECRET_KEY);
+    const std::vector<unsigned char>& privkey_prefix = Params().Base58Prefix(CChainParams::SECRET_KEY);
+    if (DecodeBase58Check(str, data, 33 + privkey_prefix.size())) {
         if ((data.size() == 32 + privkey_prefix.size() || (data.size() == 33 + privkey_prefix.size() && data.back() == 1)) &&
             std::equal(privkey_prefix.begin(), privkey_prefix.end(), data.begin())) {
             bool compressed = data.size() == 33 + privkey_prefix.size();
